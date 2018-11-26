@@ -7,5 +7,11 @@ brand:
 pages:
     - title: About
       url: /about/
+    - title: Blog
+      url: /blog/
+    - title: News
+      url: /news/
+    - title: Meetings
+      url: /meetings/
     - title: Contact
       url: /contact/
