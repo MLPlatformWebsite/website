@@ -1,4 +1,4 @@
 ---
-name: MLPlatform
+name: MLPlatform.org
 username: mlplatform
 ---
