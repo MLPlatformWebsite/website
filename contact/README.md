@@ -1,7 +1,11 @@
 ---
 layout: container-breadcrumb
 title: Contact MlPlatform.org
+description: >-
+    Get in touch today!
 permalink: /contact/
+jumbotron:
+    background-image: /assets/images/content/background-image2.png
 ---
 <!-- Contact Form -->
 <div class="col-xs-12 text-center">
