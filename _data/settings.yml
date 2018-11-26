@@ -1,6 +1,6 @@
 favicon: favicon.png
-search-label: ArmNNWebstie
-name: ArmNNWebstie
+search-label: ArmNNWebsite
+name: ArmNNWebsite
 # slogan: Open Source Secure World Software
 # Breadcrumb Settings
 # breadcrumb:
@@ -9,7 +9,7 @@ name: ArmNNWebstie
 # Used for the edit on github include
 edit-on-github:
     enabled: true
-    repo: https://github.com/ArmNNWebstie/website
+    repo: https://github.com/ArmNNWebsite/website
 # Mailchimp settings
 mailchimp:
     enabled: false
@@ -21,7 +21,7 @@ tags_enabled: true
 # Footer Image default is linaro sprinkle
 linaro-footer-image: Linaro-Sprinkle.png
 # Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
-github_username: ArmNNWebstieWebsite
+github_username: ArmNNWebsite
 # linkedin_username: 1026961
 # google_plus_username: +LinaroOnAir
 # facebook_username: LinaroOrg
