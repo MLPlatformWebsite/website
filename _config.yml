@@ -1,0 +1,11 @@
+title: MlPlatform.org
+description: >-
+  The static website for MlPlatform.org
+url: "https://mlplatform.org"
+theme: jumbo-jekyll-theme
+plugins:
+  - jekyll-data
+exclude:
+    - .asset-cache
+    - .sass-cache
+    - _site
