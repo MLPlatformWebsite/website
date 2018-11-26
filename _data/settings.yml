@@ -1,0 +1,82 @@
+favicon: favicon.png
+search-label: ArmNNWebstie
+name: ArmNNWebstie
+# slogan: Open Source Secure World Software
+# Breadcrumb Settings
+# breadcrumb:
+#     image: trusted-firmware.jpg
+#Content Repo for static site.
+# Used for the edit on github include
+edit-on-github:
+    enabled: true
+    repo: https://github.com/ArmNNWebstie/website
+# Mailchimp settings
+mailchimp:
+    enabled: false
+# Footer Newsletter toggle.
+newsletter:
+    enabled: false
+# Blog tags
+tags_enabled: true
+# Footer Image default is linaro sprinkle
+linaro-footer-image: Linaro-Sprinkle.png
+# Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
+github_username: ArmNNWebstieWebsite
+# linkedin_username: 1026961
+# google_plus_username: +LinaroOnAir
+# facebook_username: LinaroOrg
+# youtube_username: linaroorg
+# twitter_username: linaroorg
+# slideshare_username: linaroorg
+# Blog setup
+blog:
+    # Toggle site wide comments display.
+    comments: true
+    # Post Side Bar Settings
+    sidebar:
+        # Toggle whether or not thumbnails in the sidebar are displayed.
+        thumbnails:
+            display: true
+        # Display other posts contained in _posts
+        other-posts:
+            display: true
+            count: 4
+        # Display Related posts based on tags / categories
+        related-posts:
+            display: true
+            count: 5
+        # Display the most recent posts
+        most-recent-posts:
+            display: true
+            count: 5
+        # # Display custom collection e.g projects on 96boards
+        # collection:
+        #     - name: projects
+        #       count: 5
+        #       # Fields to use for title and url.
+        #       display_fields:
+        #           title: title
+        #           url: url          
+#Google analytics
+google:
+    analytics: UA-16756069-29
+# Shema.org settings used in the schema.html include.
+schema:
+    enabled: false
+    organisation:
+        name: MLPlatform
+        url: https://mlplatform.org
+        address:
+            street: Harston Mill, Royston Rd 
+            town: Harston 
+            county: Cambridge 
+            post_code: CB22 7GG
+            country_code: UK
+# Disqus Comments
+disqus:
+    enabled: false
+    shortname: ml-platform
+# Placeholder for Missing Images
+placeholder: TrustedFirmware-Logo_icon.png
+
+

@@ -1,0 +1,11 @@
+search:
+    enabled: false
+    label: MLPlatform
+brand:
+    text: MLPlatform.org
+    url: /
+pages:
+    - title: About
+      url: /about/
+    - title: Contact
+      url: /contact/
