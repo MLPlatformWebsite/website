@@ -7,7 +7,7 @@ categories:
 layout: post
 image:
   path: /assets/images/trusted-firmware.jpg
-  name: /assets/images/trusted-firmware.jpg
+  name: trusted-firmware.jpg
   featured: true
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum augue a elit lacinia, sit amet gravida enim vestibulum. Sed at purus accumsan, vulputate nisl non, pharetra risus. Nam ac felis quis justo lobortis viverra ut nec tortor. Pellentesque ac velit vel mi dictum ullamcorper non nec mauris. Nam euismod arcu leo, et auctor arcu porttitor a. Nam aliquam maximus ex a euismod. Quisque sem eros, blandit at diam vel, interdum rhoncus elit. Nunc finibus cursus suscipit. Praesent auctor dapibus enim sed blandit. Curabitur condimentum pellentesque porta. Donec at ultrices quam.
