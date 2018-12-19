@@ -13,5 +13,7 @@ pages:
       url: /news/
     - title: Meetings
       url: /meetings/
+    - title: Resources
+      url: /resources/
     - title: Contact
       url: /contact/
