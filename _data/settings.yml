@@ -31,7 +31,7 @@ github_username: ArmNNWebsite
 # Blog setup
 blog:
     # Toggle site wide comments display.
-    comments: true
+    comments: false
     # Post Side Bar Settings
     sidebar:
         # Toggle whether or not thumbnails in the sidebar are displayed.
