@@ -2,7 +2,7 @@ search:
     enabled: false
     label: MLPlatform
 brand:
-    text: MLPlatform.org
+    text: ML Platform
     url: /
 pages:
     - title: About
