@@ -2,7 +2,7 @@
 ---
 {% if site.production == true %}
 User-agent: *
-Disallow:
+Disallow: /
 {% else %}
 User-agent: *
 Disallow: /
