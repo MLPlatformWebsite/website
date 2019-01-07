@@ -26,6 +26,7 @@ $(window).on('load', function () {
             loop: true,
             dots: false,
             lazyLoad: true,
+            nav: true,
             margin: 0,
             autoplay: true,
             autoplayTimeout: 4000,
@@ -39,12 +40,6 @@ $(window).on('load', function () {
                 },
                 700: {
                     items: 3
-                },
-                1000: {
-                    items: 4
-                },
-                1200: {
-                    items: 6
                 }
             }
         });
