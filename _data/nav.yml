@@ -2,7 +2,7 @@ search:
     enabled: false
     label: MLPlatform
 brand:
-    text: MLPlatform.org
+    text: ML Platform
     url: /
 pages:
     - title: About
@@ -13,5 +13,15 @@ pages:
       url: /news/
     - title: Meetings
       url: /meetings/
+    - title: Resources
+      options: 
+        - text: Overview
+          url: /resources/
+        - text: Videos
+          url: /resources/videos/
+        - text: Presentations
+          url: /resources/presentations/
+        - text: White Papers
+          url: /resources/white-papers/
     - title: Contact
       url: /contact/
