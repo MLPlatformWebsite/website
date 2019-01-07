@@ -1,0 +1,44 @@
+.resource-block {
+    height: 250px;
+    overflow: hidden;
+}
+.resource-block img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.resource-info {
+    text-align: center;
+    background-color: #071228;
+    position: relative;
+    border: 1px solid black;
+    color: white;
+    opacity: .9;
+    padding: 20px;
+    height: 250px;
+    transition: all 1s ease;
+}
+.resource-info:hover {
+    opacity: 1;
+    -moz-box-shadow:    inset 0 0 20px #000000;
+   -webkit-box-shadow: inset 0 0 20px #000000;
+   box-shadow:         inset 0 0 20px #000000;
+}
+#wrapper .resource-block h3 {
+    color: white;
+}
+.row.resources:nth-child(even) {
+    background-color: white;
+}
+.row.resources{
+    padding: 40px 0;
+}
+.row.resources:nth-child(odd) h3{
+    color:white;
+}
+.resource-block p.post_excerpt.desc {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 14px;
+}
