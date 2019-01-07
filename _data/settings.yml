@@ -3,8 +3,8 @@ search-label: ArmNNWebsite
 name: ArmNNWebsite
 # slogan: Open Source Secure World Software
 # Breadcrumb Settings
-# breadcrumb:
-#     image: trusted-firmware.jpg
+breadcrumb:
+  page-titles: false
 #Content Repo for static site.
 # Used for the edit on github include
 edit-on-github:
@@ -31,7 +31,7 @@ github_username: ArmNNWebsite
 # Blog setup
 blog:
     # Toggle site wide comments display.
-    comments: true
+    comments: false
     # Post Side Bar Settings
     sidebar:
         # Toggle whether or not thumbnails in the sidebar are displayed.
@@ -77,6 +77,6 @@ disqus:
     enabled: false
     shortname: ml-platform
 # Placeholder for Missing Images
-placeholder: TrustedFirmware-Logo_icon.png
+placeholder: /assets/images/TrustedFirmware-Logo_icon.png
 
 
