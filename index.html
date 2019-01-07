@@ -7,6 +7,7 @@ description: >-
     ArmNN and Arm Compute Library
 jumbotron:
     background-image: /assets/images/content/ml-banner.jpg
+    include: jumbotron-home.html
 videos:
     - id: bYSwYkmQJVo
       url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
@@ -17,7 +18,30 @@ videos:
     - id: bYSwYkmQJVo
       url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
 ---
-
+<!-- Video Modal -->
+<div class="modal fade" id="mlPlatformVideo" tabindex="-1" role="dialog" aria-labelledby="connectModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close closeVideo" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="connectModalLabel">ML Platform</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 no-padding connect-video">
+                    <div class="wrapper">
+                        <div class="youtube" id="youtube-container" data-embed="EHM-krkB42Y">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default closeVideo" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row content">
     <div class="owl-carousel owl-theme" id="videos-slider">
         {% assign resources = site.posts | limit: 8 %}
