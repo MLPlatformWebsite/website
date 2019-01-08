@@ -1,6 +1,6 @@
-title: MlPlatform.org
+title: ML PLatform
 description: >-
-  The static website for MlPlatform.org
+  ArmNN and Arm Compute Library
 url: "https://mlplatform.org"
 theme: jumbo-jekyll-theme
 plugins:
