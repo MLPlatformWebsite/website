@@ -25,7 +25,11 @@ $(document).ready(function () {
 
     // Check for modal close event
     $(".closeVideo").on('click', function () {
-       
+        // Reload Iframe
+        var iframe = document.getElementById("promoVideo");
+        iframe.src = iframe.src;
+        console.log($("#youtube-container").attr("data-embed"));
+        console.log("Closed and paused.");
     });
 
     $(window).click(function () {
