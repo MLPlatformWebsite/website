@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    
+
     var youtube = document.querySelectorAll(".youtube");
 
     for (var i = 0; i < youtube.length; i++) {
@@ -25,11 +25,19 @@ $(document).ready(function () {
 
     // Check for modal close event
     $(".closeVideo").on('click', function () {
+       
+    });
+
+    $(window).click(function () {
         // Reload Iframe
         var iframe = document.getElementById("promoVideo");
         iframe.src = iframe.src;
         console.log($("#youtube-container").attr("data-embed"));
         console.log("Closed and paused.");
+    });
+
+    $('.modal-dialog').click(function (event) {
+        event.stopPropagation();
     });
 
 
