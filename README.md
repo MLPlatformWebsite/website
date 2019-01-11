@@ -1,44 +1,109 @@
 # MlPlatform.org Static Jekyll Website
-
 The MlPlatform.org website is built using the Jekyll static site generator. It is based off of the jumbo-jekyll-theme used for all of the Linaro static sites. With the move from Wordpress to Static we have introduced GitHub/Community driven content that allows MlPlatform.org users to submit issues about any of the pages on MlPlatform.org through the associated Git respository.
-
 *****
-
-## [How to add a blog post!](#adding-a-blog-post)
-
+## [Looking to add a blog post?](#adding-a-blog-post)
 *****
-
 ## Contributions
 We happy to consider any contributions/feature requests that you may have. Please submit a PR with your changes and we will take a look. You can also use the `Github Edit` buttons available on all the website pages to help locate the file you wish to edit/raise and issue about.
-
 *****
-
-## Guides
-
-Below are a few guides that will help when adding content to the MlPlatform.org website.
-
-- [Adding a Page](#adding-a-page)
-- [Adding a blog post](#adding-a-blog-post)
-- [Adding Redirects to the Static site](#adding-redirects-to-the-static-site)
-- [Building the static site](#building-the-static-site)
-
+## Contents
+- [Overview](#overview)
+- [Adding a Content](#adding-a-content)
+- [Adding Redirects](#adding-redirects)
+- [Building the static site locally](#building-locally)
 *****
+# Overview
+This website was developed by Linaro and utilises [Jekyll](https://jekyllrb.com), which is a static website generator, to provide a quick and responsive website. This website is part of a CI (Continuous Integration) build which happens on [bamboo.linaro.org](https://bamboo.linaro.org); so if you'd like to see the website builds take place take a look.
 
-## Adding a Page
+## Website Theme
+This website uses the `jumbo-jekyll-theme` developed as an open source project by Linaro to ensure content-driven websites are as lightweight as possible. Head over to the themes [GitHub repo](https://github.com/linaro-website/jumbo-jekyll-theme) to find out more. Here are a few examples of websites using the theme:
+- [96Boards.org](https://www.linaro.org)
+- [Linaro.org](https://www.96boards.org)
+- [connect.linaro.org](https://connect.linaro.org)
+- [OP-TEE.org](https://www.op-tee.org)
+- [TrustedFirmware.org](https://www.trustedfirmware.org)
+- [DeviceTree.org](https://www.devicetree.org)
+- [96Boards.ai](https://www.96boards.ai)
 
-### Step 1 - Choose url and layout
+## Useful basics
+Jekyll used ruby to generate static websites. Jekyll uses Markdown for page content and front matter to describe the meta data of a given page. 
 
-Static Jekyll web pages are placed in folders in the root of the website with either a `README.md` or a `index.html` page beneath them. Example - /services/README.md or /services/index.html. This keeps the pages organised to some extent. If your page contains mostly HTML then use a `index.html` file so that IDE's recognize it has HTML and `README.md` if the page is mostly markdown.
+A typical page may look like this:
+`/your-new-page.md` or `/your-new-page/README.md`
+```yaml
+---
+# The url your page will be visible at
+permalink: /your-new-page/
+# Meta title for your page
+title: Your new page
+# Meta description of your page.
+description: >-
+    This is your page description which will be visible in search engines and more.
+# Tags are used by theme to add meta keywords to a page
+tags:
+  - jekyll
+  - update
+  - 2019
+# Provides the layout used to create the page
+layout: jumbotron-container
+---
+<YOUR MARKDOWN CONTENT GOES HERE>
+```
 
-The url for your page should be added to the front matter of your posts (section at the top of the file between --- containing yaml) as the `permalink`. This will ensure the url of your page is exactly as you intended it to be. See below for an example of the front matter to add to the web page. If in any doubt please duplicate a page that you would like yours to look like and modify the file from there.
+Above is a basic example of a Jekyll page. Each layout may have different front matter that it requires to be rendered correctly. For example the `jumbo-jekyll-theme`'s `jumbotron-container` layout uses the following front matter to add a header image carousel or video/image banner to your page.
 
+```yaml
+---
+jumbotron:
+    # Default background image
+    image: /assets/images/content/bkk19-vertical-white-sm.png
+    # Banner Title
+    title: Bringing the Arm ecosystem together
+    # Custom include file
+    include: your-custom-include.html
+    # Description to display beneath the title
+    description: ""
+    # Adds a background video to your header
+    video: 
+        # Video sources as mp4,ogv and webm for cross browser support.
+        source:
+            mp4: https://s3.amazonaws.com/static-linaro-org/connect/assets/videos/LinaroConnectPromo.mp4
+            ogv: https://s3.amazonaws.com/static-linaro-org/connect/assets/videos/LinaroConnectPromo.ogv
+            webm: https://s3.amazonaws.com/static-linaro-org/connect/assets/videos/LinaroConnectPromo.webm
+        # Video poster displays for first frame of video is received.
+        poster: /assets/images/content/bkk19-bg.jpg
+    # Animation to use on the header elements
+    animation: fade
+---
+```
+The above snippet is used for the [Linaro Connect homepage](https://connect.linaro.org).
+*******
+## Adding a page
+### Step 1 - Fork the repo
+The first step is to make a fork of t
+### Step 1 - Create a file
+Website pages are added as markdown files usually in a folder with a `README.md` file beneath to keep everything organised and to ensure content renders on GitHub too (e.g `/services/README.md` or `/services.md`). If your page contains HTML then use the `.html` file extension.
+### Step 2 - Add Jekyll front matter to your new page
+The url/permalink for your page should be added to the `front matter` of your posts/pages (the section at the top of the file between the set of 3 dashes `---`) as the `permalink` so that your page url is exactly as you intended it to be. See below for an example of the front matter to add to your page. Each theme layout may have different front matter variables that are required so if in any doubt refer to the `jumbo-jekyll-theme` documentation [here](https://github.com/linaro-website/jumbo-jekyll-theme). 
+
+#### Available front matter options
+Below is a table of the most common front matter variable to add to your page.
+
+| Front Matter Option | Value | Description  | 
+| ------ | ----------- | ----- |
+| layout | post | Layout to be used for the page |
+| published | false | Set `published` to false if you want to add the page but not show it on the website. |
+| title | My Awesome Post | The title of your page/post. Used in the `meta` tags and in layouts to display your page correctly. |
+| description | This is an awesome post about MlPlatform.org... | The description of your page used as the `meta` description.|
+
+#### Example front matter
 ```YAML
 ---
 # Layout of your web page - see below for available layouts.
 layout: jumbotron-container
-# URL of your web page
+# URL of your page
 permalink: /about/
-# Title of your web page
+# Title of your page
 title: About Us
 # Description of your web page.
 desc: |-
@@ -48,7 +113,7 @@ desc: |-
     popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
     publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 # Keywords that describe your page used as meta keywords.
-keywords: lorem, ipsum, web, page
+tags: lorem, ipsum, web, page
 jumbotron:
     carousel-images:
         - /assets/images/content/background-image1.jpg
@@ -56,106 +121,7 @@ jumbotron:
         - /assets/images/content/background-image3.jpg
 ---
 ```
-
-#### Available layouts
-
-Below are a table showing the available layouts for you to use:
-
-| Layout | Description | 
-| ------ | ----------- |
-| jumbotron | This layout adds either a carousel header, background-image header or a breadcrumb header. Content using this layout should be added to Boostrap 3 rows. This 
-layout is useful when addng custom pages. |
-| jumbotron-container (Most Common) | This is the exact same as the above but instead provides a Bootstrap 3 content container than can be used to add content to. |
-
-##### Jumbotron Layout Settings
-
-If you are using a layout that contains `jumbotron` then you can choose to display an image carousel header, standard background image header or a simple breadcrumb.
-
-**Jumbotron Settings**
-With the jumbotron layouts you can add a title, sub title and buttons to your header through changing your pages' front matter. 
-
-The jumbotron `title` can be modified by changing the title value in the page front matter:
-
-```yaml
----
-title: Your Page Title (and jumbotron title)
-...
----
-```
-
-The jumbotron `sub title`/`description` can be modified by changing the description value in the page front matter:
-
-```yaml
----
-...
-description: >-
-    Your Page description (and jumbotron description/sub title)
-...
----
-```
-
-The jumbotron `buttons` can be added with the following front matter:
-
-```yaml
----
-...
-jumbotron:
-    ...
-    buttons:
-        - title: Learn More
-          url: /about/
-          icon: fa fa-github
-          ...
-...
----
-```
-The above should hopefully be fairly self explanatory other than the icon value which should be the icon class for a Font Awesome 4.7 Icon. For all available icons [click here](https://fontawesome.com/v4.7.0/icons/). 
-
-
-**Displaying an image carousel**
-
-If you would like to display an image carousel for your page then add the following front matter to your page:
-
-```yaml
----
-...
-jumbotron:
-    ...
-    carousel-images:
-        - /assets/images/content/background-image1.jpg
-        - /assets/images/content/background-image2.png
-        - /assets/images/content/background-image3.jpg
-    ...
-...
----
-```
-Add as many images here as you would like. Even though these images are loaded lazily, try and make sure the images have been optimized as large images will increase the page load time. Also try to ensure the resolution of these images are fairly high.
-
-
-**Displaying an background image based jumbotron**
-
-```yaml
----
-...
-jumbotron:
-    ...
-    background-image: /assets/images/content/background-image1.jpg
-    ...
-...
----
-```
-Here you can add image to be used an the background image of the jumbotron. Try and make sure the image has been compressed/optimized as large images will increase the page load time. Also try to ensure the resolution of these images are fairly high.
-
-
-#### Front Matter - available settings
-
-| Front Matter Key | Example Value | Description  | 
-| ------ | ----------- | ----- |
-| layout | post | Layout to be used for the page |
-| published | false | Set `published` to false if you want to add the page but not show it on the website. |
-| title | My Awesome Post | The title of your page/post. Used in the `meta` tags and in layouts to display your page correctly. |
-| description | This is an awesome post about MlPlatform.org... | The description of your page used as the `meta` description.|
-
+### Step 2 - Add content to your page
 
 ## Adding a blog post
 
@@ -200,7 +166,6 @@ These should be modified based on the content of your post as they are used for 
 
 #### Description
 Change this value to a short description of your blog post as this is used for the meta description of your blog post.
-
 
 ### Step 3 - Add your post content.
 
