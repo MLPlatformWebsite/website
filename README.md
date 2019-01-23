@@ -11,12 +11,13 @@ We happy to consider any contributions/feature requests that you may have. Pleas
 - [Adding a Content](#adding-a-content)
 - [Adding Redirects](#adding-redirects)
 - [Building the static site locally](#building-locally)
+- [Contributing Guide](#contributing)
 *****
 # Overview
 This website was developed by Linaro and utilises [Jekyll](https://jekyllrb.com), which is a static website generator, to provide a quick and responsive website. This website is part of a CI (Continuous Integration) build which happens on [bamboo.linaro.org](https://bamboo.linaro.org); so if you'd like to see the website builds take place take a look.
 
 ## Website Theme
-This website uses the `jumbo-jekyll-theme` developed as an open source project by Linaro to ensure content-driven websites are as lightweight as possible. Head over to the themes [GitHub repo](https://github.com/linaro-website/jumbo-jekyll-theme) to find out more. Here are a few examples of websites using the theme:
+This website uses the `jumbo-jekyll-theme` developed as an open source project by Linaro to ensure content-driven websites are as lightweight as possible. Head over to the [theme repo] to find out more. Here are a few examples of websites using the theme:
 - [96Boards.org](https://www.linaro.org)
 - [Linaro.org](https://www.96boards.org)
 - [connect.linaro.org](https://connect.linaro.org)
@@ -79,12 +80,15 @@ jumbotron:
 The above snippet is used for the [Linaro Connect homepage](https://connect.linaro.org).
 *******
 ## Adding a page
+
 ### Step 1 - Fork the repo
-The first step is to make a fork of t
+The first step is to fork [this repo] so that you can [submit a pull request] for your website updates.
+
 ### Step 1 - Create a file
 Website pages are added as markdown files usually in a folder with a `README.md` file beneath to keep everything organised and to ensure content renders on GitHub too (e.g `/services/README.md` or `/services.md`). If your page contains HTML then use the `.html` file extension.
+
 ### Step 2 - Add Jekyll front matter to your new page
-The url/permalink for your page should be added to the `front matter` of your posts/pages (the section at the top of the file between the set of 3 dashes `---`) as the `permalink` so that your page url is exactly as you intended it to be. See below for an example of the front matter to add to your page. Each theme layout may have different front matter variables that are required so if in any doubt refer to the `jumbo-jekyll-theme` documentation [here](https://github.com/linaro-website/jumbo-jekyll-theme). 
+The url/permalink for your page should be added to the `front matter` of your posts/pages (the section at the top of the file between the set of 3 dashes `---`) as the `permalink` so that your page url is exactly as you intended it to be. See below for an example of the front matter to add to your page. Each theme layout may have different front matter variables that are required so if in any doubt refer to the [theme repo]'s documentation. 
 
 #### Available front matter options
 Below is a table of the most common front matter variable to add to your page.
@@ -122,6 +126,7 @@ jumbotron:
 ---
 ```
 ### Step 2 - Add content to your page
+
 
 ## Adding a blog post
 
@@ -231,11 +236,13 @@ __Note:__ These redirects are currently not respected by the link checker until 
 
 *****
 
-## Building the static site
 
-    We are working towards creating a Dockerfile for building our static sites. In the mean time you can still clone the site and install bundler/jekyll gems and ruby to build the site locally.
+# Building the static site
 
-In order to build the MlPlatform.org static site make sure you have Ruby and the bundler/jekyll gems installed. For instructions on how to setup a build environment for building Jekyll sites see the official Jekyll documentation [here](https://jekyllrb.com/docs/installation/).
+It is not 100% neccessary to build to site on your computer to submit updates but it's helpful if you want to see the updates to big changes before your submit your pull request. You can also trigger a staging build of the site by submititng a pull request to the [develop] branch of [this repo].
+We are working towards creating a Docker container for building static Jekyll sites. In the mean time you can still clone the site and install bundler/jekyll gems and ruby to build the site locally or checkout the [official docker container for Jekyll](https://hub.docker.com/r/jekyll/jekyll/) if you are familiar with setting up a container driven environment.
+
+In order to build the [MLPlatform.org] static site make sure you have Ruby and the bundler/jekyll gems installed. For instructions on how to setup a build environment for building Jekyll sites see the official Jekyll documentation [here](https://jekyllrb.com/docs/installation/).
 
 This will install the required gems listed in the Gemfile:
 
@@ -249,10 +256,21 @@ This will serve (s) the Jekyll static website to the http://localhost:4000 where
 $ bundle exec jekyll s 
 ```
 
+# Contributing
+## Simple Changes
+<todo>
+## Submit a Pull Request
+<todo>
 ## Issues 
 If you come across any bugs/issues then please let us know by opening an issue [here](https://github.com/ArmNNWebsite/website/issues/new). Please provide precise details on how to reproduce the bug/issue so that we can act on the issue as soon as possible.
 
 ### Known Issues
 #### Image file names
 Due to the way product images are include, images should not include spaces in the filename otherwise it may not be rendered on the website as expected.
+
+[this repo]: https://github.com/ArmNNWebsite/website
+[develop]: https://github.com/ArmNNWebsite/website
+[theme repo]: https://github.com/linaro-website/jumbo-jekyll-theme
+[submit a pull request]: #submit-a-pull-request
+[MLPlatform.org]: https://mlplatform.org
 
