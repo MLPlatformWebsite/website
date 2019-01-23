@@ -2,7 +2,10 @@ search:
     enabled: false
     label: MLPlatform
 brand:
-    text: ML Platform
+    # text: ML Platform
+    image:
+      enabled: true
+      path: /assets/images/ml-platform-logo.png
     url: /
 pages:
     - title: About
