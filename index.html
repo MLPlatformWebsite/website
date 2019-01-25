@@ -1,11 +1,12 @@
 ---
 layout: jumbotron
 title: ArmNN and Arm Compute Library
-js-package: home
 css-package: home
 description: >-
     ArmNN and Arm Compute Library
 jumbotron:
+    triangle-divider: true
+    title: Machine Learning Platform
     background-image: /assets/images/content/ml-banner.jpg
     include: jumbotron-home.html
 videos:
@@ -42,87 +43,84 @@ videos:
         </div>
     </div>
 </div>
-<div class="row content">
-    <div class="owl-carousel owl-theme" id="videos-slider">
-        {% assign resources = site.posts | limit: 8 %}
-        {% for post in resources %}
-            <div class="item res-item">
-                <div class="resource-block">
-                    {% if post.youtube_video_url %}
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://img.youtube.com/vi/{{post.youtube_video_url | replace: "https://youtu.be/", "" | replace: "https://www.youtube.com/watch?v=", "" | split: "&" | first}}/hqdefault.jpg"
-                            alt="{{post.title}}" class="center-block img-responsive lazyload" />
-                    {% elsif post.image.thumb %}
-                        {% capture image_path %}{{site.blog_images_dir}}thumbs/{{post.image.thumb}}{% endcapture %}
-                        {% capture full_path %}/{{site.blog_images_dir}}thumbs/{{post.image.thumb}}{% endcapture %}
-                        {% responsive_image_block %}
-                        template: _includes/thumb.html
-                        path: {{ image_path }}
-                        fullpath: {{ full_path }}
-                        {% if post.title %}
-                        title: {{ post.title | slugify: "ascii"}}
-                        alt: {{ post.title | slugify: "ascii"}}
-                        {% endif %}
-                        {% endresponsive_image_block %}
-                    {% elsif post.image.name %}
-                        {% capture image_path %}{{site.blog_images_dir}}{{post.image.name}}{% endcapture %}
-                        {% capture full_path %}/{{site.blog_images_dir}}{{post.image.name}}{% endcapture %}
-                        {% responsive_image_block %}
-                        template: _includes/thumb.html
-                        path: {{ image_path }}
-                        fullpath: {{ full_path }}
-                        {% if post.title %}
-                        title: {{ post.title | slugify: "ascii"}}
-                        alt: {{ post.title | slugify: "ascii"}}
-                        {% endif %}
-                        {% endresponsive_image_block %}
-                    {% elsif post.image.path %}
-                        {% capture image_path %}{{post.image.path | remove_first: "/" }}{% endcapture %}
-                        {% capture full_path %}{{post.image.path}}{% endcapture %}
-                        {% responsive_image_block %}
-                        template: _includes/thumb.html
-                        path: {{ image_path }}
-                        fullpath: {{ full_path }}
-                        {% if post.title %}
-                        title: {{ post.title | slugify: "ascii"}}
-                        alt: {{ post.title | slugify: "ascii"}}
-                        {% endif %}
-                        {% endresponsive_image_block %}
-                    {% elsif post.image %}
-                        {% capture image_path %}{{post.image | remove_first: "/" }}{% endcapture %}
-                        {% capture full_path %}{{post.image}}{% endcapture %}
-                        {% responsive_image_block %}
-                        template: _includes/thumb.html
-                        path: {{ image_path }}
-                        fullpath: {{ full_path }}
-                        {% if post.title %}
-                        title: {{ post.title | slugify: "ascii"}}
-                        alt: {{ post.title | slugify: "ascii"}}
-                        {% endif %}
-                        {% endresponsive_image_block %}
-                    {% else %}
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{site.data.settings.placeholder}}"
-                        alt="{{post.title}}" class="center-block img-responsive lazyload" />
-                    {% endif %}
-                    <div class="resource-info">
-                        <div class="title">
-                            <h3>{{ post.title}}</h3>
-                        </div>
-                        <div class="description">
-                            <em class="date">{{ post.date | date: "%A, %B %-d, %Y"}}</em><br />
-                            <p class="post_excerpt desc">
-                                {{ post.description | strip_html | truncatewords:30 }}
-                            </p>
-                        </div>
-                        <div class="button">
-                            <a href="{{post.url}}">
-                                <button class="btn blog-read-more-btn">View Resource</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+
+<div class="row content p-t-40 p-b-40" id="content-container">
+    <div class="container text-center">
+        <h2 class="text-center">What is the machine learning platform?</h2>
+        <p>
+            The machine learning platform is part of the <a href="https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/">Linaro Machine Intelligence Initiative</a> and is the home for Arm NN and Arm
+            Compute Library – open-source software libraries that optimise the execution of machine learning (ML) workloads
+            on Arm-based processors.
+        </p>
+        <p>
+            It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning and
+            neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of
+            Things (IoT) to connected cars and servers.
+        </p>
+        <div class="col-sm-8 col-sm-offset-2">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/images/content/nn-frameworks.png"
+             class="img-responsive lazyload" alt="NN Frameworks graphic"/>
+        </div>
     </div>
 </div>
-
-
+<div class="row content p-t-40 p-b-40" id="why-choose">
+    <div class="container text-center">
+        <h2 class="text-center">Why choose the machine learning platform?</h2>
+        <p>
+            The machine learning platform libraries – Arm NN and Arm Compute Library – bridge the gap between existing neural
+            network (NN) frameworks, such as TensorFlow, TensorFlow Lite, Caffe and ONNX, and the underlying IP.
+        </p>
+        <p>
+            They enable efficient translation of these NN frameworks, allowing them to run efficiently – without modification –
+            across Arm Cortex CPUs, Arm Mali GPUs and the Arm ML processor.
+        </p>
+        <div class="col-sm-8 col-sm-offset-2">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/images/content/ml-home-graphic.png"
+            class="img-responsive lazyload" alt="Why choose the machine learning platform graphic"/>
+        </div>
+    </div>
+</div>
+<div class="row content p-t-40 p-b-40" id="overview">
+    <div class="container text-center">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/images/content/technical-overview.png"
+                class="img-responsive lazyload" alt="Technical Overview graphic" />
+        </div>
+        <div class="col-xs-12">
+            <h2 class="text-center">Technical Overview</h2>
+            <p>
+                Find more information on the machine learning platform projects from the existing Arm developer websites:
+            </p>
+            <a href="" class="btn btn-primary">Arm NN</a>
+            <a href="" class="btn btn-primary">Compute Library</a>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/images/content/mailing-list.png"
+                class="img-responsive lazyload" alt="Mailing Lists graphic" />
+        </div>
+        <div class="col-xs-12">
+            <h2 class="text-center">Get Involved</h2>
+            <p>
+                Please join us on one of the machine learning platform mailing lists:
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <table class="table">
+                <thead>
+                    <th>Project</th>
+                    <th>Mailing Lists</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arm NN</td>
+                        <td><a href="https://lists.linaro.org/mailman/listinfo/armnn-dev">https://lists.linaro.org/mailman/listinfo/armnn-dev</a></td>
+                    </tr>
+                    <tr>
+                        <td>Arm Compute Library</td>
+                        <td><a href="https://lists.linaro.org/mailman/listinfo/armcomputelibrary-dev">https://lists.linaro.org/mailman/listinfo/armcomputelibrary-dev</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
