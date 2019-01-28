@@ -10,31 +10,51 @@ jumbotron:
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
-<div class="col-xs-12 text-center">
+<div class="col-xs-12" markdown="1">
+
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
 
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+
 </div>
 
-<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-    <table class="table">
-        <thead>
-            <th>Project</th>
-            <th>Description</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Arm NN</td>
-                <td>
-                    Arm NN is an inference engine for CPUs, GPUs and NPUs. It bridges the gap between existing NN frameworks and the underlying IP. It enables efficient translation of existing neural network frameworks, such as TensorFlow and Caffe, allowing them to run efficiently – without modification – across Arm Cortex CPUs and Arm Mali GPUs. For more details see: https://developer.arm.com/products/processors/machine-learning/arm-nn
-                </td>
-            </tr>
-            <tr>
-                <td>Arm Compute Library</td>
-                <td>
-                    The Arm Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: https://developer.arm.com/technologies/compute-library
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="col-xs-12 col-sm-8">
+    <div class="double-scroll">
+        <table class="table">
+            <thead>
+                <th>Project</th>
+                <th>Description</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Arm NN</td>
+                    <td>
+                        Arm NN is an inference engine for CPUs, GPUs and NPUs. It bridges the gap between existing NN frameworks and the underlying IP. It enables efficient translation of existing neural network frameworks, such as TensorFlow and Caffe, allowing them to run efficiently – without modification – across Arm Cortex CPUs and Arm Mali GPUs. For more details see: <a href="https://developer.arm.com/products/processors/machine-learning/arm-nn">https://developer.arm.com/products/processors/machine-learning/arm-nn</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Arm Compute Library</td>
+                    <td>
+                        The Arm Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: <a href="https://developer.arm.com/technologies/compute-library">https://developer.arm.com/technologies/compute-library</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div> 
+
+<div class="col-xs-12" markdown="1">
+## Our Focus
+
+It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+
+It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+
+</div>
+
+<div class="col-xs-12" markdown="1">
+## Join Us!
+
+If you or your company are interested in participating in this effort, please visit the [Contributing](/contributing/) page. We welcome all feedback and participation in the development of the machine learning platform.
+
+</div>
