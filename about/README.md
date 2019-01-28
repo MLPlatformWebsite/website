@@ -10,7 +10,7 @@ jumbotron:
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
-<div class="col-xs-12 text-center" markdown="1">
+<div class="col-xs-12" markdown="1">
 
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
 
@@ -18,7 +18,7 @@ It enables a new era of advanced, ultra-efficient inference at the edge. Specifi
 
 </div>
 
-<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+<div class="col-xs-12 col-sm-8">
     <div class="double-scroll">
         <table class="table">
             <thead>
@@ -43,7 +43,7 @@ It enables a new era of advanced, ultra-efficient inference at the edge. Specifi
     </div>
 </div> 
 
-<div class="col-xs-12 text-center" markdown="1">
+<div class="col-xs-12" markdown="1">
 ## Our Focus
 
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
@@ -52,7 +52,7 @@ It enables a new era of advanced, ultra-efficient inference at the edge. Specifi
 
 </div>
 
-<div class="col-xs-12 text-center" markdown="1">
+<div class="col-xs-12" markdown="1">
 ## Join Us!
 
 If you or your company are interested in participating in this effort, please visit the [Contributing](/contributing/) page. We welcome all feedback and participation in the development of the machine learning platform.
