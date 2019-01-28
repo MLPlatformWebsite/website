@@ -32,7 +32,7 @@ We encourage all machine learning platform developers to subscribe to one of our
                 <tr>
                     <td>Arm Compute Library</td>
                     <td>
-                        <a href="https://lists.linaro.org/mailman/listinfo/armcomputelibrary-dev">https://lists.linaro.org/mailman/listinfo/armcomputelibrary-dev</a>
+                        <a href="https://lists.linaro.org/mailman/listinfo/acl-dev">https://lists.linaro.org/mailman/listinfo/acl-dev</a>
                     </td>
                 </tr>
             </tbody>
