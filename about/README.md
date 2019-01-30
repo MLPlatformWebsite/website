@@ -5,14 +5,15 @@ description: >-
     The machine learning platform is part of the Linaro Machine Intelligence Initiative and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 permalink: /about/
 jumbotron:
-    title: What is the machine learning platform?
+    title: About
     description: ""
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
 <div class="col-xs-12" markdown="1">
+## What is the machine learning platform?
 
-It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+The machine learning platform is part of the [Linaro](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)[ Machine Intelligence Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/) and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
 
@@ -46,9 +47,9 @@ It enables a new era of advanced, ultra-efficient inference at the edge. Specifi
 <div class="col-xs-12" markdown="1">
 ## Our Focus
 
-It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+The aim of the machine learning platform is to provide a home for the development of open-source software that optimises and simplifies the running of machine learning jobs on Arm-based processors.
 
-It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
+We aim to create a thriving community of developers working together to make the machine learning platform a key resource for achieving ultra-efficient inference at the edge.
 
 </div>
 
