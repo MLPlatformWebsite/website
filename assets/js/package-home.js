@@ -3,6 +3,7 @@
 //= require vendor/cookieconsent
 //= require vendor/lazysizes
 //= require vendor/owl.carousel
+//= require vendor/jquery.doubleScroll
 
 //= require app/main
 //= require app/tables

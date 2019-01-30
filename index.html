@@ -1,23 +1,16 @@
 ---
 layout: jumbotron
-title: ArmNN and Arm Compute Library
+title: Arm NN and Arm Compute Library
 css-package: home
+js-package: home
 description: >-
-    ArmNN and Arm Compute Library
+    Arm NN and Arm Compute Library
 jumbotron:
+    animation: fade
     triangle-divider: true
     title: Machine Learning Platform
     background-image: /assets/images/content/ml-banner.jpg
     include: jumbotron-home.html
-videos:
-    - id: bYSwYkmQJVo
-      url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
-    - id: bYSwYkmQJVo
-      url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
-    - id: bYSwYkmQJVo
-      url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
-    - id: bYSwYkmQJVo
-      url: https://www.youtube.com/watch?v=bYSwYkmQJVo&feature=youtu.be&t=1s
 ---
 <!-- Video Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalModal">
@@ -29,9 +22,6 @@ videos:
                 <h4 class="modal-title text-center" id="myModalModal">ML Platform</h4>
             </div>
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
                 <!-- 16:9 aspect ratio -->
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always">></iframe>
@@ -106,22 +96,24 @@ videos:
             </p>
         </div>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-            <table class="table">
-                <thead>
-                    <th>Project</th>
-                    <th>Mailing Lists</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Arm NN</td>
-                        <td><a href="https://lists.linaro.org/mailman/listinfo/armnn-dev">https://lists.linaro.org/mailman/listinfo/armnn-dev</a></td>
-                    </tr>
-                    <tr>
-                        <td>Arm Compute Library</td>
-                        <td><a href="https://lists.linaro.org/mailman/listinfo/acl-dev">https://lists.linaro.org/mailman/listinfo/acl-dev</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="double-scroll">
+                <table class="table">
+                    <thead>
+                        <th>Project</th>
+                        <th>Mailing Lists</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arm NN</td>
+                            <td><a href="https://lists.linaro.org/mailman/listinfo/armnn-dev">https://lists.linaro.org/mailman/listinfo/armnn-dev</a></td>
+                        </tr>
+                        <tr>
+                            <td>Arm Compute Library</td>
+                            <td><a href="https://lists.linaro.org/mailman/listinfo/acl-dev">https://lists.linaro.org/mailman/listinfo/acl-dev</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div> 
     </div>
 </div>
