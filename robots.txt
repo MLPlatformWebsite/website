@@ -2,7 +2,8 @@
 ---
 {% if site.production == true %}
 User-agent: *
-Disallow: /
+Disallow: 
+Sitemap: {{site.url}}/sitemap.xml
 {% else %}
 User-agent: *
 Disallow: /
