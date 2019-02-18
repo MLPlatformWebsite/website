@@ -3,12 +3,11 @@ search-label: ArmNNWebsite
 name: ArmNNWebsite
 # slogan: Open Source Secure World Software
 # Breadcrumb Settings
-# breadcrumb:
-#     image: trusted-firmware.jpg
-#Content Repo for static site.
+breadcrumb:
+  page-titles: false
 # Used for the edit on github include
 edit-on-github:
-    enabled: true
+    enabled: false
     repo: https://github.com/ArmNNWebsite/website
 # Mailchimp settings
 mailchimp:
@@ -18,20 +17,12 @@ newsletter:
     enabled: false
 # Blog tags
 tags_enabled: true
-# Footer Image default is linaro sprinkle
-linaro-footer-image: Linaro-Sprinkle.png
 # Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
 github_username: ArmNNWebsite
-# linkedin_username: 1026961
-# google_plus_username: +LinaroOnAir
-# facebook_username: LinaroOrg
-# youtube_username: linaroorg
-# twitter_username: linaroorg
-# slideshare_username: linaroorg
 # Blog setup
 blog:
     # Toggle site wide comments display.
-    comments: true
+    comments: false
     # Post Side Bar Settings
     sidebar:
         # Toggle whether or not thumbnails in the sidebar are displayed.
@@ -49,14 +40,6 @@ blog:
         most-recent-posts:
             display: true
             count: 5
-        # # Display custom collection e.g projects on 96boards
-        # collection:
-        #     - name: projects
-        #       count: 5
-        #       # Fields to use for title and url.
-        #       display_fields:
-        #           title: title
-        #           url: url          
 #Google analytics
 google:
     analytics: UA-16756069-29
@@ -77,6 +60,6 @@ disqus:
     enabled: false
     shortname: ml-platform
 # Placeholder for Missing Images
-placeholder: TrustedFirmware-Logo_icon.png
+placeholder: /assets/images/content/ml-placeholder.png
 
 

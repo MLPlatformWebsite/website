@@ -1,17 +1,43 @@
 search:
     enabled: false
     label: MLPlatform
+universal-nav: false
 brand:
-    text: MLPlatform.org
+    # text: ML Platform
+    image:
+      enabled: true
+      path: /assets/images/ml-platform-logo.png
     url: /
 pages:
+    # - title: About
+    #   url: /about/
+    # - title: Blog
+    #   url: /blog/
+    # - title: News
+    #   url: /news/
+    # - title: Meetings
+    #   url: /meetings/
+    - title: Users
+      options: 
+        - text: Releases
+          url: /releases/
+        - text: Guides
+          url: /guides/
+        - text: Mailing Lists
+          url: /mailing-lists/
+    - title: Developers
+      options: 
+        - text: Contributing
+          url: /contributing/
+    # - title: Resources
+    #   options: 
+    #     - text: Overview
+    #       url: /resources/
+    #     - text: Videos
+    #       url: /resources/videos/
+    #     - text: Presentations
+    #       url: /resources/presentations/
+    #     - text: White Papers
+    #       url: /resources/white-papers/
     - title: About
       url: /about/
-    - title: Blog
-      url: /blog/
-    - title: News
-      url: /news/
-    - title: Meetings
-      url: /meetings/
-    - title: Contact
-      url: /contact/

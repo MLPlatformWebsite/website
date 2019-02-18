@@ -1,6 +1,6 @@
-title: MlPlatform.org
+title: ML PLatform
 description: >-
-  The static website for MlPlatform.org
+  ArmNN and Arm Compute Library
 url: "https://mlplatform.org"
 theme: jumbo-jekyll-theme
 plugins:
@@ -10,3 +10,10 @@ exclude:
     - .sass-cache
     - _site
 permalink: /:categories/:title/
+blog_images_dir: assets/images/
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      comments: false
