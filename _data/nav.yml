@@ -41,3 +41,5 @@ pages:
     #       url: /resources/white-papers/
     - title: About
       url: /about/
+    - title: Contact
+      url: /contact/
