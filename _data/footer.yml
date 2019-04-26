@@ -14,6 +14,17 @@ columns:
       items:
         - text: Contributing
           url : /contributing/
+        - text: Development Tracker (Phabricator)
+          url : https://developer.mlplatform.org/
+          external: true
+    - title: Support
+      items:
+        - text: Wiki
+          url : https://developer.mlplatform.org/w/
+          external: true
+        - text: Forum
+          url : https://discuss.mlplatform.org/
+          external: true
 company-links:
     - name: Contact
       url: /contact/
