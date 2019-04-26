@@ -20,7 +20,7 @@ pages:
       options: 
         - text: Contributing
           url: /contributing/
-        - text: Developement Tracker
+        - text: Development Tracker
           url: https://developer.mlplatform.org
           external: true
     - title: Forum
