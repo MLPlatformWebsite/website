@@ -3,20 +3,11 @@ search:
     label: MLPlatform
 universal-nav: false
 brand:
-    # text: ML Platform
     image:
       enabled: true
       path: /assets/images/ml-platform-logo.png
     url: /
 pages:
-    # - title: About
-    #   url: /about/
-    # - title: Blog
-    #   url: /blog/
-    # - title: News
-    #   url: /news/
-    # - title: Meetings
-    #   url: /meetings/
     - title: Users
       options: 
         - text: Releases
@@ -29,15 +20,16 @@ pages:
       options: 
         - text: Contributing
           url: /contributing/
-    # - title: Resources
-    #   options: 
-    #     - text: Overview
-    #       url: /resources/
-    #     - text: Videos
-    #       url: /resources/videos/
-    #     - text: Presentations
-    #       url: /resources/presentations/
-    #     - text: White Papers
-    #       url: /resources/white-papers/
+        - text: Development Tracker
+          url: https://developer.mlplatform.org
+          external: true
+    - title: Forum
+      url: https://discuss.mlplatform.org
+      external: true
+    - title: Wiki
+      url: https://developer.mlplatform.org/w/
+      external: true
     - title: About
       url: /about/
+    - title: Contact
+      url: /contact/

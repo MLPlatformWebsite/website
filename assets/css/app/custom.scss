@@ -50,31 +50,30 @@
 	top: 0;
 	left: 0;
 }
-
 // Modals
-.modal-dialog {
+#wrapper .modal-dialog {
     top: 120px;
     background-color: transparent;
-}
-.modal-content {
-    background-color: #071228;
-}
-.modal-header h4 {
-    color: white;
-}
-.modal-header {
-    border-bottom: 0px;
+    .modal-header {
+        border-bottom: 0px;
+        h4 {
+            color: white;
+        }
+        button.close.closeVideo {
+            color: white;
+            opacity: .7;
+        }
+    }
+    .modal-content {
+        background-color: #071228;
+    }
+    .modal-body {
+        border-bottom: 0px;
+    }
+    .modal-footer {
+        border-top: 0;
+    }
 }
 
-.modal-body {
-    border-bottom: 0px;
-}
 
-.modal-footer {
-    border-top: 0;
-}
 
-button.close.closeVideo {
-    color: white;
-    opacity: .7;
-}
