@@ -79,7 +79,7 @@ The machine learning platform projects will be released every three months in Fe
 
 ## Communications
 
-We encourage all developers to subscribe to one or all of the [machine learning platform mailing lists](/mailing-lists/).
+We encourage all developers to subscribe to one or all of the [machine learning platform mailing lists](/mailing-lists-and-irc/).
 
 
 </div>

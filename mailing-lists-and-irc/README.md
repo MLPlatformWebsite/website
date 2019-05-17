@@ -1,16 +1,18 @@
 ---
 layout: jumbotron-container
-title: Mailing Lists
+title: Mailing Lists and IRC
 description: >-
-    We encourage all machine learning platform developers to subscribe to one of our mailing lists.
-permalink: /mailing-lists/
+    We encourage all machine learning platform developers to subscribe to one of our mailing lists and joing the IRC channel on Freenode.
+permalink: /mailing-lists-and-irc/
 jumbotron:
-    title: Mailing Lists
+    title: Mailing Lists & IRC
     description: ""
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
 <div class="col-xs-12 text-center" markdown="1">
+
+### Mailing Lists
 
 We encourage all machine learning platform developers to subscribe to one of our mailing lists:
 
@@ -39,3 +41,9 @@ We encourage all machine learning platform developers to subscribe to one of our
         </table>
     </div>
 </div> 
+<div class="col-xs-12 text-center">
+    <h3>IRC</h3> 
+    <p>
+        Find us on the freenode IRC channel <strong>#mlplatform</strong>
+    </p>                  
+</div>

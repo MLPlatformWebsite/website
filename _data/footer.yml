@@ -8,8 +8,8 @@ columns:
           url : /releases/
         - text: Guides
           url : /guides/
-        - text: Mailing Lists
-          url : /mailing-lists/
+        - text: Mailing Lists & IRC
+          url : /mailing-lists-and-irc/
     - title: Developers
       items:
         - text: Contributing
