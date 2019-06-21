@@ -9,6 +9,11 @@ exclude:
     - .asset-cache
     - .sass-cache
     - _site
+    - CODEOWNERS
+    - build-site.sh
+    - Gemfile
+    - Gemfile.lock
+    - README.md
 permalink: /:categories/:title/
 blog_images_dir: assets/images/
 defaults:
