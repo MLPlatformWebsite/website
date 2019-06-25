@@ -6,8 +6,6 @@ theme: jumbo-jekyll-theme
 plugins:
   - jekyll-data
 exclude:
-    - .asset-cache
-    - .sass-cache
     - _site
     - CODEOWNERS
     - build-site.sh
