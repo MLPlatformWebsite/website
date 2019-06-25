@@ -10,7 +10,7 @@ fi
 export JEKYLL_CONFIG="_config.yml,_config-$JEKYLL_ENV.yml"
 
 if [ ! -d "$(pwd)/.gems" ]; then
-        mkdir "$GEM_HOME"
+        mkdir "$(pwd)/.gems"
 fi
 
 docker run --rm -it -p 4000:4000 -e JEKYLL_ACTION -e JEKYLL_CONFIG -e JEKYLL_ENV \
