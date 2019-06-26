@@ -286,9 +286,3 @@ If you come across any bugs/issues then please let us know by opening an issue [
 ### Image file names
 
 Due to the way product images are included, images should not include spaces in the filename otherwise it may not be rendered on the website as expected.
-
-[this repo]: https://github.com/ArmNNWebsite/website
-[develop]: https://github.com/ArmNNWebsite/website
-[theme repo]: https://github.com/linaro-website/jumbo-jekyll-theme
-[submit a pull request]: #submit-a-pull-request
-[mlplatform.org]: https://mlplatform.org
