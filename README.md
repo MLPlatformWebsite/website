@@ -35,6 +35,7 @@ We happy to consider any contributions/feature requests that you may have. Pleas
       - [Adding Media/YouTube videos](#adding-mediayoutube-videos)
   - [Adding Redirects to the Static site](#adding-redirects-to-the-static-site)
   - [Building the static site](#building-the-static-site)
+    - [Build instructions](#build-instructions)
   - [Issues](#issues)
   - [Known Issues](#known-issues)
     - [Image file names](#image-file-names)
@@ -164,17 +165,19 @@ In order to add a blog post to mlplatform.org, copy an existing post from the [_
 
 ### Step 1 - Modify the post file name
 
-The url for your title is based on the title provided in the filename e.g 2018-06-07-i2s-in-dragonboard410c.md will have a url of /blog/i2s-in-dragonboard410c/. Separate the words in your title by dashes and modify the date at the start of the filename as neccessary.
+The url for your title is based on the filename. For example, a file called `2018-06-07-i2s-in-dragonboard410c.md` will have a url of `/blog/i2s-in-dragonboard410c/`. Separate the words in your title by dashes and modify the date at the start of the filename as neccessary.
 
 ### Step 2 - Modify the post front matter
 
-Modify the post front matter based on your post. Values to modify are:
+Values to modify are:
 
 - author:
 - date:
 - image:
 - tags:
 - description:
+
+See existing files for examples.
 
 #### Author
 
