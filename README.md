@@ -1,6 +1,6 @@
-# MLPlatform.org Static Jekyll Website
+# mlplatform.org Static Jekyll Website
 
-The MLPlatform.org website is built using the Jekyll static site generator. It is based off of the jumbo-jekyll-theme used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows MLPlatform.org users to submit issues about any of the pages on MLPlatform.org through the associated Git respository.
+The [mlplatform.org](https://mlplatform.org/) website is built using the Jekyll static site generator. It is based off of the jumbo-jekyll-theme used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows mlplatform.org users to submit issues about any of the pages on mlplatform.org through the associated Git respository.
 
 *****
 
@@ -120,7 +120,7 @@ Below is a table of the most common front matter variable to add to your page.
 | layout | post | Layout to be used for the page |
 | published | false | Set `published` to false if you want to add the page but not show it on the website. |
 | title | My Awesome Post | The title of your page/post. Used in the `meta` tags and in layouts to display your page correctly. |
-| description | This is an awesome post about MLPlatform.org... | The description of your page used as the `meta` description.|
+| description | This is an awesome post about mlplatform.org... | The description of your page used as the `meta` description.|
 
 #### Example front matter
 
@@ -151,7 +151,7 @@ jumbotron:
 
 ## Adding a blog post
 
-In order to add a blog post to MLPlatform.org, copy an existing post from the [_posts folder](https://github.com/MLPlatform.org/website/tree/master/_posts). Posts are organised into by year/month so add to the correct folder based on the month you are posting it in and if the folder doesn't exist create one.
+In order to add a blog post to mlplatform.org, copy an existing post from the [_posts folder](https://github.com/ArmNNWebsite/website/tree/master/_posts). Posts are organised into by year/month so add to the correct folder based on the month you are posting it in and if the folder doesn't exist create one.
 
 ### Step 1 - Modify the post file name
 
@@ -169,7 +169,7 @@ Modify the post front matter based on your post. Values to modify are:
 
 #### Author
 
-Change the author to a unique author shortname. If this is your first time posting then add your author values to the [_data/authors.yml file](https://github.com/MLPlatform.org/website/blob/master/_data/authors.yml). Make sure to add your profile image to the [/assets/images/authors folder](https://github.com/MLPlatform.org/website/tree/master/assets/images/authors). Verify that the author name is an exact match to that provided as the author: in your post.
+Change the author to a unique author shortname. If this is your first time posting then add your author values to the [_data/authors.yml file](https://github.com/ArmNNWebsite/website/blob/master/_data/authors.yml). Make sure to add your profile image to the [/assets/images/authors folder](https://github.com/ArmNNWebsite/website/tree/master/assets/images/authors). Verify that the author name is an exact match to that provided as the author: in your post.
 
 #### Date
 
@@ -187,13 +187,13 @@ image:
     thumb: DragonBoard-UpdatedImages-front.png
 ```
 
-Make sure that the image you add in this section of front matter is placed in the [/assets/images/blog folder](https://github.com/MLPlatform.org/website/tree/master/assets/images/blog).
+Make sure that the image you add in this section of front matter is placed in the [/assets/images/blog folder](https://github.com/ArmNNWebsite/website/tree/master/assets/images/blog).
 
 __Note:__ There is currently a bug with the version of `jekyll-assets` we are using which means the only acceptable image extensions are `.jpg` and `.png`. If you use `.jpeg` you image may not display as expected.
 
 #### Tags
 
-These should be modified based on the content of your post as they are used for Meta keywords so that people can find your post based on the [tags your provide](https://www.MLPlatform.org/blog/tag/).
+These should be modified based on the content of your post as they are used for Meta keywords so that people can find your post based on the [tags your provide](https://www.mlplatform.org/blog/tag/).
 
 #### Description
 
@@ -205,7 +205,7 @@ Write your post content in Markdown format; specifically the [Kramdown](https://
 
 #### Adding images
 
-Please use the following code snipppet to add an image to your blog post. Make sure to add the images that you include to [/assets/images/blog folder](https://github.com/MLPlatform.org/website/tree/master/assets/images/blog).
+Please use the following code snipppet to add an image to your blog post. Make sure to add the images that you include to [/assets/images/blog folder](https://github.com/ArmNNWebsite/website/tree/master/assets/images/blog).
 
 ```liquid
 {% include image.html name="name-of-your-image.png" alt="The Alt text for your image" %}
@@ -282,4 +282,4 @@ Due to the way product images are included, images should not include spaces in 
 [develop]: https://github.com/ArmNNWebsite/website
 [theme repo]: https://github.com/linaro-website/jumbo-jekyll-theme
 [submit a pull request]: #submit-a-pull-request
-[MLPlatform.org]: https://mlplatform.org
+[mlplatform.org]: https://mlplatform.org
