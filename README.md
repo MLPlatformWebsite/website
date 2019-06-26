@@ -1,6 +1,6 @@
 # mlplatform.org Static Jekyll Website
 
-The [mlplatform.org](https://mlplatform.org/) website is built using the Jekyll static site generator. It is based off of the jumbo-jekyll-theme used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows mlplatform.org users to submit issues about any of the pages on mlplatform.org through the associated Git respository.
+The [mlplatform.org](https://mlplatform.org/) website is built using the [Jekyll](https://jekyllrb.com/) static site generator. The appearance is based on the [jumbo-jekyll-theme](https://github.com/linaro-marketing/jumbo-jekyll-theme/) used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows mlplatform.org users to submit issues about any of the pages on mlplatform.org through the associated Git repository.
 
 *****
 
