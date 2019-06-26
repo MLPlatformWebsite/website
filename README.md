@@ -200,7 +200,7 @@ image:
 
 Make sure that the image you add in this section of front matter is placed in the [/assets/images/blog folder](https://github.com/ArmNNWebsite/website/tree/master/assets/images/blog).
 
-__Note:__ There is currently a bug with the version of `jekyll-assets` we are using which means the only acceptable image extensions are `.jpg` and `.png`. If you use `.jpeg` you image may not display as expected.
+**Note:** There is currently a bug with the version of `jekyll-assets` we are using which means the only acceptable image extensions are `.jpg` and `.png`. If you use `.jpeg` your image may not display as expected.
 
 #### Tags
 
@@ -269,11 +269,11 @@ We are using [edge-rewrite](https://github.com/marksteele/edge-rewrite) running 
 ^/foo$ /bar [H=^baz\.com$]
 ```
 
-__Note:__ These redirects are not evaluated by the link checker until the site build process has started. For internal broken links, please update the referencing pages so that the links are no longer broken: __do not__ use redirects for internal broken links.
+**Note:** These redirects are not evaluated by the link checker until the site build process has started. For internal broken links, please update the referencing pages so that the links are no longer broken: **do not** use redirects for internal broken links.
 
 ## Building the static site
 
-It is not 100% neccessary to build to site on your computer to submit updates but it's helpful if you want to see the updates to big changes before your submit your pull request. You can also trigger a staging build of the site by submititng a pull request to the [develop] branch of [this repo].
+It is not 100% neccessary to build to site on your computer to submit updates but it's helpful if you want to see the updates to big changes before you submit your pull request. You can also trigger a staging build of the site by submititng a pull request to the [develop] branch of this repo.
 
 To build the site, you will need Docker installed on your computer. With that in place, go into the repository directory and run `build-site.sh`. More information about how to use this feature and the options available can be found on the [build container's wiki](https://github.com/linaro-its/jekyll-build-container/wiki).
 
