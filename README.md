@@ -269,7 +269,7 @@ We are using [edge-rewrite](https://github.com/marksteele/edge-rewrite) running 
 ^/foo$ /bar [H=^baz\.com$]
 ```
 
-__Note:__ These redirects are not respected by the link checker until built. So if trying to fix broken links within the site by adding redirects then this is not the best way to go about it currently. For internal broken links, please update the referencing pages so that the links are no longer broken.
+__Note:__ These redirects are not evaluated by the link checker until the site build process has started. For internal broken links, please update the referencing pages so that the links are no longer broken: __do not__ use redirects for internal broken links.
 
 ## Building the static site
 
