@@ -204,7 +204,7 @@ __Note:__ There is currently a bug with the version of `jekyll-assets` we are us
 
 #### Tags
 
-These should be modified based on the content of your post as they are used for Meta keywords so that people can find your post based on the [tags your provide](https://www.mlplatform.org/blog/tag/).
+These should be modified based on the content of your post as they are used for Meta keywords so that people can find your post based on the [tags you provide](https://www.mlplatform.org/blog/tag/).
 
 #### Description
 
