@@ -2,31 +2,44 @@
 
 The [mlplatform.org](https://mlplatform.org/) website is built using the [Jekyll](https://jekyllrb.com/) static site generator. The appearance is based on the [jumbo-jekyll-theme](https://github.com/linaro-marketing/jumbo-jekyll-theme/) used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows mlplatform.org users to submit issues about any of the pages on mlplatform.org through the associated Git repository.
 
-*****
-
-## [Looking to add a blog post?](#adding-a-blog-post)
-
-*****
-
 ## Contributions
 
 We happy to consider any contributions/feature requests that you may have. Please submit a PR with your changes and we will take a look. You can also use the `Github Edit` buttons available on all the website pages to help locate the file you wish to edit/raise and issue about.
 
-*****
+## Table of Contents
 
-## Contents
+<!-- TOC -->
 
-- [Overview](#overview)
-- [Adding a Content](#adding-a-content)
-- [Adding Redirects](#adding-redirects)
-- [Building the static site locally](#building-locally)
-- [Contributing Guide](#contributing)
+- mlplatform.org Static Jekyll Website
+  - Contributions
+  - Table of Contents
+  - Website Theme
+  - Useful basics
+  - Adding a page
+    - Step 1 - Fork the repo
+    - Step 2 - Create a file
+    - Step 3 - Add Jekyll front matter to your new page
+      - Available front matter options
+      - Example front matter
+  - Adding a blog post
+    - Step 1 - Modify the post file name
+    - Step 2 - Modify the post front matter
+      - Author
+      - Date
+      - Image
+      - Tags
+      - Description
+    - Step 3 - Add your post content
+      - Adding images
+      - Adding code
+      - Adding Media/YouTube videos
+  - Adding Redirects to the Static site
+  - Building the static site
+  - Issues
+  - Known Issues
+    - Image file names
 
-*****
-
-## Overview
-
-This website was developed by Linaro and utilises [Jekyll](https://jekyllrb.com), which is a static website generator, to provide a quick and responsive website. This website is part of a CI (Continuous Integration) build which happens on [bamboo.linaro.org](https://bamboo.linaro.org); so if you'd like to see the website builds take place take a look.
+<!-- /TOC -->
 
 ## Website Theme
 
@@ -94,8 +107,6 @@ jumbotron:
 ```
 
 The above snippet is used for the [Linaro Connect homepage](https://connect.linaro.org).
-
-*****
 
 ## Adding a page
 
@@ -259,8 +270,6 @@ We are using [Edge-rewrite](https://github.com/marksteele/edge-rewrite) which is
 ```
 
 __Note:__ These redirects are not respected by the link checker until built. So if trying to fix broken links within the site by adding redirects then this is not the best way to go about it currently. For internal broken links, please update the referencing pages so that the links are no longer broken.
-
-*****
 
 ## Building the static site
 
