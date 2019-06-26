@@ -10,34 +10,34 @@ We happy to consider any contributions/feature requests that you may have. Pleas
 
 <!-- TOC -->
 
-- mlplatform.org Static Jekyll Website
-  - Contributions
-  - Table of Contents
-  - Website Theme
-  - Useful basics
-  - Adding a page
-    - Step 1 - Fork the repo
-    - Step 2 - Create a file
-    - Step 3 - Add Jekyll front matter to your new page
-      - Available front matter options
-      - Example front matter
-  - Adding a blog post
-    - Step 1 - Modify the post file name
-    - Step 2 - Modify the post front matter
-      - Author
-      - Date
-      - Image
-      - Tags
-      - Description
-    - Step 3 - Add your post content
-      - Adding images
-      - Adding code
-      - Adding Media/YouTube videos
-  - Adding Redirects to the Static site
-  - Building the static site
-  - Issues
-  - Known Issues
-    - Image file names
+- [mlplatform.org Static Jekyll Website](#mlplatformorg-static-jekyll-website)
+  - [Contributions](#contributions)
+  - [Table of Contents](#table-of-contents)
+  - [Website Theme](#website-theme)
+  - [Useful basics](#useful-basics)
+  - [Adding a page](#adding-a-page)
+    - [Step 1 - Fork the repo](#step-1---fork-the-repo)
+    - [Step 2 - Create a file](#step-2---create-a-file)
+    - [Step 3 - Add Jekyll front matter to your new page](#step-3---add-jekyll-front-matter-to-your-new-page)
+      - [Available front matter options](#available-front-matter-options)
+      - [Example front matter](#example-front-matter)
+  - [Adding a blog post](#adding-a-blog-post)
+    - [Step 1 - Modify the post file name](#step-1---modify-the-post-file-name)
+    - [Step 2 - Modify the post front matter](#step-2---modify-the-post-front-matter)
+      - [Author](#author)
+      - [Date](#date)
+      - [Image](#image)
+      - [Tags](#tags)
+      - [Description](#description)
+    - [Step 3 - Add your post content](#step-3---add-your-post-content)
+      - [Adding images](#adding-images)
+      - [Adding code](#adding-code)
+      - [Adding Media/YouTube videos](#adding-mediayoutube-videos)
+  - [Adding Redirects to the Static site](#adding-redirects-to-the-static-site)
+  - [Building the static site](#building-the-static-site)
+  - [Issues](#issues)
+  - [Known Issues](#known-issues)
+    - [Image file names](#image-file-names)
 
 <!-- /TOC -->
 
