@@ -259,7 +259,7 @@ To add a media element / YouTube video use the following Jekyll include.
 
 ## Adding Redirects to the Static site
 
-We are using [Edge-rewrite](https://github.com/marksteele/edge-rewrite) which is a rewrite engine running in Lambda@Edge. The redirects are to be added to the `_data/routingrules.json` file in the website repository following the syntax rules [here](https://github.com/marksteele/edge-rewrite).
+We are using [edge-rewrite](https://github.com/marksteele/edge-rewrite) running on Lambda@Edge for redirects. The redirects must be added to the `_data/routingrules.json` file following the syntax rules [here](https://github.com/marksteele/edge-rewrite). Some example rewrite directives:
 
 ```mod_rewrite
 ^/oldpath/(\\d*)/(.*)$ /newpath/$2/$1 [L]
