@@ -252,8 +252,10 @@ See the full list of languages [here](https://github.com/jneen/rouge/wiki/List-o
 To add a media element / YouTube video use the following Jekyll include.
 
 ```liquid
-{% include media.html media_url="https://youtu.be/GFzJd0hXI0c" %}
+{% include media.html media_url="https://youtu.be/$VIDEO_ID" %}
 ```
+
+Replace `$VIDEO_ID` as required.
 
 ## Adding Redirects to the Static site
 
@@ -271,9 +273,16 @@ We are using [edge-rewrite](https://github.com/marksteele/edge-rewrite) running 
 
 ## Building the static site
 
-It is not 100% neccessary to build to site on your computer to submit updates but it's helpful if you want to see the updates to big changes before you submit your pull request. You can also trigger a staging build of the site by submititng a pull request to the [develop] branch of this repo.
+It is not absolutely necessary to build the site on your computer before submitting pull requests, but it's helpful to be able to see the effect of your changes. Alternatively, you can trigger a [staging](https://staging.mlplatform.org/) build of the site by submitting a pull request to the [develop] branch of this repo.
 
-To build the site, you will need Docker installed on your computer. With that in place, go into the repository directory and run `build-site.sh`. More information about how to use this feature and the options available can be found on the [build container's wiki](https://github.com/linaro-its/jekyll-build-container/wiki).
+### Build instructions
+
+- Install [Docker CE](https://docs.docker.com/install/)
+- Clone this Git repository.
+- Change into the newly-created directory
+- Run `build-site.sh`.
+
+More information about how to use this feature and the options available can be found on the [build container's wiki](https://github.com/linaro-its/jekyll-build-container/wiki).
 
 ## Issues
 
