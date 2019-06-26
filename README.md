@@ -239,7 +239,7 @@ Using this Jekyll include will allow your images to be lazy loaded and format th
 
 #### Adding code
 
-We are using the rouge syntax highlighter to highlight your glorious code.
+We use the [Rouge](http://rouge.jneen.net/) syntax highlighter to highlight your glorious code.
 
 ```bash
 bundle exec jekyll serve --port 1337
