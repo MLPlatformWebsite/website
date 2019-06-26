@@ -45,11 +45,11 @@ We happy to consider any contributions/feature requests that you may have. Pleas
 
 This website uses the `jumbo-jekyll-theme` developed as an open source project by Linaro to ensure content-driven websites are as lightweight as possible. Head over to the [theme repo] to find out more. Here are a few examples of websites using the theme:
 
-- [96Boards.org](https://www.linaro.org)
-- [Linaro.org](https://www.96boards.org)
-- [connect.linaro.org](https://connect.linaro.org)
-- [OP-TEE.org](https://www.op-tee.org)
-- [TrustedFirmware.org](https://www.trustedfirmware.org)
+- [96Boards](https://www.96boards.org)
+- [Linaro](https://www.linaro.org)
+- [Linaro Connect](https://connect.linaro.org)
+- [OP-TEE](https://www.op-tee.org)
+- [TrustedFirmware](https://www.trustedfirmware.org)
 - [DeviceTree.org](https://www.devicetree.org)
 - [96Boards.ai](https://www.96boards.ai)
 
