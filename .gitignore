@@ -1,5 +1,7 @@
 .asset-cache
 .sass-cache
-Gemfile.lock
+.gems
 _site
 .jekyll-metadata
+staging.mlplatform.org
+production.mlplatform.org
