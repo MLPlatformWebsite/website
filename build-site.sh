@@ -23,8 +23,6 @@ docker run \
  -v /etc/passwd:/etc/passwd:ro \
  -v /etc/group:/etc/group:ro \
  -u "$(id -u)":"$(id -g)" \
- -v "$HOME":/srv/home \
- -v "$(pwd)/.gems:/gems" \
  -v "$(pwd)":/srv/source \
  linaroits/jekyllsitebuild:"$JEKYLLSITEBUILD" \
  build-site.sh
