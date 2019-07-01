@@ -14,6 +14,7 @@ if [ ! -d "$(pwd)/.gems" ]; then
 fi
 
 docker run \
+ --cap-drop ALL \
  --rm \
  -it \
  -p 4000:4000 \
