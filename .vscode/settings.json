@@ -1,4 +1,5 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "files.insertFinalNewline": true
 }
