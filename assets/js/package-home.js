@@ -10,5 +10,4 @@
 //= require app/search
 //= require app/sticky-tab-bar
 //= require app/custom
-//= require app/home
 //= require app/homepage

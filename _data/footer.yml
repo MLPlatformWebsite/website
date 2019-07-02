@@ -1,30 +1,37 @@
-footer-image: /assets/images/ml-platform-icon.png
-footer-image-url: /
-company-copyright-text: ML Platform
-columns:
-    - title: Users
-      items:
-        - text: Releases
-          url : /releases/
-        - text: Guides
-          url : /guides/
-        - text: Mailing Lists & IRC
-          url : /mailing-lists-and-irc/
-    - title: Developers
-      items:
-        - text: Contributing
-          url : /contributing/
-        - text: Development Tracker (Phabricator)
-          url : https://developer.mlplatform.org/
-          external: true
-    - title: Support
-      items:
-        - text: Wiki
-          url : https://developer.mlplatform.org/w/
-          external: true
-        - text: Forum
-          url : https://discuss.mlplatform.org/
-          external: true
+# Copyright text to be displayed at the very bottom of the footer
+copyright-text: ML PLatform
+# Set this to false if you do not want the Linaro logo in the footer.
+linaro-branding: false
+# Social Media Icons Row
+social-media-icons: false
+# Display the contact details section
+display-contact-details: true
+# These links are displayed at the very bottom of the footer.
 company-links:
+    - name: Legal
+      url: https://www.linaro.org/legal/
     - name: Contact
       url: /contact/
+    - name: Press
+      url: https://www.linaro.org/press/
+second-column:
+    title: Users
+    latest-posts: false
+    # Optionally display another list of items
+    items:
+      - name: Releases
+        url: https://mlplatform.org/releases/
+      - name: Guides
+        url: https://mlplatform.org/guides/
+      - name: Mailing Lists & IRC
+        url: https://mlplatform.org/mailing-lists-and-irc/
+# Custom Col on the right
+third-column:
+    title: Other Resources
+    items:
+      - name: Development Tracker
+        url: https://developer.mlplatform.org/
+      - name: Discussion Forum
+        url: https://discuss.mlplatform.org/
+      - name: Wiki
+        url: https://developer.mlplatform.org/w/
