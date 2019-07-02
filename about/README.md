@@ -2,7 +2,7 @@
 layout: jumbotron-container
 title: About Machine Learning Platform
 description: >-
-    The machine learning platform is part of the Linaro Machine Intelligence Initiative and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
+    The machine learning platform is part of the Linaro Artificial Intelligence Initiative and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 permalink: /about/
 jumbotron:
     title: About
@@ -13,7 +13,7 @@ jumbotron:
 <div class="col-xs-12" markdown="1">
 ## What is the machine learning platform?
 
-The machine learning platform is part of the [Linaro](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)[ Machine Intelligence Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/) and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
+The machine learning platform is part of the [Linaro](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)[ Artificial Intelligence Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/) and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 
 It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
 
