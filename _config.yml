@@ -3,6 +3,7 @@ description: >-
   ArmNN and Arm Compute Library
 url: "https://mlplatform.org"
 theme: jumbo-jekyll-theme
+email: contact@linaro.org
 plugins:
   - jekyll-data
 exclude:
@@ -20,3 +21,4 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       comments: false
+include: ['_pages']
