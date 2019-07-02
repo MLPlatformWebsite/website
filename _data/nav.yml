@@ -9,7 +9,7 @@ brand:
     url: /
 pages:
     - title: Users
-      options: 
+      options:
         - text: Releases
           url: /releases/
         - text: Guides
@@ -17,7 +17,7 @@ pages:
         - text: Mailing Lists & IRC
           url: /mailing-lists-and-irc/
     - title: Developers
-      options: 
+      options:
         - text: Contributing
           url: /contributing/
         - text: Development Tracker
