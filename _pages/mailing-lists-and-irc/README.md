@@ -40,10 +40,10 @@ We encourage all machine learning platform developers to subscribe to one of our
             </tbody>
         </table>
     </div>
-</div> 
+</div>
 <div class="col-xs-12 text-center">
-    <h3>IRC</h3> 
+    <h3>IRC</h3>
     <p>
         Find us on the freenode IRC channel <strong>#mlplatform</strong>
-    </p>                  
+    </p>
 </div>

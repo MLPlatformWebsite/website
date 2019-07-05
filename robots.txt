@@ -1,11 +1,10 @@
 ---
----
 {% if site.production == true %}
-User-agent: * 
-Disallow:  
-Sitemap: {{site.url}}/sitemap.xml 
+User-agent: *
+Disallow:
+Sitemap: {{site.url}}/sitemap.xml
 {% else %}
-User-agent: * 
-Disallow: / 
-Sitemap: {{site.url}}/sitemap.xml 
+User-agent: *
+Disallow: /
+Sitemap: {{site.url}}/sitemap.xml
 {% endif %}
