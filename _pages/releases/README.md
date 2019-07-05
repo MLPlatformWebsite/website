@@ -39,7 +39,7 @@ jumbotron:
             </tbody>
         </table>
     </div>
-</div> 
+</div>
 <div class="col-xs-12 text-center" markdown="1">
 ### Release Policy
 

@@ -50,9 +50,9 @@ schema:
         name: MLPlatform
         url: https://mlplatform.org
         address:
-            street: Harston Mill, Royston Rd 
-            town: Harston 
-            county: Cambridge 
+            street: Harston Mill, Royston Rd
+            town: Harston
+            county: Cambridge
             post_code: CB22 7GG
             country_code: UK
 # Disqus Comments
