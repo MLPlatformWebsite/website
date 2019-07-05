@@ -5,7 +5,7 @@ $(document).ready(function () {
         $videoSrc = $(this).data("src");
     });
     console.log($videoSrc);
-    // when the modal is opened autoplay it  
+    // when the modal is opened autoplay it
     $('#myModal').on('shown.bs.modal', function (e) {
         // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
         $("#video").attr('src', $videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1");

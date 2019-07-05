@@ -42,7 +42,7 @@ It enables a new era of advanced, ultra-efficient inference at the edge. Specifi
             </tbody>
         </table>
     </div>
-</div> 
+</div>
 
 <div class="col-xs-12" markdown="1">
 ## Our Focus
