@@ -7,12 +7,13 @@ email: contact@linaro.org
 plugins:
   - jekyll-data
 exclude:
-    - _site
-    - CODEOWNERS
-    - build-site.sh
-    - Gemfile
-    - Gemfile.lock
-    - README.md
+  - _site
+  - CODEOWNERS
+  - build-site.sh
+  - check-links.sh
+  - Gemfile
+  - Gemfile.lock
+  - README.md
 permalink: /:categories/:title/
 blog_images_dir: assets/images/
 defaults:
