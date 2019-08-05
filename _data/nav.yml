@@ -18,6 +18,8 @@ pages:
           url: /mailing-lists-and-irc/
     - title: Developers
       options:
+        - text: Resources
+          url: /resources/
         - text: Contributing
           url: /contributing/
         - text: Development Tracker
