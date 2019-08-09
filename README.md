@@ -1,17 +1,51 @@
 # mlplatform.org Static Jekyll Website
 
-The [mlplatform.org](https://mlplatform.org/) website is built using the [Jekyll](https://jekyllrb.com/) static site generator. The appearance is based on the [jumbo-jekyll-theme](https://github.com/linaro-marketing/jumbo-jekyll-theme/) used for all of the Linaro static sites. We have introduced GitHub/Community driven content that allows mlplatform.org users to submit issues about any of the pages on mlplatform.org through the associated Git repository.
+This is the git repository for static Jekyll-based mlplatform.org website (https://mlplatform.org/).
 
-## Contributions
+Hosted in this repo are the markdown content files associated with the website. Feel free to [submit a
+PR](https://github.com/ArmNNWebsite/website/pulls) / [Issue](https://github.com/ArmNNWebsite/website/issues/new) if there is anything you would like to change.
 
-We happy to consider any contributions/feature requests that you may have. Please submit a PR with your changes and we will take a look. You can also use the `Github Edit` buttons available on all the website pages to help locate the file you wish to edit/raise and issue about.
+This static Jekyll site is using the [`jumbo-jekyll-theme`](https://github.com/linaro-marketing/jumbo-jekyll-theme). Please take a moment to review the guides on the [theme's GitHub wiki](https://github.com/linaro-marketing/jumbo-jekyll-theme/wiki).
+
+*****
+
+## Contributing
+
+To make it easier to contribute to the content, Linaro provides a couple of Docker containers for building and checking the site. All you need is Docker installed on your computer and enough RAM and disc space.
+
+To build the site:
+
+```
+cd <git repository directory>
+./build-site.sh
+```
+
+To build the site and then serve it so that you can check your contribution appears:
+
+```
+cd <git repository directory>
+JEKYLLACTION="serve" ./build-site.sh
+```
+
+To check that your contribution doesn't include any broken links:
+
+```
+
+cd <built web site directory>
+../check-links.sh
+```
+
+The built web site directory will be `staging.mlplatform.org` unless you set `JEKYLLENV=production` before building the site, in which case the directory will be `production.mlplatform.org`.
+
+For more information, please see the [build container wiki](https://github.com/linaro-its/jekyll-build-container/wiki) and the [link checker wiki](https://github.com/linaro-its/jekyll-link-checker/wiki).
+
+*****
 
 ## Table of Contents
 
 <!-- TOC -->
 
 - [mlplatform.org Static Jekyll Website](#mlplatformorg-static-jekyll-website)
-  - [Contributions](#contributions)
   - [Table of Contents](#table-of-contents)
   - [Website Theme](#website-theme)
   - [Useful basics](#useful-basics)
@@ -273,23 +307,6 @@ We are using [edge-rewrite](https://github.com/marksteele/edge-rewrite) running 
 ```
 
 **Note:** These redirects are not evaluated by the link checker until the site build process has started. For internal broken links, please update the referencing pages so that the links are no longer broken: **do not** use redirects for internal broken links.
-
-## Building the static site
-
-It is not absolutely necessary to build the site on your computer before submitting pull requests, but it's helpful to be able to see the effect of your changes. Alternatively, you can trigger a [staging](https://staging.mlplatform.org/) build of the site by submitting a pull request to the [develop] branch of this repo.
-
-### Build instructions
-
-- Install [Docker CE](https://docs.docker.com/install/)
-- Clone this Git repository.
-- Change into the newly-created directory
-- Run `build-site.sh`.
-
-More information about how to use this feature and the options available can be found on the [build container's wiki](https://github.com/linaro-its/jekyll-build-container/wiki).
-
-## Issues
-
-If you come across any bugs/issues then please let us know by opening an issue [here](https://github.com/ArmNNWebsite/website/issues/new). Please provide precise details on how to reproduce the bug/issue so that we can act on the issue as soon as possible.
 
 ## Known Issues
 
