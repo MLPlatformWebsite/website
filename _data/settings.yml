@@ -61,3 +61,5 @@ disqus:
     shortname: ml-platform
 # Placeholder for Missing Images
 placeholder: /assets/images/content/ml-placeholder.png
+social_media_channels:
+  - https://github.com/ArmNNWebsite
