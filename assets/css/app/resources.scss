@@ -28,12 +28,28 @@
             color:white;
             z-index:2;
             position: relative;
-            padding-top:100px;
+            padding-top:30px;
             padding-left: 15px;
             padding-right:15px;
-            height: 100%;
-            margin-top:10px;
             text-align: center;
         }
+        small {
+            display: block;
+            color:white;
+            z-index:3;
+            position: relative;
+            font-size:14px;
+            font-weight:bold;
+        }
+        a.btn.btn-primary {
+            position: relative;
+            margin:2px;
+            margin-top:10px;
+        }
+    }
+     img.spinner{
+        position:relative;
+        margin-left:auto;
+        margin-right:auto;
     }
 }
