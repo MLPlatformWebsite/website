@@ -74,3 +74,10 @@
         border-top: 0;
     }
 }
+
+#wrapper footer .footer-main {
+    background: #010824;
+    background: -moz-linear-gradient(-45deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
+    background: -webkit-linear-gradient(-45deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
+    background: linear-gradient(135deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
+}
