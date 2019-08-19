@@ -3,6 +3,7 @@ layout: flow
 title: Developer Resources
 permalink: /resources/
 js-package: resources
+css-package: resources
 description: >
     Here you can find an aggregation of Arm NN, Arm Compute and AI/ML related presentations, videos and other resources.
 jumbotron:
