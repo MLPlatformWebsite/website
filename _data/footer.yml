@@ -29,6 +29,8 @@ second-column:
 third-column:
     title: Other Resources
     items:
+      - name: Developer Resources
+        url: /resources/
       - name: Development Tracker
         url: https://developer.mlplatform.org/
       - name: Discussion Forum
