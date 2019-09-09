@@ -1,17 +1,25 @@
-<div class="col-xs-12" id="connect_resources_embed" data-connect-id="{{include.connect}}"
+<div class="col-xs-12 no-padding" id="connect_resources_embed" data-connect-id="{{include.connect}}"
 data-session-id="{{include.session_id}}">
-    <div class="col-xs-12 col-sm-6 video">
+    <div class="col-xs-12 col-sm-6 no-padding video">
         <div id="video">
             <img id="video-skeleton" class="img-responsive lazyload"
                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                 data-src="/assets/images/content/video_placeholder.png" />
+            <div class="embed-responsive embed-responsive-16by9" id="video-embed">
+                <iframe class="hidden-iframe" data-src="" width="100%" height="500" frameborder="0" marginwidth="5" marginheight="5"
+                    scrolling="auto" id="youtube-iframe"></iframe>
+            </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 presentation">
+    <div class="col-xs-12 col-sm-6 no-padding presentation">
         <div id="presentation">
             <img id="presentation-skeleton" class="img-responsive lazyload"
                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                 data-src="/assets/images/content/presentation_placeholder.svg" />
+                <div class="embed-responsive embed-responsive-16by9" id="presentation-embed">
+                    <embed type="application/pdf" id="presentation-data-embed" class="hidden-iframe" data-src="" width="100%" height="500"
+                        alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
+                </div>
         </div>
     </div>
 </div>
