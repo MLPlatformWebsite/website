@@ -6,6 +6,7 @@ category: blog
 tags: Linaro Connect, San Diego, ArmNN, Workship, Conference, Machine Learning, Artificial Intelligence, AI
 keywords: Linaro Connect, San Diego, ArmNN, Workship, Conference, Machine Learning, Artificial Intelligence, AI
 image: /assets/images/content/machine_intelligence_cover.jpg
+author: linaro
 ---
 At the last Linaro Connect, Linaro hosted a workshop on Arm NN.
 
@@ -27,9 +28,9 @@ We are truly excited to share that we will have special guests from Microsoft an
 
 Last but not least, Marc Charlebois, Markus Levy and senior experts from Qualcomm, NXP and Avnet/Xilinx will provide technical talks about running optimised AI inference on Arm by leveraging the multiple NN processing units in their SoCs.
 
+For more information about Linaro Connect or to view the complete schedule, go to [https://connect.linaro.org/schedule/](https://connect.linaro.org/schedule/).
+
 See below schedule for all Arm NN related sessions:
 
 <a id="sched-embed" href="//linaroconnectsandiego.sched.com/overview/type/AI%2FMachine+Learning">View the Linaro Connect San Diego schedule &amp; directory.</a>
 <script type="text/javascript" src="//linaroconnectsandiego.sched.com/js/embed.js"></script>
-
-For more information about Linaro Connect or to view the complete schedule, go to [https://connect.linaro.org/schedule/](https://connect.linaro.org/schedule/).
