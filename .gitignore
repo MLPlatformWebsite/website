@@ -5,3 +5,4 @@ _site
 staging.mlplatform.org
 production.mlplatform.org
 Gemfile.lock
+assets/resized
