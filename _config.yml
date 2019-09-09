@@ -22,4 +22,9 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       comments: false
+  -
+    scope:
+      path: "_posts" # an empty string here means all files in the project
+    values:
+      layout: false
 include: ['_pages']
