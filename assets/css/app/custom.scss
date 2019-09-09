@@ -81,3 +81,13 @@
     background: -webkit-linear-gradient(-45deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
     background: linear-gradient(135deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
 }
+#wrapper h3.panel-title.text-center {
+    color: white;
+}
+.blog-author-image {
+    background-size: contain !important;
+}
+
+.hidden-iframe {
+    display: none;
+}
