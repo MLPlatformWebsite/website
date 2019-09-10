@@ -26,7 +26,7 @@ Bring you NN enabled board and develop your Arm NN plug-in with the experts!
 
 We are truly excited to share that we will have special guests from Microsoft and Amazon AWS: Weixing Zhang will talk about Microsoft ONNX AI runtime and Animesh Jain will talk about the end-to-end graph compiler stack provided by AWS Sagemaker Neo.
 
-Last but not least, Marc Charlebois, Markus Levy and senior experts from Qualcomm, NXP and Avnet/Xilinx will provide technical talks about running optimised AI inference on Arm by leveraging the multiple NN processing units in their SoCs.
+Last but not least, Marc Charlebois, Markus Levy and Tom Curran, senior experts from Qualcomm, NXP and Avnet will provide technical talks about running optimised AI inference on Arm by leveraging the multiple NN processing units in their SoCs.
 
 For more information about Linaro Connect or to view the complete schedule, go to [https://connect.linaro.org/schedule/](https://connect.linaro.org/schedule/).
 
