@@ -1,7 +1,7 @@
 ---
 title: Join us at the Arm NN Workshop at Linaro Connect San Diego 2019
 description: >
-    The next Linaro Connect will take place in three/two weeks time, in San Diego, 23-27 September. Here we plan to host a follow up session by Arm to introduce new features and take on more feedback for future improvements.
+    The next Linaro Connect will take place at Paradise Point in San Diego on 23-27 September 2019. Here we plan to host a follow up session by Arm to introduce new features and take on more feedback for future improvements.
 category: blog
 tags: Linaro Connect, San Diego, ArmNN, Workship, Conference, Machine Learning, Artificial Intelligence, AI
 keywords: Linaro Connect, San Diego, ArmNN, Workship, Conference, Machine Learning, Artificial Intelligence, AI
@@ -18,7 +18,7 @@ The workshop gave an overview of Arm NN, providing attendees with an introductio
 
 The workshop was followed by training throughout the week. This was an opportunity for developers to provide feedback directly to Arm - feedback which has been taken on board and in most cases incorporated in new features.
 
-The next Linaro Connect will take place in three/two weeks time, in San Diego, 23-27 September. Here we plan to host a follow up session by Arm to introduce new features and take on more feedback for future improvements.
+The next Linaro Connect will take place at Paradise Point in San Diego on 23-27 September 2019. Here we plan to host a follow up session by Arm to introduce new features and take on more feedback for future improvements.
 
 Following the session, we will have a developer room set up where all attendees can collaborate on AI.
 
