@@ -41,8 +41,8 @@ blog:
             display: true
             count: 5
 #Google analytics
-google:
-    analytics: UA-16756069-29
+google_analytics:
+  production: UA-16756069-29
 # Shema.org settings used in the schema.html include.
 schema:
     enabled: false
