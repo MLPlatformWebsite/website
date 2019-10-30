@@ -8,6 +8,7 @@ jumbotron:
     title: Releases
     description: The machine learning platform project releases are available on official GitHub repositories
     triangle-divider: true
+    darken: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
 <div class="col-xs-12 col-sm-8 col-sm-offset-2">

@@ -6,6 +6,7 @@ description: >-
 permalink: /contact/
 jumbotron:
     title: Contact Us
+    darken: true
     description: ""
     background-image: /assets/images/content/ml-banner.jpg
 ---
