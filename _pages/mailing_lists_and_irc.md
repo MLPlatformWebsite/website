@@ -6,6 +6,7 @@ description: >-
 permalink: /mailing-lists-and-irc/
 jumbotron:
     title: Mailing Lists & IRC
+    darken: true
     description: ""
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg

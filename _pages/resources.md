@@ -9,6 +9,7 @@ description: >
 jumbotron:
     title: Developer Resources
     description: ""
+    darken: true
     background-image: /assets/images/content/ml-banner.jpg
 flow:
     - row: custom_include_row

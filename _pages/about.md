@@ -6,6 +6,7 @@ description: >-
 permalink: /about/
 jumbotron:
     title: About
+    darken: true
     description: ""
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
