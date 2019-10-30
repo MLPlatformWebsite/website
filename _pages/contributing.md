@@ -7,6 +7,7 @@ permalink: /contributing/
 jumbotron:
     title: Contributing
     description: ""
+    darken: true
     triangle-divider: true
     background-image: /assets/images/content/ml-banner.jpg
 ---
