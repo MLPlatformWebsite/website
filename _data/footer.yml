@@ -12,8 +12,6 @@ company-links:
       url: https://www.linaro.org/legal/
     - name: Contact
       url: /contact/
-    - name: Press
-      url: https://www.linaro.org/press/
 second-column:
     title: Users
     latest-posts: false
