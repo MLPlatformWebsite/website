@@ -1,0 +1,6 @@
+AWS_STATIC_SITE_PROFILE=mlplatform-org-buildbot
+AWS_STATIC_SITE_URL=production-mlplatform-org
+CF_DIST_ID_STATIC_LO=E2U7UQCLK7G1EJ
+CLOUDFRONT_ADD_SECURITY_HEADERS_ARN=arn:aws:lambda:us-east-1:841045539419:function:cloudfront-add-security-headers:1
+JEKYLL_ENV=production
+SITE_URL=production.mlplatform.org
