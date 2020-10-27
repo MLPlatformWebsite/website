@@ -90,6 +90,14 @@ flow:
         text_content:
           text: "Find more information on the machine learning platform projects from the
             existing Arm developer websites:"
+      - format: buttons
+        buttons_content:
+          - title: Arm NN
+            url: https://developer.arm.com/technologies/compute-library
+            style: btn-primary
+          - title: Arm Compute Library
+            url: https://developer.arm.com/technologies/compute-library
+            style: btn-primary
   - row: container_row
     style: text-center
     sections:
