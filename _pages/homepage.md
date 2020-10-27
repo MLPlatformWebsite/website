@@ -1,6 +1,6 @@
 ---
 title: Arm NN and Arm Compute Library
-description: Arm NN and Arm Compute Library
+description: Arm NN and Arm Compute Library.
 permalink: /
 keywords:
   - Arm NN
