@@ -6,7 +6,7 @@ backend:
   preview_context: "Deploy preview"
   open_authoring: true
 publish_mode: editorial_workflow
-logo_url: https://www.linaro.org/assets/images/content/Linaro-Logo.svg
+logo_url: https://www.mlplatform.org/assets/images/ml-platform-logo.png
 site_url: https://www.mlplatform.org
 display_url: https://www.mlplatform.org
 show_preview_links: true
@@ -16,468 +16,43 @@ slug:
   sanitize_replacement: "-"
 media_folder: "assets/images/content"
 collections:
-  - label: "Team Members"
-    name: "team_members"
-    editor:
-      preview: false
-    format: json
-    files:
-      - label: "Team Members"
-        name: "team"
-        file: "_data/team.json"
-        fields:
-          - label: "Team Members"
-            name: "teamMembers"
-            widget: "list"
-            fields:
-              - {
-                  label: "Name",
-                  name: "name",
-                  widget: string,
-                  hint: "The full name of the team member",
-                  required: true,
-                }
-              - {
-                  label: "Job Title",
-                  name: "title",
-                  widget: string,
-                  hint: "The Job title of the team member (without a company attribution)",
-                  required: true,
-                }
-              - {
-                  label: "Company",
-                  name: "company",
-                  widget: string,
-                  hint: "The company that this team member works for.",
-                  required: true,
-                }
-              - {
-                  label: "Image",
-                  name: "image",
-                  widget: image,
-                  hint: "The profile image for this team member.",
-                  required: false,
-                }
-              - {
-                  label: "Bio",
-                  name: "bio",
-                  widget: text,
-                  hint: "The bio of the team member",
-                  required: false,
-                }
-              - {
-                  label: "Teams",
-                  name: "teams",
-                  widget: select,
-                  multiple: true,
-                  hint: "The teams that this person is a part of.",
-                  options:
-                    [
-                      "technical_steering_committee",
-                      "board_of_directors",
-                      "executive_team",
-                    ],
-                  required: true,
-                }
-  - label: "Projects"
-    name: "projects_data"
-    editor:
-      preview: false
-    format: json
-    files:
-      - label: "projects"
-        name: "projects"
-        file: "_data/projects.json"
-        widget: list
-        fields:
-          - label: "Projects"
-            name: "projects"
-            widget: "list"
-            fields:
-              - label: "Project Contact Information"
-                name: "Project Contact Information"
-                widget: object
-                fields:
-                  - label: "Meetings"
-                    name: "Meetings"
-                    widget: text
-                  - label: "Point of Contact"
-                    name: "Point of Contact"
-                    widget: text
-              - label: "Project Information"
-                name: "Project Information"
-                widget: object
-                fields:
-                  - label: "Health Check Report"
-                    name: "Health Check Report"
-                    widget: text
-                  - label: "JIRA Structure"
-                    name: "JIRA Structure"
-                    widget: text
-                  - label: "Plan Of Record"
-                    name: "Plan Of Record"
-                    widget: text
-                  - label: "Project Homepage"
-                    name: "Project Homepage"
-                    widget: text
-                  - label: "description"
-                    name: "description"
-                    widget: text
-                  - label: "title"
-                    name: "title"
-                    widget: text
-              - label: "Project Ownership"
-                name: "Project Ownership"
-                widget: object
-                fields:
-                  - label: "Governing Entity"
-                    name: "Governing Entity"
-                    widget: text
-                  - label: "Project Owner"
-                    name: "Project Owner"
-                    widget: text
-                  - label: "Technical Lead"
-                    name: "Technical Lead"
-                    widget: text
-              - label: "icon"
-                name: "icon"
-                widget: string
-              - label: "key"
-                name: "key"
-                widget: string
   - label: "Website Data Files & Settings"
     name: "config"
     editor:
       preview: false
     files:
-      - label: "Engineering Groups"
-        name: "engineering_groups"
-        file: "_data/engineering_groups.yml"
-        fields:
-          - label: "Engineering Verticals"
-            name: "items"
-            widget: "list"
-            fields:
-              - {
-                  label: "Title",
-                  name: "title",
-                  widget: string,
-                  hint: "The name of the Engineering vertical",
-                  required: true,
-                }
-              - {
-                  label: "Context Image",
-                  name: "context_image",
-                  widget: image,
-                  hint: "An image that provides context to this vertical/group. Used for background images etc.",
-                  required: true,
-                }
-              - label: "Icon"
-                name: "icon"
-                widget: object
-                hint: "An image that provides context to this vertical/group. Used for background images etc."
-                required: true
-                fields:
-                  - {
-                      label: "PNG Icon",
-                      widget: image,
-                      name: png,
-                      hint: "PNG version of the icon.",
-                      required: true,
-                    }
-                  - {
-                      label: "SVG Icon",
-                      widget: image,
-                      name: svg,
-                      hint: "The SVG version of the icon.",
-                      required: true,
-                    }
-              - {
-                  label: "URL",
-                  name: "url",
-                  widget: string,
-                  hint: "The URL relevant to this engineering vertical/group.",
-                }
-      - label: "External News"
-        name: "external_news_items"
-        file: "_data/external_news.yml"
-        fields:
-          - label: "External News Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - {
-                  label: "Title",
-                  name: "title",
-                  widget: string,
-                  hint: "The title of the external news post.",
-                  required: false,
-                }
-              - {
-                  label: "Link",
-                  name: "url",
-                  widget: string,
-                  hint: "The url to the external news post.",
-                  required: false,
-                }
-              - {
-                  label: "Related Linaro Members",
-                  name: "related_members",
-                  widget: list,
-                  hint: "A comma separated list of any members that this post related to. I.e HiSilicon",
-                  required: false,
-                }
-              - {
-                  label: "Featured Image",
-                  name: "image",
-                  widget: image,
-                  hint: "Please select a featured image for this external news post.",
-                  required: false,
-                }
-              - {
-                  label: "Description",
-                  name: "description",
-                  widget: text,
-                  hint: "Enter a short description for this external news post.",
-                  required: false,
-                }
-              - {
-                  label: "Related Linaro Static Site",
-                  name: "site",
-                  widget: select,
-                  hint: "Please select the site that this should appear on.",
-                  options:
-                    [
-                      "linaro.org",
-                      "96boards.org",
-                      "connect.linaro.org",
-                      "mlplatform.org",
-                      "trustedfirmware.org",
-                    ],
-                  required: false,
-                }
-              - {
-                  label: "Category",
-                  name: "category",
-                  widget: select,
-                  hint: "Please select the category which this external post falls into.",
-                  options: ["Membership", "Tech Review", "Press Release"],
-                  required: false,
-                }
-              - {
-                  label: "Publish Date",
-                  name: "date",
-                  widget: "datetime",
-                  format: "YYYY-MM-DD hh:mm:ss",
-                  pickerUtc: true,
-                }
-      - label: "Projects"
-        name: "linaro_project_items"
-        file: "_data/projects.yml"
-        fields:
-          - label: "Projects"
-            name: "items"
-            widget: "list"
-            fields:
-              - {
-                  label: "Project Name",
-                  name: "name",
-                  widget: string,
-                  hint: "The name of the project that we contribute to.",
-                  required: false,
-                }
-              - {
-                  label: "Project website",
-                  name: "url",
-                  widget: string,
-                  hint: "URL of the project we contribute to.",
-                  required: false,
-                }
-              - {
-                  label: "Project Logo",
-                  name: "image",
-                  widget: image,
-                  hint: "The project logo.",
-                  required: false,
-                }
-      - label: "Timeline"
-        name: "linaro_about_timeline_items"
-        file: "_data/timeline.yml"
-        fields:
-          - label: "Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - {
-                  label: "Year",
-                  name: "name",
-                  widget: string,
-                  hint: "The 4 digit year of your timeline carousel item.",
-                  required: false,
-                }
-              - label: "Entries"
-                name: "entries"
-                widget: list
-                required: false
-                fields:
-                  - {
-                      label: "Item Title",
-                      name: "title",
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: "Item URL",
-                      name: "url",
-                      widget: string,
-                      required: false,
-                    }
-                  - {
-                      label: "Item Date",
-                      name: "date",
-                      widget: datetime,
-                      format: "YYYY-MM-DD hh:mm:ss",
-                      pickerUtc: true,
-                      required: false,
-                    }
-      - label: "Universal Navbar"
-        name: "universal_navbar"
-        file: "_data/universal-nav.yml"
-        fields:
-          - label: "Navigation Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Link, name: url, widget: string, required: false }
-              - {
-                  label: Active,
-                  name: active,
-                  widget: boolean,
-                  required: false,
-                }
-              - label: Sub Options
-                name: options
-                required: false
-                widget: "list"
-                fields:
-                  - { label: Name, name: title, widget: string }
-                  - { label: Link, name: url, widget: string }
-                  - {
-                      label: Active,
-                      name: active,
-                      widget: boolean,
-                      required: false,
-                    }
-      - label: "Membership Testimonials"
-        name: "membership_testimonials"
-        file: "_data/membership_testimonials.yml"
-        fields:
-          - label: "Testimonials"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Cover Image, name: cover_image, widget: image }
-              - label: Video
-                name: video
-                widget: object
-                fields:
-                  - { label: MP4, name: mp4, widget: string, required: false }
-                  - { label: WEBM, name: webm, widget: string, required: false }
-                  - { label: OGV, name: ogv, widget: string, required: false }
-      - label: "Internship Testimonials"
-        name: "internship_testimonials"
-        file: "_data/internship_testimonials.yml"
-        fields:
-          - label: "Testimonials"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: Name, name: name, widget: string }
-              - { label: Image, name: image, widget: image }
-              - {
-                  label: title,
-                  name: title,
-                  widget: string,
-                  hint: "Internship title i.e Entry Level, Engineer",
-                }
-              - { label: Testimonial Text, name: testimonial, widget: text }
       - label: "Footer"
         name: "footer"
         file: "_data/footer.yml"
         fields:
           - label: "Copyright Text"
-            name: copyright-text
+            name: copyright_text
             widget: string
             required: false
             default: "Linaro Limited"
           - label: "Linaro Branding"
-            name: "linaro-branding"
+            name: "linaro_branding"
             widget: boolean
             required: false
             default: true
           - label: "Social Media Icons"
-            name: "social-media-icons"
+            name: "social_media_icons"
             widget: boolean
             required: false
             default: true
           - label: "Company Links"
-            name: "company-links"
+            name: "company_links"
             widget: list
             required: false
             fields:
               - { label: Text, name: "name", widget: string, required: false }
               - { label: Url, name: url, widget: string, required: false }
-          - label: "Middle Column"
-            name: "middle-column"
-            widget: object
-            required: false
-            fields:
-              - { label: Title, name: title, widget: string }
-              - {
-                  label: Latest Posts Enabled,
-                  name: latest-posts,
-                  widget: boolean,
-                  required: false,
-                  default: true,
-                }
-              - label: Items
-                name: items
-                widget: list
-                required: false
-                fields:
-                  - {
-                      label: Title,
-                      name: "name",
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Url, name: "url", widget: string, required: false }
-          - label: "Last Column"
-            name: "third-column"
-            widget: object
-            required: false
-            fields:
-              - { label: Title, name: title, widget: string }
-              - label: Items
-                name: items
-                widget: list
-                required: false
-                fields:
-                  - {
-                      label: Title,
-                      name: "name",
-                      widget: string,
-                      required: false,
-                    }
-                  - { label: Url, name: "url", widget: string, required: false }
       - label: "Navigation"
         name: "navigation"
         file: "_data/nav.yml"
         fields:
           - label: "Universal Navbar"
-            name: universal-nav
+            name: universal_nav
             widget: boolean
             required: false
             default: true
@@ -585,7 +160,7 @@ collections:
     summary: "{{fields.title}} - {{fields.permalink}}"
     editor:
       preview: false
-    preview_path: "{{slug}}"
+    preview_path: "{{permalink}}"
     create: true
     description: >
       This collection allows you to add/edit/delete pages on Linaro.org.
@@ -800,6 +375,7 @@ collections:
                       "text",
                       "buttons",
                       "block",
+                      "image",
                       "custom_include",
                       "tabs",
                       "feature_block",
@@ -835,6 +411,51 @@ collections:
                     widget: object
                     fields:
                       - { label: "Text", widget: markdown, name: "text" }
+              - label: Image
+                type: image
+                summary: "{{fields.path}}"
+                name: image
+                widget: "object"
+                fields:
+                  - {
+                      label: "Section Style",
+                      name: "style",
+                      widget: "select",
+                      options:
+                        [
+                          "zoom",
+                          "grayscale",
+                          "fixed",
+                          "block_row",
+                          "text-center",
+                          "text-white",
+                        ],
+                      multiple: true,
+                      hint: "Add a style to your section.",
+                      required: false,
+                    }
+                  - label: "Alt"
+                    name: "alt"
+                    widget: string
+                    hint: "The alt text for your image"
+                    required: true
+                  - label: "Size"
+                    name: "size"
+                    widget: select
+                    hint: "Optional size of the column the image should be contained in. E.g a size of 8 would mean the image is centerd in a column that is offset by 2. The Bootstrap container width is 12. "
+                    required: false
+                    options:
+                      - { label: "Column 10", value: "10" }
+                      - { label: "Column 8", value: "8" }
+                      - { label: "Column 6", value: "6" }
+                      - { label: "Column 4", value: "4" }
+                      - { label: "Column 2", value: "2" }
+                    multiple: false
+                  - label: "Image Path"
+                    name: "path"
+                    widget: image
+                    hint: "The path to your image."
+                    required: true
               - label: Title
                 type: title
                 name: title
