@@ -1,16 +1,14 @@
 ---
-layout: jumbotron-container
+layout: flow
 title: About Machine Learning Platform
 description: >-
-    The machine learning platform is part of the Linaro Artificial Intelligence Initiative and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
+  The machine learning platform is part of the Linaro Artificial Intelligence Initiative and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 permalink: /about/
 jumbotron:
-    title: About
-    darken: true
-    description: ""
-    triangle-divider: true
-    background-image: /assets/images/content/ml-banner.jpg
+  title: About
+  image: /assets/images/content/ml-banner.jpg
 ---
+
 <div class="col-xs-12" markdown="1">
 ## What is the machine learning platform?
 
@@ -64,5 +62,6 @@ If you or your company are interested in participating in this effort, please vi
 <div class="col-xs-12" markdown="1">
 ## Linaro’s Artificial Intelligence Initiative
 
-In 2018, Linaro launched the Artificial Intelligence Initiative, kick started by Arm’s donation of Arm NN. The initiative aims to provide the best-in-class Deep Learning performance by leveraging Neural Network acceleration in IP and SoCs from the Arm ecosystem. Currently every IP vendor forks the runtime of each machine learning framework to integrate their hardware blocks and then tune for performance. This leads to a duplication of effort amongst all players, perpetual cost of re-integration for every new rebasing, and overall increased total cost of ownership. To find out more about the initiative and how to get involved, go to [https://www.linaro.org/engineering/artificial-intelligence/](https://www.linaro.org/engineering/artificial-intelligence/). 
+In 2018, Linaro launched the Artificial Intelligence Initiative, kick started by Arm’s donation of Arm NN. The initiative aims to provide the best-in-class Deep Learning performance by leveraging Neural Network acceleration in IP and SoCs from the Arm ecosystem. Currently every IP vendor forks the runtime of each machine learning framework to integrate their hardware blocks and then tune for performance. This leads to a duplication of effort amongst all players, perpetual cost of re-integration for every new rebasing, and overall increased total cost of ownership. To find out more about the initiative and how to get involved, go to [https://www.linaro.org/engineering/artificial-intelligence/](https://www.linaro.org/engineering/artificial-intelligence/).
+
 </div>
