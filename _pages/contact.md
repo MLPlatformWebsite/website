@@ -22,11 +22,3 @@ flow:
             class: btn-primary
             url: mailto:contact@linaro.org?subject=MlPlatform.org - /contact/
 ---
-
-<!-- Contact Form -->
-<div class="col-xs-12 p-b-20 text-center">
-    <a class="btn email" href="mailto:contact@linaro.org?subject=MlPlatform.org - {{page.url}}">
-        contact@linaro.org
-    </a>
-</div>
-<!-- /End Contact Form -->
