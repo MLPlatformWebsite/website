@@ -1,6 +1,6 @@
 ---
 title: New Page
-description: Testing adding a new page.
+description: Testing adding a new page..
 permalink: /new-page/
 keywords:
   - AI/ML
