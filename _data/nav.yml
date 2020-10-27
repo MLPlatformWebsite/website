@@ -1,39 +1,39 @@
 search:
-    enabled: false
-    label: MLPlatform
-universal-nav: false
+  enabled: false
+  label: MLPlatform
+universal_nav: false
 brand:
-    image:
-      enabled: true
-      path: /assets/images/ml-platform-logo.png
-    url: /
+  image:
+    enabled: true
+    path: /assets/images/ml-platform-logo.png
+  url: /
 pages:
-    - title: Users
-      options:
-        - text: Releases
-          url: /releases/
-        - text: Guides
-          url: /guides/
-        - text: Mailing Lists & IRC
-          url: /mailing-lists-and-irc/
-    - title: Developers
-      options:
-        - text: Resources
-          url: /resources/
-        - text: Contributing
-          url: /contributing/
-        - text: Development Tracker
-          url: https://developer.mlplatform.org
-          external: true
-    - title: Forum
-      url: https://discuss.mlplatform.org
-      external: true
-    - title: Wiki
-      url: https://developer.mlplatform.org/w/
-      external: true
-    - title: About
-      url: /about/
-    - title: Blog
-      url: /blog/
-    - title: Contact
-      url: /contact/
+  - title: Users
+    options:
+      - text: Releases
+        url: /releases/
+      - text: Guides
+        url: /guides/
+      - text: Mailing Lists & IRC
+        url: /mailing-lists-and-irc/
+  - title: Developers
+    options:
+      - text: Resources
+        url: /resources/
+      - text: Contributing
+        url: /contributing/
+      - text: Development Tracker
+        url: https://developer.mlplatform.org
+        external: true
+  - title: Forum
+    url: https://discuss.mlplatform.org
+    external: true
+  - title: Wiki
+    url: https://developer.mlplatform.org/w/
+    external: true
+  - title: About
+    url: /about/
+  - title: Blog
+    url: /blog/
+  - title: Contact
+    url: /contact/

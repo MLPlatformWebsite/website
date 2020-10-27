@@ -1,7 +1,5 @@
 ---
 name: Linaro
 username: linaro
-image_path: /assets/images/content/linaro-logo.png
-image:
-    path: /assets/images/content/linaro-logo.png
+image: /assets/images/ml-platform-icon-dark.png
 ---

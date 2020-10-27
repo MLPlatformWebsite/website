@@ -1,8 +1,10 @@
+_site
 .asset-cache
 .sass-cache
 .jekyll-metadata
-_site
-staging.mlplatform.org
-production.mlplatform.org
-Gemfile.lock
 assets/resized
+production.mlplatform.org
+staging.mlplatform.org
+Gemfile.lock
+.asset_pipeline
+.jekyll-cache

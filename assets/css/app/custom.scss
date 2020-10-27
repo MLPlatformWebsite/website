@@ -1,93 +1,119 @@
 /* Add your global custom styles here */
 .youtube {
-	background-color: #000;
-	margin-bottom: 30px;
-	position: relative;
-	padding-top: 56.25%;
-	overflow: hidden;
-	cursor: pointer;
+  background-color: #000;
+  margin-bottom: 30px;
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+  cursor: pointer;
 }
 .youtube img {
-	width: 100%;
-	top: -16.82%;
-	left: 0;
-	opacity: 0.7;
+  width: 100%;
+  top: -16.82%;
+  left: 0;
+  opacity: 0.7;
 }
 .youtube .play-button {
-	width: 90px;
-	height: 60px;
-	background-color: #333;
-	box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
-	z-index: 1;
-	opacity: 0.8;
-	border-radius: 6px;
+  width: 90px;
+  height: 60px;
+  background-color: #333;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  opacity: 0.8;
+  border-radius: 6px;
 }
 .youtube .play-button:before {
-	content: "";
-	border-style: solid;
-	border-width: 15px 0 15px 26.0px;
-	border-color: transparent transparent transparent #fff;
+  content: "";
+  border-style: solid;
+  border-width: 15px 0 15px 26px;
+  border-color: transparent transparent transparent #fff;
 }
 .youtube img,
 .youtube .play-button {
-	cursor: pointer;
+  cursor: pointer;
 }
 .youtube img,
 .youtube iframe,
 .youtube .play-button,
 .youtube .play-button:before {
-	position: absolute;
+  position: absolute;
 }
 .youtube .play-button,
 .youtube .play-button:before {
-	top: 50%;
-	left: 50%;
-	transform: translate3d( -50%, -50%, 0 );
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 .youtube iframe {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+#wrapper {
+  img.img-fluid.post_index_header_image {
+    max-height: 400px;
+  }
 }
 // Modals
 #wrapper .modal-dialog {
-    top: 120px;
-    background-color: transparent;
-    .modal-header {
-        border-bottom: 0px;
-        h4 {
-            color: white;
-        }
-        button.close.closeVideo {
-            color: white;
-            opacity: .7;
-        }
+  top: 120px;
+  background-color: transparent;
+  .modal-header {
+    border-bottom: 0px;
+    h4 {
+      color: white;
     }
-    .modal-content {
-        background-color: #071228;
+    button.close.closeVideo {
+      color: white;
+      opacity: 0.7;
     }
-    .modal-body {
-        border-bottom: 0px;
-    }
-    .modal-footer {
-        border-top: 0;
-    }
+  }
+  .modal-content {
+    background-color: #071228;
+  }
+  .modal-body {
+    border-bottom: 0px;
+  }
+  .modal-footer {
+    border-top: 0;
+  }
 }
 
 #wrapper footer .footer-main {
-    background: #010824;
-    background: -moz-linear-gradient(-45deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
-    background: -webkit-linear-gradient(-45deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
-    background: linear-gradient(135deg, #00020b 0%, #010824 23%, #010824 46%, #0a1541 73%, #010824 100%);
+  background: #010824;
+  background: -moz-linear-gradient(
+    -45deg,
+    #00020b 0%,
+    #010824 23%,
+    #010824 46%,
+    #0a1541 73%,
+    #010824 100%
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    #00020b 0%,
+    #010824 23%,
+    #010824 46%,
+    #0a1541 73%,
+    #010824 100%
+  );
+  background: linear-gradient(
+    135deg,
+    #00020b 0%,
+    #010824 23%,
+    #010824 46%,
+    #0a1541 73%,
+    #010824 100%
+  );
 }
 #wrapper h3.panel-title.text-center {
-    color: white;
+  color: white;
 }
 .blog-author-image {
-    background-size: contain !important;
+  background-size: contain !important;
 }
 
 .hidden-iframe {
-    display: none;
+  display: none;
 }
