@@ -26,68 +26,31 @@ flow:
 
             You must use your real name. No pseudonyms or anonymous contributions are accepted.
 
+            ## Development Repositories
+
             {:.table}
             |Project|Repository|
             |-------|----------|
             |Arm NN	|[https://review.mlplatform.org/#/admin/projects/ml/armnn](https://review.mlplatform.org/#/admin/projects/ml/armnn)|
             |Arm Compute Library|[https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary](https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary)|
             |Arm Android NN Driver|[https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver](https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver)|
+
+            ## Code Reviews
+
+            Contributions to the machine learning platform must go through code review. Code reviews are performed through the [mlplatform.org Gerrit server](https://review.mlplatform.org/). Contributors must sign up to this server with their GitHub account credentials.
+
+            Only reviewed contributions can go to the master branch of any of the machine learning platform repositories.
+
+            ## Continuous Integration
+
+            Contributions to machine learning platform codebases go through testing at the Arm CI system. All unit, integration and regression
+            tests must pass before a contribution will be merged to a repository’s master branch.
+
+            ## Release Policy
+
+            The machine learning platform projects will be released every three months in February, May, August and November, see [Releases](/releases/) for details of the latest updates.
+
+            ## Communications
+
+            We encourage all developers to subscribe to one or all of the [machine learning platform mailing lists](/mailing-lists-and-irc/).
 ---
-
-<div class="col-xs-12" markdown="1">
-
-</div>
-
-<div class="col-xs-12 col-sm-8">
-    <h2>Development Repositories</h2>
-    <div class="double-scroll">
-        <table class="table">
-            <thead>
-                <th>Project</th>
-                <th>Repository</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Arm NN</td>
-                    <td>
-                       <a href="https://review.mlplatform.org/#/admin/projects/ml/armnn">https://review.mlplatform.org/#/admin/projects/ml/armnn</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Arm Compute Library</td>
-                    <td>
-                        <a href="https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary">https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Arm Android NN Driver</td>
-                    <td>
-                        <a href="https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver">https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="col-xs-12" markdown="1">
-
-## Code Reviews
-
-Contributions to the machine learning platform must go through code review. Code reviews are performed through the [mlplatform.org Gerrit server](https://review.mlplatform.org/). Contributors must sign up to this server with their GitHub account credentials.
-
-Only reviewed contributions can go to the master branch of any of the machine learning platform repositories.
-
-## Continuous Integration
-
-Contributions to machine learning platform codebases go through testing at the Arm CI system. All unit, integration and regression
-tests must pass before a contribution will be merged to a repository’s master branch.
-
-## Release Policy
-
-The machine learning platform projects will be released every three months in February, May, August and November, see [Releases](/releases/) for details of the latest updates.
-
-## Communications
-
-We encourage all developers to subscribe to one or all of the [machine learning platform mailing lists](/mailing-lists-and-irc/).
-
-</div>
