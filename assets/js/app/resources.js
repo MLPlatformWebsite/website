@@ -20,7 +20,7 @@ function createPageElements(items){
     $.each(sorted_items, function (key, val) {
         // Create a new element for resource
         var page_element = "<a href='" + val.item_url + "'>";
-        page_element += "<div class='col-xs-12 col-sm-4'>";
+        page_element += "<div class='col col-12 col-sm-4 my-4'>";
         page_element += "<div class='resource_block_inner' style='background-image:url(" + val.item_thumbnail + ")'>";
         page_element += "<h3>" + val.item_title + "</h3>";
         page_element += "<small>" + extractDateString(val.item_date_published) + "</small>";
