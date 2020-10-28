@@ -1,6 +1,6 @@
 ---
 title: Test Page
-description: Test desc
+description: Test desc.
 permalink: /test-page/
 keywords:
   - test
