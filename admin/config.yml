@@ -168,7 +168,12 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "URL", name: "permalink", widget: "string" }
+      - {
+          label: "URL",
+          name: "permalink",
+          widget: "string",
+          hint: "The URL of your page in the format: /new-page/ ",
+        }
       - {
           label: "Keywords",
           name: "keywords",
