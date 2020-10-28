@@ -6,9 +6,7 @@ keywords:
   - test
 layout: flow
 jumbotron:
-  slider:
-    - description: ""
-      darken: true
+  slider: []
   title: test
   title-class: text-dark
 flow:
