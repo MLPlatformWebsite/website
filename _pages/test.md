@@ -1,7 +1,7 @@
 ---
-title: test
-description: test
-permalink: /test/
+title: Test Page
+description: Test
+permalink: /test-page/
 keywords:
   - test
 layout: flow
