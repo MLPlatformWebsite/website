@@ -1179,27 +1179,18 @@ collections:
       - label: "Image"
         name: image
         widget: image
-        required: true
+        required: false
+        hint: "This is used for the social media share image of a post."
       - label: "Strap Header Image"
         name: strap_image
         widget: image
-        hint: "The strap image is used for the 'strap' header at the top of a post"
+        hint: "The strap image is used for the 'strap' header at the top of a post."
         required: false
       - label: "Tags"
         name: tags
         widget: list
         allow_add: true
         hint: "List your tags"
-      - label: "Related Project"
-        name: related_projects
-        widget: relation
-        collection: projects_data
-        file: "projects"
-        searchFields: ["projects.*.key"]
-        display_fields: ["projects.*.key"]
-        valueField: "projects.*.key"
-        multiple: true
-        hint: "Tag a single related project"
       - { label: "Category", name: "category", widget: hidden, default: "Blog" }
       - {
           label: "Author",

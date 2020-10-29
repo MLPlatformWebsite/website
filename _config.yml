@@ -63,7 +63,7 @@ defaults:
       layout: post
       is_post: true
       comments: false
-      image: /assets/images/PR_Trusted_Firmware_banner_pic.jpg
+      image: /assets/images/content/machine_intelligence_cover.jpg
       strap_image: /assets/images/content/machine_intelligence_cover.jpg
   - scope:
       path: ""
