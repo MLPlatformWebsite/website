@@ -1245,7 +1245,7 @@ collections:
       - label: "Image"
         name: "image"
         widget: "image"
-        default: "/assets/images/content/avatar-placeholder.png"
+        default: "/assets/images/avatar-placeholder.jpg"
         required: true
       - {
           label: "Biography",
