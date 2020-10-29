@@ -64,7 +64,6 @@ defaults:
       is_post: true
       comments: false
       image: /assets/images/content/machine_intelligence_cover.jpg
-      strap_image: /assets/images/content/machine_intelligence_cover.jpg
   - scope:
       path: ""
       type: "authors"
