@@ -1181,11 +1181,11 @@ collections:
         widget: image
         required: false
         hint: "This is used for the social media share image of a post."
-      - label: "Strap Header Image"
-        name: strap_image
-        widget: image
-        hint: "The strap image is used for the 'strap' header at the top of a post."
-        required: false
+      # - label: "Strap Header Image"
+      #   name: strap_image
+      #   widget: image
+      #   hint: "The strap image is used for the 'strap' header at the top of a post."
+      #   required: false
       - label: "Tags"
         name: tags
         widget: list
