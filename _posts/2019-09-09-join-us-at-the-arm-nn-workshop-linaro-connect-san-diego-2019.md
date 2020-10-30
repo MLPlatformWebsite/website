@@ -2,7 +2,7 @@
 title: Join us at the Arm NN Workshop at Linaro Connect San Diego 2019
 description: >
   The next Linaro Connect will take place at Paradise Point in San Diego on 23-27 September 2019. Here we plan to host a follow up session by Arm to introduce new features and take on more feedback for future improvements.
-category: Blog
+category: blog
 tags:
   - Linaro Connect
   - San Diego

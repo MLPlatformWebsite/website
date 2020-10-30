@@ -8,5 +8,5 @@ flow:
     sections:
       - format: custom_include
         source: blog/display_latest_posts.html
-        category: Blog
+        category: blog
 ---
