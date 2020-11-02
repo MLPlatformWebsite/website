@@ -1191,7 +1191,7 @@ collections:
         widget: list
         allow_add: true
         hint: "List your tags"
-      - { label: "Category", name: "category", widget: hidden, default: "Blog" }
+      - { label: "Category", name: "category", widget: hidden, default: "blog" }
       - {
           label: "Author",
           name: "author",
