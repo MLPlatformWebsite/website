@@ -63,6 +63,7 @@ defaults:
       layout: post
       is_post: true
       comments: false
+      tags_enabled: true
       image: /assets/images/content/machine_intelligence_cover.jpg
   - scope:
       path: ""
@@ -74,6 +75,8 @@ include: ["_pages"]
 # ----------- THEME / WEBSITE CONFIG ---------------------
 # Blog images/thumbs dir
 blog_images_dir: assets/images/content/
+# Tag Limit for posts
+tag_limit: 10
 # Email
 email: contact@linaro.org
 # Company Address
