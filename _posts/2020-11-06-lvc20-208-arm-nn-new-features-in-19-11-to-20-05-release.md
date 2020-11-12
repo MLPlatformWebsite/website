@@ -26,8 +26,8 @@ Join Kevin May as he brings us up to speed on ArmNN releases up to 20.05. This p
 
 [Video](https://static.linaro.org/connect/lvc20/videos/lvc20-208.mp4)
 
-### Session Speaker
+## Session Speaker
 
-**Kevin May - Arm NN Software Enginneer (Arm)**
+### **Kevin May - Arm NN Software Enginneer (Arm)**
 
 Software Engineer who has been working on the Arm NN team since 2018.
