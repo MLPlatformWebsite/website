@@ -24,10 +24,8 @@ Join Mike Craman from NXP as he takes us through.
 
 [Video](https://static.linaro.org/connect/lvc20/videos/lvc20-215.mp4)
 
-### Session Speaker- Mike Caraman
+## Session Speaker 
 
-
-**Machine Learning Architect, NXP (NXP Semiconductors)**
-
+### Mike Caraman - **Machine Learning Architect, NXP (NXP Semiconductors)**
 
 Mihai (Mike) Caraman PhD is a machine learning architect for application processors and microcontrollers at NXP Semiconductors. He earned a bachelor's degree in Mathematics and Informatics in '97 with a thesis on artificial neural networks. After a 10 years detour in the beautiful world of virtualization, with contributions to the Linux kernel open source project, definition of next-gen networking SoCs, presentations at KVM Forum and Embedded World conferences, he returned to his first love. He is interested in everything related to machine learning, in particular deep learning, from hardware accelerators, neural networks architectures, optimizations and security, frameworks, exchange formats, edge and cloud service blending.
