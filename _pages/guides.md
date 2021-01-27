@@ -20,7 +20,7 @@ flow:
           - title: Arm NN
             class: btn-primary
             url: https://developer.arm.com/products/processors/machine-learning/arm-nn
-          - title: Arm Compute Library
+          - title: Compute Library
             class: btn-primary
             url: https://developer.arm.com/technologies/compute-library
 ---
