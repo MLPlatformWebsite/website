@@ -40,6 +40,8 @@ flow:
             Contributions to the machine learning platform must go through code review. Code reviews are performed through the [mlplatform.org Gerrit server](https://review.mlplatform.org/). Contributors must sign up to this server with their GitHub account credentials.
 
             Only reviewed contributions can go to the master branch of any of the machine learning platform repositories.
+            
+            Build system can only be triggered by Arm employees for security reasons - please comment on review to request an Engineer to do so.
 
             ## Continuous Integration
 
