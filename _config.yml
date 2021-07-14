@@ -2,7 +2,7 @@ title: ML PLatform
 url: https://www.mlplatform.org
 baseurl: ""
 description: |-
-  ArmNN and Arm Compute Library
+  ArmNN and Compute Library
 destination: _site
 permalink: /:categories/:title/
 theme: linaro-jekyll-theme

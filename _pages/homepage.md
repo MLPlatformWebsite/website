@@ -1,6 +1,6 @@
 ---
-title: Arm NN and Arm Compute Library
-description: Arm NN and Arm Compute Library.
+title: Arm NN and Compute Library
+description: Arm NN and Compute Library.
 permalink: /
 keywords:
   - Arm NN
@@ -13,7 +13,7 @@ layout: flow
 jumbotron:
   style: text-center
   title: Machine Learning Platform
-  description: Arm NN and Arm Compute Library
+  description: Arm NN and Compute Library
   image: /assets/images/content/ml-banner.jpg
   include: jumbotron-home.html
 flow:
@@ -30,7 +30,7 @@ flow:
             The machine learning platform is part of the [Linaro Artificial
             Intelligence
             Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)
-            and is the home for Arm NN and Arm Compute Library – open-source
+            and is the home for Arm NN and Compute Library – open-source
             software libraries that optimise the execution of machine learning
             (ML) workloads on Arm-based processors.
 
@@ -95,7 +95,7 @@ flow:
           - title: Arm NN
             url: https://developer.arm.com/technologies/compute-library
             style: btn-primary
-          - title: Arm Compute Library
+          - title: Compute Library
             url: https://developer.arm.com/technologies/compute-library
             style: btn-primary
   - row: container_row
@@ -125,5 +125,5 @@ flow:
 
             |Arm NN|[https://lists.linaro.org/mailman/listinfo/armnn-dev](https://lists.linaro.org/mailman/listinfo/armnn-dev)|
 
-            |Arm Compute Library|[https://lists.linaro.org/mailman/listinfo/acl-dev](https://lists.linaro.org/mailman/listinfo/acl-dev)|
+            |Compute Library|[https://lists.linaro.org/mailman/listinfo/acl-dev](https://lists.linaro.org/mailman/listinfo/acl-dev)|
 ---

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "ArmNN/ACL 20.11 Release "
-description: Details on the 20.11 Release by the ArmNN/ACL team at Arm.
+title: "ArmNN/ComputeLibrary 20.11 Release "
+description: Details on the 20.11 Release by the ArmNN/ComputeLibrary team at Arm.
 date: 2020-12-02 11:52:14
 tags:
   - ArmNN
-  - ACL
+  - Compute Library
   - inference
   - ""
 category: blog

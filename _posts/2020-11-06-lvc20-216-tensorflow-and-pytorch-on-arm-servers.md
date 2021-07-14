@@ -12,14 +12,13 @@ tags:
   - Arm Server
   - Eigen
   - oneDNN
-  - ACL
-  - Arm Compute Library
+  - Compute Library
   - Linaro Connect
   - OpenBLAS
 category: blog
 author: mlplatform
 ---
-Interested in running Machine Learning workloads on Arm servers? Do you want to make the ML software stack faster on Arm? In this talk, Ashok Bhat will talk about status, roadmap, and areas of improvement when using TensorFlow and PyTorch on Arm servers. The speaker will also cover key open source projects - Eigen, OneDNN, ArmCL that aid in improving framework performance
+Interested in running Machine Learning workloads on Arm servers? Do you want to make the ML software stack faster on Arm? In this talk, Ashok Bhat will talk about status, roadmap, and areas of improvement when using TensorFlow and PyTorch on Arm servers. The speaker will also cover key open source projects - Eigen, OneDNN, Compute Library that aid in improving framework performance
 
 Join Ashok Bhat as he explored this topic at Linaro Connect in Sept of 2020.
 

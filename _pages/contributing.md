@@ -1,7 +1,7 @@
 ---
 title: Contributing
 description: >-
-  Contributions are welcome to Arm NN and the Arm Compute Library. The projects are licensed under the MIT license and all accepted contributions must have the same license.
+  Contributions are welcome to Arm NN and the Compute Library. The projects are licensed under the MIT license and all accepted contributions must have the same license.
 permalink: /contributing/
 jumbotron:
   title: Contributing
@@ -12,7 +12,7 @@ flow:
       - format: text
         text_content:
           text: |-
-            Contributions are welcome to Arm NN and the Arm Compute Library. The projects are licensed under the [MIT license](https://spdx.org/licenses/MIT.html) and all accepted contributions must have the same license.
+            Contributions are welcome to Arm NN and the Compute Library. The projects are licensed under the [MIT license](https://spdx.org/licenses/MIT.html) and all accepted contributions must have the same license.
 
             To contribute to a machine learning platform repository, please put a change request on [review.mlplatform.org](https://review.mlplatform.org/). (Please do not make pull requests on the GitHub repositories.)
 
@@ -32,7 +32,7 @@ flow:
             |Project|Repository|
             |-------|----------|
             |Arm NN	|[https://review.mlplatform.org/#/admin/projects/ml/armnn](https://review.mlplatform.org/#/admin/projects/ml/armnn)|
-            |Arm Compute Library|[https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary](https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary)|
+            |Compute Library|[https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary](https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary)|
             |Arm Android NN Driver|[https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver](https://review.mlplatform.org/#/admin/projects/ml/android-nn-driver)|
 
             ## Code Reviews

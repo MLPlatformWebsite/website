@@ -18,7 +18,7 @@ flow:
             |Project|Repository|
             |-------|----------|
             |Arm NN	|[https://github.com/ARM-software/armnn](https://github.com/ARM-software/armnn)|
-            |Arm Compute Library|[https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary](https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary)|
+            |Compute Library|[https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary](https://review.mlplatform.org/#/admin/projects/ml/ComputeLibrary)|
             |Arm Android NN Driver|[https://github.com/ARM-software/android-nn-driver](https://github.com/ARM-software/android-nn-driver)|
 
             ### Release Policy

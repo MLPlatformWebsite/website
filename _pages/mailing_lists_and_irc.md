@@ -5,7 +5,7 @@ description: We encourage all machine learning platform developers to subscribe
   Freenode.
 permalink: /mailing-lists-and-irc/
 keywords:
-  - ACL
+  - Compute Library
   - ArmNN
   - Tosa
   - Maling List
@@ -35,7 +35,7 @@ flow:
 
             |Arm NN|<https://lists.linaro.org/mailman/listinfo/armnn-dev>|
 
-            |Arm Compute Library|<https://lists.linaro.org/mailman/listinfo/acl-dev>|
+            |Compute Library|<https://lists.linaro.org/mailman/listinfo/acl-dev>|
 
 
             ### Forums

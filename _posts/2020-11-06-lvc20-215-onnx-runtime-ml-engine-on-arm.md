@@ -2,8 +2,8 @@
 layout: post
 title: LVC20-215 ONNX Runtime ML engine on Arm
 description: This session will introduce the ONNX format and the ONNX Runtime
-  project and will provide details about the new ACL and ArmNN execution
-  providers for Arm architecture recently accepted upstrem, specific
+  project and will provide details about the new Compute Library and ArmNN
+  execution providers for Arm architecture recently accepted upstrem, specific
   optimizations and future work.
 date: 2020-11-06 04:51:48
 image: /assets/images/content/onnx-connect.jpg
@@ -12,13 +12,12 @@ tags:
   - ONNX
   - Linaro Connect
   - ArmNN
-  - ACL
-  - Arm Compute Library
+  - Compute Library
 category: blog
 author: mlplatform
 ---
 ONNX Runtime is an open source machine learning inference engine focused on running the widely adopted Open Neural Network Exchange (ONNX) format models with best performance.\
-This session will introduce the ONNX format and the ONNX Runtime project and will provide details about the new ACL and ArmNN execution providers for Arm architecture recently accepted upstrem, specific optimizations and future work.
+This session will introduce the ONNX format and the ONNX Runtime project and will provide details about the new Compute Library and ArmNN execution providers for Arm architecture recently accepted upstrem, specific optimizations and future work.
 
 Join Mike Craman from NXP as he takes us through.
 

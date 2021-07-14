@@ -2,12 +2,12 @@
 title: About Machine Learning Platform
 description: The machine learning platform is part of the Linaro Artificial
   Intelligence Initiative and is the home for open-source software libraries
-  (Arm NN and Arm Compute Library) that optimise the execution of machine
+  (Arm NN and Compute Library) that optimise the execution of machine
   learning workloads on Arm-based processors.
 permalink: /about/
 keywords:
   - Arm NN
-  - Arm Compute Library
+  - Compute Library
 layout: flow
 jumbotron:
   title: About
@@ -21,7 +21,7 @@ flow:
             ## What is the machine learning platform?
 
 
-            The machine learning platform is part of the [Linaro](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)[ Artificial Intelligence Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/) and is the home for open-source software libraries (Arm NN and Arm Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
+            The machine learning platform is part of the [Linaro](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)[ Artificial Intelligence Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/) and is the home for open-source software libraries (Arm NN and Compute Library) that optimise the execution of machine learning workloads on Arm-based processors.
 
 
             It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning (ML) and neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of Things (IoT) to connected cars and servers.
@@ -35,7 +35,7 @@ flow:
 
             |Arm NN|Arm NN is an inference engine for CPUs, GPUs and NPUs. It bridges the gap between existing NN frameworks and the underlying IP. It enables efficient translation of existing neural network frameworks, such as TensorFlow and Caffe, allowing them to run efficiently – without modification – across Arm Cortex CPUs and Arm Mali GPUs. For more details see: [https://developer.arm.com/products/processors/machine-learning/arm-nn](https://developer.arm.com/products/processors/machine-learning/arm-nn)|
 
-            |Arm Compute Library|The Arm Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: [https://developer.arm.com/technologies/compute-library](https://developer.arm.com/technologies/compute-library)|
+            |Compute Library|The Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: [https://developer.arm.com/technologies/compute-library](https://developer.arm.com/technologies/compute-library)|
 
 
             ## Our Focus
