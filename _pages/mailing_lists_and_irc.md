@@ -37,6 +37,10 @@ flow:
 
             |Compute Library|<https://lists.linaro.org/mailman/listinfo/acl-dev>|
 
+            |TensorFlow|<https://lists.linaro.org/mailman/listinfo/tensorflow-dev>|
+
+            |PyTorch|<https://lists.linaro.org/mailman/listinfo/pytorch-dev>|
+
 
             ### Forums
 
