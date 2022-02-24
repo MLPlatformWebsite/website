@@ -35,9 +35,9 @@ flow:
             (ML) workloads on Arm-based processors.
 
 
-            It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning and 
+            It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning and
 
-            neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of 
+            neural network (NN) capabilities, the architecture is versatile enough to scale to any device, from the Internet of
 
             Things (IoT) to connected cars and servers.
       - format: image
@@ -98,32 +98,4 @@ flow:
           - title: Compute Library
             url: https://developer.arm.com/technologies/compute-library
             style: btn-primary
-  - row: container_row
-    style: text-center
-    sections:
-      - format: image
-        style: null
-        alt: Mailing list icon image
-        size: 4
-        path: /assets/images/content/mailing-list.png
-      - format: title
-        title_content:
-          size: h2
-          text: Get Involved
-      - format: text
-        text_content:
-          text: >-
-            Please join us on one of the machine learning platform mailing
-            lists:
-
-
-            {:.table}
-
-            |Project|Mailing Lists|
-
-            |-------|-------------|
-
-            |Arm NN|[https://lists.linaro.org/mailman/listinfo/armnn-dev](https://lists.linaro.org/mailman/listinfo/armnn-dev)|
-
-            |Compute Library|[https://lists.linaro.org/mailman/listinfo/acl-dev](https://lists.linaro.org/mailman/listinfo/acl-dev)|
 ---
