@@ -13,7 +13,7 @@ flow:
       - format: text
         text_content:
           text: |-
-            For any queries about the Arm NN and Arm Compute Libraries then please submit a query on the [Forum](https://discuss.mlplatform.org), [Mailing Lists](/mailing-lists-and-irc/) or the [Development Tracker](https://developer.mlplatform.org).
+            For any queries about the Arm NN and Arm Compute Libraries then please submit a query on the [Forum](https://discuss.mlplatform.org), or the [Development Tracker](https://developer.mlplatform.org).
 
             For all other queries use the button/email below:
       - format: buttons
