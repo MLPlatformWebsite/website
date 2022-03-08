@@ -14,10 +14,12 @@ pages:
         url: /releases/
       - text: Guides
         url: /guides/
-      - text: Mailing Lists & IRC
-        url: /mailing-lists-and-irc/
+      - text: Forums & IRC
+        url: /forums-and-irc/
   - title: Developers
     options:
+      - text: TOSA
+        url: /tosa/
       - text: Resources
         url: /resources/
       - text: Contributing

@@ -1,19 +1,18 @@
 ---
-title: Mailing Lists, Forums and IRC
-description: We encourage all machine learning platform developers to subscribe
-  to one of our mailing lists, discuss forum and/or join the IRC channel on
+title: Forums and IRC
+description: We encourage all machine learning platform developers to use
+  out discussion forum and/or join the IRC channel on
   Freenode.
-permalink: /mailing-lists-and-irc/
+permalink: /forums-and-irc/
 keywords:
   - Compute Library
   - ArmNN
   - Tosa
-  - Maling List
   - Forum
   - irc
 layout: flow
 jumbotron:
-  title: Mailing Lists, Forums & IRC
+  title: Forums & IRC
   image: /assets/images/content/ml-banner.jpg
 flow:
   - row: container_row
@@ -21,27 +20,6 @@ flow:
       - format: text
         text_content:
           text: >-
-            ### Mailing Lists
-
-
-            We encourage all machine learning platform developers to subscribe to one of our mailing lists:
-
-
-            {:.table}
-
-            |Project|Mailing Lists|
-
-            |-------|-------------|
-
-            |Arm NN|<https://lists.linaro.org/mailman/listinfo/armnn-dev>|
-
-            |Compute Library|<https://lists.linaro.org/mailman/listinfo/acl-dev>|
-
-            |TensorFlow|<https://lists.linaro.org/mailman/listinfo/tensorflow-dev>|
-
-            |PyTorch|<https://lists.linaro.org/mailman/listinfo/pytorch-dev>|
-
-
             ### Forums
 
 
@@ -52,6 +30,8 @@ flow:
             |-------|-------------|
 
             |Tosa|<https://discuss.mlplatform.org/c/Discussion-of-the-TOSA-specification/>|
+
+            |General|<https://discuss.mlplatform.org/>|
 
 
             ### IRC

@@ -40,7 +40,7 @@ flow:
             Contributions to the machine learning platform must go through code review. Code reviews are performed through the [mlplatform.org Gerrit server](https://review.mlplatform.org/). Contributors must sign up to this server with their GitHub account credentials.
 
             Only reviewed contributions can go to the master branch of any of the machine learning platform repositories.
-            
+
             Build system can only be triggered by Arm employees for security reasons - please comment on review to request an Engineer to do so.
 
             ## Continuous Integration
@@ -52,7 +52,4 @@ flow:
 
             The machine learning platform projects will be released every three months in February, May, August and November, see [Releases](/releases/) for details of the latest updates.
 
-            ## Communications
-
-            We encourage all developers to subscribe to one or all of the [machine learning platform mailing lists](/mailing-lists-and-irc/).
 ---
