@@ -193,7 +193,7 @@ $(document).ready(function () {
                 <source srcset="${
                   random_items[i].image_webp
                 }" type="image/webp">
-                <img class="mr-3 img-thumbnail suggested_post_thumb lazyload" 
+                <img class="mr-3 img-thumbnail suggested_post_thumb lazyload"
                 src="${random_items[i].image}" alt="${
           random_items[i].title
         } featured image">
@@ -224,7 +224,7 @@ $(document).ready(function () {
         latest_posts_elements += `<li class="media flex-column flex-sm-row">
               <picture>
                 <source srcset="${data[i].image_webp}" type="image/webp">
-                <img class="mr-3 img-thumbnail suggested_post_thumb lazyload" 
+                <img class="mr-3 img-thumbnail suggested_post_thumb lazyload"
                 src="${data[i].image}" alt="${data[i].title} featured image">
               </picture>
               <div class="media-body">
@@ -283,11 +283,12 @@ $(document).ready(function () {
   });
 
   //   Multi-level dropdowns
-  $(".navbar .dropdown-menu > li:not(.dropdown-item)").on("click", function (
-    e
-  ) {
-    e.stopPropagation();
-  });
+  $(".navbar .dropdown-menu > li:not(.dropdown-item)").on(
+    "click",
+    function (e) {
+      e.stopPropagation();
+    }
+  );
   $(".navbar .dropdown-item").on("click", function (e) {
     var $el = $(this).children(".dropdown-toggle");
     var $parent = $el.offsetParent(".dropdown-menu");
@@ -391,40 +392,40 @@ $(document).ready(function () {
     // Enabled Google Analytics if cookie to allow us to collect is set.
     function init_ga() {
       if ($.fn.ihavecookies.preference("analytics")) {
-        (function (i, s, o, g, r, a, m) {
-          i["GoogleAnalyticsObject"] = r;
-          (i[r] =
-            i[r] ||
-            function () {
-              (i[r].q = i[r].q || []).push(arguments);
-            }),
-            (i[r].l = 1 * new Date());
-          (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m);
-        })(
-          window,
-          document,
-          "script",
-          "https://www.google-analytics.com/analytics.js",
-          "ga"
-        );
-        ga("create", ga_code, "auto");
-        ga("send", "pageview");
-        // (function (w, d, s, l, i) {
-        //   w[l] = w[l] || [];
-        //   w[l].push({
-        //     "gtm.start": new Date().getTime(),
-        //     event: "gtm.js",
-        //   });
-        //   var f = d.getElementsByTagName(s)[0],
-        //     j = d.createElement(s),
-        //     dl = l != "dataLayer" ? "&l=" + l : "";
-        //   j.async = true;
-        //   j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        //   f.parentNode.insertBefore(j, f);
-        // })(window, document, "script", "dataLayer", ga_code);
+        // (function (i, s, o, g, r, a, m) {
+        //   i["GoogleAnalyticsObject"] = r;
+        //   (i[r] =
+        //     i[r] ||
+        //     function () {
+        //       (i[r].q = i[r].q || []).push(arguments);
+        //     }),
+        //     (i[r].l = 1 * new Date());
+        //   (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        //   a.async = 1;
+        //   a.src = g;
+        //   m.parentNode.insertBefore(a, m);
+        // })(
+        //   window,
+        //   document,
+        //   "script",
+        //   "https://www.google-analytics.com/analytics.js",
+        //   "ga"
+        // );
+        // ga("create", ga_code, "auto");
+        // ga("send", "pageview");
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+            "gtm.start": new Date().getTime(),
+            event: "gtm.js",
+          });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", ga_code);
         console.log("Google Analytics started");
       } else {
         console.log("Google analytics not started... :(");
