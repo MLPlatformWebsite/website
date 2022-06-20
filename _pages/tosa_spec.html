@@ -2171,7 +2171,7 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= od &lt; OD, 0 &lt;= oy &lt; OH, 0 &lt;= ox &l
         d = id + kd * dilation_d;
         y = iy + ky * dilation_y;
         x = ix + kx * dilation_x;
-        if (0 &lt;= x &lt; IW &amp;&amp; 0 &lt;= y &lt; IH &amp;&amp; 0 &lt;= d &lt;= ID) {
+        if (0 &lt;= x &lt; IW &amp;&amp; 0 &lt;= y &lt; IH &amp;&amp; 0 &lt;= d &lt; ID) {
             out_t value  = tensor_read&lt;in_t&gt;(input, [N,ID,IH,IW,IC], [n,d,y,x,ic]);
             out_t weight = tensor_read&lt;weight_t&gt;(weight,[OC,KD,KH,KW,IC],[oc,kd,ky,kx,ic]);
             value  = value - input_zp;
@@ -2362,7 +2362,7 @@ ERROR_IF(OH != idiv_check(IH - 1 + pad_top + pad_bottom - (KH - 1) * dilation_y,
 ERROR_IF(OW != idiv_check(IW - 1 + pad_left + pad_right - (KW - 1) * dilation_x, stride_x) + 1);
 
 pad = flatten([0,0], pad, [0,0]);
-for_each(0 &lt;= n&lt;N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt; C, 0 &lt;= m &lt; M) {
+for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt; C, 0 &lt;= m &lt; M) {
     out_t acc = 0;
     iy = oy * stride_y - pad_top;
     ix = ox * stride_x - pad_left;
@@ -2467,13 +2467,13 @@ No normalization is applied on either the forward or inverse versions of the ope
 <div class="content">
 <img src="/assets/images/forward_fft2d.svg" alt="forward FFT definition">
 </div>
-<div class="title">Figure 1. Calculation for the forward FFT2D calculation (direction=false)</div>
+<div class="title">Figure 1. Calculation for the forward FFT2D calculation (inverse=false)</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="/assets/images/inverse_fft2d.svg" alt="inverse FFT definition">
 </div>
-<div class="title">Figure 2. Calculation for the inverse FFT2D calculation (direction=true)</div>
+<div class="title">Figure 2. Calculation for the inverse FFT2D calculation (inverse=true)</div>
 </div>
 <div class="paragraph">
 <p><strong>Arguments:</strong></p>
@@ -10538,7 +10538,7 @@ bool power_of_two(int32_t value)
 <div id="footer">
 <div id="footer-text">
 Version 0.30.0<br>
-Last updated 2022-06-13 13:00:40 -0700
+Last updated 2022-06-19 22:50:40 -0700
 </div>
 </div>
 </body>
