@@ -7,74 +7,78 @@ css_bundle: resources
 description: >
   Here you can find an aggregation of TOSA related presentations, videos and other resources.
 jumbotron:
-  title: TOSA
+  title: Tensor Operator Set Architecture (TOSA)
   image: /assets/images/content/ml-banner.jpg
 
+flow:
+  - row: container_row
+    sections:
+      - format: image
+        alt: The TOSA logo
+        path: /assets/images/content/TOSA_LOGO_COLOUR_RGB.png
+  - row: container_row
+    sections:
+      - format: block
+        item_width: "6"
+        style: text-center
+        block_section_content:
+          blocks:
+            - title: Contributing
+              description: |-
+                  Click here to learn how to contribute to TOSA
+              buttons:
+                - title: Contributions
+                  url: /tosa/contributing.html
+            - title: Roadmap
+              description: Click below to learn about the TOSA roadmap
+              buttons:
+                - title: Roadmap
+                  url: /tosa/roadmap.html
+  - row: container_row
+    sections:
+      - format: text
+        text_content:
+          text: |
+            # Introduction
+            Tensor Operator Set Architecture (TOSA) provides a set of whole-tensor operations commonly employed by Deep Neural Networks.
+            The intent is to enable a variety of implementations running on a diverse range of processors, with the results at the TOSA level consistent across those implementations.
+            Applications or frameworks which target TOSA can therefore be deployed on a wide range of different processors, including SIMD CPUs, GPUs and custom hardware such as NPUs/TPUs, with defined accuracy and compatibility constraints.
+            Most operators from the common ML frameworks (TensorFlow, PyTorch, etc.) should be expressible in TOSA.
+            It is expected that there will be tools to lower from ML frameworks into TOSA.
+
+            # Goals
+            A minimal and stable set of tensor-level operators to which machine learning framework operators can be reduced.
+            Full support for both quantized integer and floating-point content.
+            Precise functional description of the behavior of every operator, including the treatment of their numerical behavior in the case of precision, saturation, scaling, etc. as required by quantized datatypes.
+            Agnostic to any single high-level framework, compiler backend stack or particular target.
+            The detailed functional and numerical description enables precise code construction for a diverse range of targets – SIMD CPUs, GPUs and custom hardware such as NPUs/TPUs.
+
+            # Specification
+      - format: buttons
+        style: text-center
+        buttons_content:
+          - title: TOSA Specification
+            url: /tosa/tosa_spec.html
+      - format: text
+        text_content:
+          text: |-
+            The TOSA Specification is written as AsciiDoc mark-up and developed in its raw mark-up form, managed through a git repository here: [https://git.mlplatform.org/tosa/specification.git/](https://git.mlplatform.org/tosa/specification.git/). The specification is developed and versioned much like software is. While the mark-up is legible and can be read fairly easily in its raw form, it is recommended to build or “render” the mark-up into a PDF document, or similar. To do this, please follow the instructions in the README.md in the root of the specification repository.
+
+            # Principles for New Operators
+            TOSA defines a set of primitive operators to which higher level operators can be lowered in a consistent way.
+            To remain effective and efficient to implement the set of operators must be constrained to a reasonably small set of primitive operations out of which others can be constructed.
+            For a list of the principles for TOSA operators see the [TOSA specification](tosa_spec.html#_operator_selection_principles)
+
+  - row: container_row
+    sections:
+      - format: text
+        text_content:
+          text: |-
+            # TOSA videos
+
+            Below is a video introduction to TOSA done as part of Arm's AI Tech Talk series.
+
+      - format: youtube
+        url: https://youtu.be/I-mljwralfU
+        title: "Arm Tech Talk: Introducing a common operator set for Machine Learning accelerators – TOSA"
 ---
-# Introduction
-Tensor Operator Set Architecture (TOSA) provides a set of whole-tensor operations commonly employed by Deep Neural Networks.
-The intent is to enable a variety of implementations running on a diverse range of processors, with the results at the TOSA level consistent across those implementations.
-Applications or frameworks which target TOSA can therefore be deployed on a wide range of different processors, including SIMD CPUs, GPUs and custom hardware such as NPUs/TPUs, with defined accuracy and compatibility constraints.
-Most operators from the common ML frameworks (TensorFlow, PyTorch, etc.) should be expressible in TOSA.
-It is expected that there will be tools to lower from ML frameworks into TOSA.
-
-# Goals
-A minimal and stable set of tensor-level operators to which machine learning framework operators can be reduced.
-Full support for both quantized integer and floating-point content.
-Precise functional description of the behavior of every operator, including the treatment of their numerical behavior in the case of precision, saturation, scaling, etc. as required by quantized datatypes.
-Agnostic to any single high-level framework, compiler backend stack or particular target.
-The detailed functional and numerical description enables precise code construction for a diverse range of targets – SIMD CPUs, GPUs and custom hardware such as NPUs/TPUs.
-
-# Specification
-The latest version of the TOSA specification can be seen here: [TOSA Specification]({% link _pages/tosa_spec.html %})
-
-The TOSA Specification is written as AsciiDoc mark-up and developed in its raw mark-up form, managed through a git repository here: [https://git.mlplatform.org/tosa/specification.git/](https://git.mlplatform.org/tosa/specification.git/). The specification is developed and versioned much like software is. While the mark-up is legible and can be read fairly easily in its raw form, it is recommended to build or “render” the mark-up into a PDF document, or similar. To do this, please follow the instructions in the README.md in the root of the specification repository.
-
-# TOSA Reference Model & Test Generator
-In addition to the TOSA specification document, there is also a reference model written as C code which implements the exact behaviour as set out in the specification.
-This reference implementation is intended to be the “golden reference” for other TOSA implementations to be compared against and incorporated into regression test suites and such.
-The reference model consumes a FlatBuffers serialization of the network subgraph generated by the TOSA Serialization Library, along with input tensors for placeholder nodes in NumPy format.
-By default, the model validates and evaluates the network subgraph, and writes out the resulting output tensors in NumPy format.
-Alongside the TOSA Reference Model there is also a comprehensive set of tools for generating unit tests which exercise the behaviour of the TOSA operators.
-The tests are created as TOSA operations serialized in the flatbuffer format with inputs created in files using the NumPy format, as used by the reference model.
-The git repo containing the Reference Model and test generator is here: [https://git.mlplatform.org/tosa/reference_model.git](https://git.mlplatform.org/tosa/reference_model.git).
-For details on how to build and use the TOSA Reference Model, review the README.md in the root of that repo.
-
-# TOSA MLIR Translator
-The TOSA MLIR translator repository [https://git.mlplatform.org/tosa/tosa_mlir_translator.git](https://git.mlplatform.org/tosa/tosa_mlir_translator.git) contains an MLIR pass which can serialize MLIR TOSA dialect content into a TOSA flatbuffer file.
-For details on how to build and use the TOSA MLIR translator, see the README.md in the root of that repository.
-
-# Contributing to TOSA
-TOSA is intended to be very open technology developed collaboratively with the community.
-As such, contributions to the Specification as well as the Reference Model, test generator, etc. are strongly encouraged and very welcome.
-The process for contributing to the Reference Model and related code is slightly different to the process for contributing to the TOSA Specification, owing mainly to the difference between a software and documentation.
-
-# Principles for New Operators
-TOSA defines a set of primitive operators to which higher level operators can be lowered in a consistent way.
-To remain effective and efficient to implement the set of operators must be constrained to a reasonably small set of primitive operations out of which others can be constructed.
-For a list of the principles for TOSA operators see the [TOSA specification]({% link _pages/tosa_spec.html %})
-
-# Reference Model Contributions
-Contributing to the Reference Model, unit test generator and related source code largely follows the same process as other projects hosted on MLPlatform.org - see [https://www.mlplatform.org/contributing/](https://www.mlplatform.org/contributing/).
-Unlike other projects on mlplatform.org, the TOSA Reference Model and related software is licensed under the Apache-2 licence.
-Likewise, contributions to those software components also need to be licensed under the Apache-2 license.
-
-# Specification Contributions
-The TOSA Specification is released under a different kind of licence to the software, one which enables vendors to create completely independent implementations of the TOSA specification which are not derivatives of anything on mlplatform.org.
-This license is posted at the start of the [TOSA specification]({% link _pages/tosa_spec.html %}).
-To enable vendors to implement the TOSA Specification in this way, contributions need to be provided under a different license, the TOSA Specification Contributor Agreement.
-
-Practically, contributions to the TOSA Specification are made by modifying the AsciiDoc markup of the specification.
-Those patches are then reviewed using Gerrit on [https://review.mlplatform.org/](https://review.mlplatform.org/) as usual.
-However, before uploading patches to a gerrit review, users must read and agree to the TOSA Specification Contributors License Agreement. This can be achieved by doing the following:
-
-- Login to Gerrit (http://review.mlplatform.org)
-- Navigate to User Settings
-- Open the "Agreements" section
-- Click the "New Contributor Agreement" link
-- Select the "TOSA" radio button
-- Open the link to the TOSA Specification and read
-- *If* you agree to these terms, type "I agree" in the text box and click "SUBMIT"
-- Note: You may get an error saying "Agreement already submitted.". This is harmless, please ignore it.
-- Start uploading patches to the specification!
-- Note: More significant contributions should be discussed on the MLPlatform.org's Discourse, under the "TOSA" Category. Decisions on accepting more significant changes will be made largely based on the principals laid out above. I.e. Adding new operators to TOSA which can be trivially decomposed into a sequence of existing TOSA operators are unlikely to be accepted! :-)

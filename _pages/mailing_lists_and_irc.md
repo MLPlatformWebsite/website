@@ -1,9 +1,9 @@
 ---
-title: Forums and IRC
+title: Forums
 description: We encourage all machine learning platform developers to use
   out discussion forum and/or join the IRC channel on
   Freenode.
-permalink: /forums-and-irc/
+permalink: /forums/
 keywords:
   - Compute Library
   - ArmNN
@@ -12,7 +12,7 @@ keywords:
   - irc
 layout: flow
 jumbotron:
-  title: Forums & IRC
+  title: Forums
   image: /assets/images/content/ml-banner.jpg
 flow:
   - row: container_row
@@ -32,10 +32,4 @@ flow:
             |Tosa|<https://discuss.mlplatform.org/c/Discussion-of-the-TOSA-specification/>|
 
             |General|<https://discuss.mlplatform.org/>|
-
-
-            ### IRC
-
-
-            Find us on the freenode IRC channel **\#mlplatform**
 ---
