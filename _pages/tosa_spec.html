@@ -9,7 +9,7 @@ permalink: /tosa/tosa_spec.html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<title>TOSA 0.40.0 specification</title>
+<title>TOSA 0.50.0 specification</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
@@ -423,9 +423,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>TOSA 0.40.0 specification</h1>
+<h1>TOSA 0.50.0 specification</h1>
 <div class="details">
-<span id="revnumber">version 0.40.0</span>
+<span id="revnumber">version 0.50.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -437,32 +437,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_specification">1.3. Specification</a></li>
 <li><a href="#_operator_selection_principles">1.4. Operator Selection Principles</a></li>
 <li><a href="#_profiles">1.5. Profiles</a></li>
-<li><a href="#_status">1.6. Status</a></li>
-<li><a href="#_compliance">1.7. Compliance</a>
+<li><a href="#_levels">1.6. Levels</a></li>
+<li><a href="#_status">1.7. Status</a></li>
+<li><a href="#_compliance">1.8. Compliance</a>
 <ul class="sectlevel3">
-<li><a href="#_baseline_inference_profile_compliance">1.7.1. Baseline Inference Profile Compliance</a></li>
-<li><a href="#_main_inference_and_main_training_profile">1.7.2. Main Inference and Main Training Profile</a></li>
+<li><a href="#_baseline_inference_profile_compliance">1.8.1. Baseline Inference Profile Compliance</a></li>
+<li><a href="#_main_inference_and_main_training_profile">1.8.2. Main Inference and Main Training Profile</a></li>
 </ul>
 </li>
-<li><a href="#_tensor_definitions">1.8. Tensor Definitions</a>
+<li><a href="#_tensor_definitions">1.9. Tensor Definitions</a>
 <ul class="sectlevel3">
-<li><a href="#_tensors">1.8.1. Tensors</a></li>
-<li><a href="#_tensor_size_limit">1.8.2. Tensor size limit</a></li>
-<li><a href="#_data_layouts">1.8.3. Data Layouts</a></li>
-<li><a href="#_broadcasting">1.8.4. Broadcasting</a></li>
-<li><a href="#_supported_number_formats">1.8.5. Supported Number Formats</a></li>
+<li><a href="#_tensors">1.9.1. Tensors</a></li>
+<li><a href="#_tensor_size_limit">1.9.2. Tensor size limit</a></li>
+<li><a href="#_data_layouts">1.9.3. Data Layouts</a></li>
+<li><a href="#_broadcasting">1.9.4. Broadcasting</a></li>
+<li><a href="#_supported_number_formats">1.9.5. Supported Number Formats</a></li>
 </ul>
 </li>
-<li><a href="#_integer_behavior">1.9. Integer Behavior</a>
+<li><a href="#_integer_behavior">1.10. Integer Behavior</a>
 <ul class="sectlevel3">
-<li><a href="#_quantization">1.9.1. Quantization</a></li>
-<li><a href="#_precision_scaling">1.9.2. Precision scaling</a></li>
-<li><a href="#_integer_convolutions">1.9.3. Integer Convolutions</a></li>
-<li><a href="#_integer_elementwise_operators">1.9.4. Integer Elementwise Operators</a></li>
-<li><a href="#_general_unary_functions">1.9.5. General Unary Functions</a></li>
+<li><a href="#_quantization">1.10.1. Quantization</a></li>
+<li><a href="#_precision_scaling">1.10.2. Precision scaling</a></li>
+<li><a href="#_integer_convolutions">1.10.3. Integer Convolutions</a></li>
+<li><a href="#_integer_elementwise_operators">1.10.4. Integer Elementwise Operators</a></li>
+<li><a href="#_general_unary_functions">1.10.5. General Unary Functions</a></li>
 </ul>
 </li>
-<li><a href="#_floating_point">1.10. Floating-point</a></li>
+<li><a href="#_floating_point">1.11. Floating-point</a></li>
 </ul>
 </li>
 <li><a href="#_operators">2. Operators</a>
@@ -863,7 +864,67 @@ The following table summarizes the three profiles:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_status">1.6. Status</h3>
+<h3 id="_levels">1.6. Levels</h3>
+<div class="paragraph">
+<p>A TOSA level defines operator parameter ranges that an implementation shall support.
+This is distinct from a profile that defines the operations and data-types supported.
+This version of the specification defines two TOSA levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No level : allows the full range of parameters specified by the operations according to the operation data types.</p>
+</li>
+<li>
+<p>Level 8K : ranges are expected to be sufficient for applications with frame sizes up to 8K.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Later versions of the specification may define additional levels.
+The following table defines the value ranges for Level 1.0.
+These ranges are checked using the LEVEL_CHECK() function with the operator descriptions.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Level maximums</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tosa_level_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAX_RANK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAX_KERNEL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAX_STRIDE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAX_SCALE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tosa_level_none</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8K</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tosa_level_8k</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_status">1.7. Status</h3>
 <div class="paragraph">
 <p>The TOSA specification is a work in progress.</p>
 </div>
@@ -888,13 +949,13 @@ The following table summarizes the three profiles:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compliance">1.7. Compliance</h3>
+<h3 id="_compliance">1.8. Compliance</h3>
 <div class="paragraph">
-<p>This section defines when a TOSA implementation is compliant to a given TOSA specification profile.
+<p>This section defines when a TOSA implementation is compliant to a given TOSA specification profile and level.
 The term conformant will mean the same as compliant.</p>
 </div>
 <div class="sect3">
-<h4 id="_baseline_inference_profile_compliance">1.7.1. Baseline Inference Profile Compliance</h4>
+<h4 id="_baseline_inference_profile_compliance">1.8.1. Baseline Inference Profile Compliance</h4>
 <div class="paragraph">
 <p>The <a href="#_operator_graphs">Operator Graphs</a> section of this specification defines a TOSA graph and the behavior defined for a TOSA graph.
 This behavior is captured in the pseudo-code function tosa_execute_graph().
@@ -934,11 +995,11 @@ For a given input graph (with attributes) and input tensors there are three poss
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">bool tosa_test_compliance(tosa_graph_t graph, tosa_list_t input_list) {
+<pre class="highlight"><code class="language-c++" data-lang="c++">bool tosa_test_compliance(tosa_graph_t graph, tosa_list_t input_list, tosa_level_t level) {
     shape_list_t output_list_spec = tosa_allocate_list(tosa_output_shape(graph));
     shape_list_t output_list_test = tosa_allocate_list(tosa_output_shape(graph));
     tosa_graph_result = tosa_valid    // result starts as valid
-    tosa_execute_graph(graph, input_list, output_list_spec);
+    tosa_execute_graph(graph, input_list, output_list_spec, level);
     if (tosa_graph_result == tosa_unpredictable) {
         return true;    // No requirement to match an unpredictable result
     }
@@ -956,7 +1017,7 @@ For a given input graph (with attributes) and input tensors there are three poss
 </div>
 </div>
 <div class="sect3">
-<h4 id="_main_inference_and_main_training_profile">1.7.2. Main Inference and Main Training Profile</h4>
+<h4 id="_main_inference_and_main_training_profile">1.8.2. Main Inference and Main Training Profile</h4>
 <div class="paragraph">
 <p>An implementation is compliant to the Main Inference or Main Training profiles if the following both hold for that respective profile:</p>
 </div>
@@ -982,9 +1043,9 @@ For a given input graph (with attributes) and input tensors there are three poss
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tensor_definitions">1.8. Tensor Definitions</h3>
+<h3 id="_tensor_definitions">1.9. Tensor Definitions</h3>
 <div class="sect3">
-<h4 id="_tensors">1.8.1. Tensors</h4>
+<h4 id="_tensors">1.9.1. Tensors</h4>
 <div class="paragraph">
 <p>Tensors are multidimensional arrays of data.
 Tensors have metadata associated with them that describe characteristics of the tensor, including:</p>
@@ -1008,18 +1069,22 @@ Each element in the tensor shape describes the number of elements in the dimensi
 The tensor shape in each dimension must be greater than or equal to 1.
 For tensor access information, see <a href="#_tensor_access_helpers">Tensor Access Helpers</a>.
 Tensor dimensions are given in the pseudocode as type dim_t.
-dim_t is a vector of int32_t values, with the length of the vector defining the rank of the tensor.
+dim_t is a vector of index_t values, with the length of the vector defining the rank of the tensor.
 Tensor elements are addressed using dim_t values, where each element of the vector indicates the offset of the requested element within the corresponding dimension.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tensor_size_limit">1.8.2. Tensor size limit</h4>
+<h4 id="_tensor_size_limit">1.9.2. Tensor size limit</h4>
 <div class="paragraph">
-<p>Tensor size is limited by the data type size_t. In this version of the specification, size_t is defined as (1&lt;&lt;32) - 1, and can be represented with an unsigned 32-bit integer.</p>
+<p>The tensor overall size in elements is limited by the data type size_t.
+In this version of the specification, size_t is defined as an unsigned 32-bit integer representing size from 1 to (1&lt;&lt;32) - 1.
+A tensor dimension co-ordinate is limited by the data type index_t.
+In this version of the specification, index_t is defined as a signed 32-bit integer.
+Indices used to access tensors must be non-negative.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_data_layouts">1.8.3. Data Layouts</h4>
+<h4 id="_data_layouts">1.9.3. Data Layouts</h4>
 <div class="paragraph">
 <p>The following data layouts are supported in TOSA.
 TOSA operations are defined in terms of a linear packed tensor layout.
@@ -1031,7 +1096,7 @@ For a specification of this layout see the tensor read and write functions in se
 <p>An implementation of TOSA can choose a different tensor memory layout provided that the operation behavior is maintained.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Data Layouts</caption>
+<caption class="title">Table 4. Data Layouts</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 44.4444%;">
@@ -1074,7 +1139,7 @@ For a specification of this layout see the tensor read and write functions in se
 </table>
 </div>
 <div class="sect3">
-<h4 id="_broadcasting">1.8.4. Broadcasting</h4>
+<h4 id="_broadcasting">1.9.4. Broadcasting</h4>
 <div class="paragraph">
 <p>In operations where broadcasting is supported, an input shape dimension can be broadcast to an output shape dimension if the input shape dimension is 1.
 TOSA broadcast requires the rank of both tensors to be the same.
@@ -1083,13 +1148,13 @@ To map indexes in an output tensor to that of an input tensor, see <a href="#_br
 </div>
 </div>
 <div class="sect3">
-<h4 id="_supported_number_formats">1.8.5. Supported Number Formats</h4>
+<h4 id="_supported_number_formats">1.9.5. Supported Number Formats</h4>
 <div class="paragraph">
 <p>The following number formats are defined in TOSA.
 The number formats supported by a given operator are listed in its table of supported types.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Number formats</caption>
+<caption class="title">Table 5. Number formats</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -1185,7 +1250,7 @@ This ensures that a Base Inference profile TOSA implementation can calculate the
 </div>
 </div>
 <div class="sect2">
-<h3 id="_integer_behavior">1.9. Integer Behavior</h3>
+<h3 id="_integer_behavior">1.10. Integer Behavior</h3>
 <div class="paragraph">
 <p>Integer calculations must be standard two&#8217;s-complement or unsigned calculations.
 If overflow occurs doing integer calculation, the result is unpredictable, as indicated by the REQUIRE checks in the pseudocode for the operators.</p>
@@ -1194,7 +1259,7 @@ If overflow occurs doing integer calculation, the result is unpredictable, as in
 <p>Unsigned 8 and 16-bit values are only allowed in the RESCALE operation, to allow for compatibility with networks which expect unsigned 8-bit or 16-bit tensors for input and output.</p>
 </div>
 <div class="sect3">
-<h4 id="_quantization">1.9.1. Quantization</h4>
+<h4 id="_quantization">1.10.1. Quantization</h4>
 <div class="paragraph">
 <p>Machine Learning frameworks may represent tensors with a quantized implementation, using integer values to represent the original floating-point numbers.
 TOSA integer operations do not perform any implicit scaling to represent quantized values.
@@ -1214,7 +1279,7 @@ Then the ADD is performed, and a RESCALE can be used to ensure that the result i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_precision_scaling">1.9.2. Precision scaling</h4>
+<h4 id="_precision_scaling">1.10.2. Precision scaling</h4>
 <div class="paragraph">
 <p>TOSA uses the RESCALE operation to scale between values with differing precision.
 The RESCALE operator is defined using an integer multiply, add, and shift.
@@ -1242,7 +1307,7 @@ The values to achieve a scaling of 1.0 are shift=30, multiplier=1&lt;&lt;30 for 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">int32_t apply_scale_32(int32_t value, int32_t multipler, uint6_t shift, bool_t double_round=false) {
+<pre class="highlight"><code class="language-c++" data-lang="c++">int32_t apply_scale_32(int32_t value, int32_t multiplier, uint6_t shift, bool_t double_round=false) {
     REQUIRE(multiplier &gt;= 0);
     REQUIRE(2 &lt;= shift &amp;&amp; shift &lt;= 62);
     REQUIRE(value &gt;= (-1 &lt;&lt; (shift - 1)) &amp;&amp; value &lt; (1 &lt;&lt; (shift - 1));
@@ -1297,7 +1362,7 @@ int32_t apply_scale_16(int48_t value, int16_t multipler, uint6_t shift) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_integer_convolutions">1.9.3. Integer Convolutions</h4>
+<h4 id="_integer_convolutions">1.10.3. Integer Convolutions</h4>
 <div class="paragraph">
 <p>For the convolution operators, the input is not required to be scaled.
 The integer versions of the convolution operators will subtract the zero point from the integer values as defined for each operator.
@@ -1309,7 +1374,7 @@ If per-channel scaling is needed then the per-channel option of the RESCALE oper
 </div>
 </div>
 <div class="sect3">
-<h4 id="_integer_elementwise_operators">1.9.4. Integer Elementwise Operators</h4>
+<h4 id="_integer_elementwise_operators">1.10.4. Integer Elementwise Operators</h4>
 <div class="paragraph">
 <p>When two quantized tensors are used in an operation, they must represent the same numeric range for the result to be valid.
 In this case, TOSA expects that RESCALE operators will be used as necessary to generate 32-bit integer values in a common range.
@@ -1319,7 +1384,7 @@ Compilers generating TOSA sequences should choose a range that allows the operat
 </div>
 </div>
 <div class="sect3">
-<h4 id="_general_unary_functions">1.9.5. General Unary Functions</h4>
+<h4 id="_general_unary_functions">1.10.5. General Unary Functions</h4>
 <div class="paragraph">
 <p>General unary functions such as sigmoid(), tanh(), exp() for integer inputs are expressed using a lookup table and interpolation to enable efficient implementation.
 This also allows for other operations with the addition of user-supplied tables (the TABLE operation).
@@ -1359,7 +1424,7 @@ The following code constructs a 513-entry table based on a reference function.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_floating_point">1.10. Floating-point</h3>
+<h3 id="_floating_point">1.11. Floating-point</h3>
 <div class="paragraph">
 <p>Floating-point support is included in the main inference profile.
 TOSA does not define bit-exact behavior of the floating-point type, since floating-point operation results can vary according to operation order (floating-point addition is not associative in general) and rounding behavior.
@@ -1387,7 +1452,7 @@ These features ensure that detection of overflow and other exceptional condition
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. floating-point behavior</caption>
+<caption class="title">Table 6. floating-point behavior</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1528,7 +1593,7 @@ shape_list_t tosa_output_shape(tosa_graph_t graph);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">tosa_execute_graph(tosa_graph_t graph, tosa_list_t input_list, tosa_list_t output_list) {
+<pre class="highlight"><code class="language-c++" data-lang="c++">tosa_execute_graph(tosa_graph_t graph, tosa_list_t input_list, tosa_list_t output_list, tosa_level_t level) {
     ERROR_IF(tensor_list_shape(input_list) != tosa_input_shape(graph));
     ERROR_IF(tensor_list_shape(output_list) != tosa_output_shape(graph));
     for_each(operator in graph order) {
@@ -1536,7 +1601,8 @@ shape_list_t tosa_output_shape(tosa_graph_t graph);</code></pre>
         ERROR_IF(operator attributes do not meet requirement of operator Arguments attributes)
         ERROR_IF(operator output tensors do not meet requirement of operator Arguments outputs)
         ERROR_IF(operator data types do not meet requirement of operator Supported Data Types)
-        &lt;Execute operator as defined by the Operation Function pseduo-code&gt;
+        // Execute the operator as defined by the operation function pseduo-code
+        tosa_execute_operator(operator, level);
     }
 }</code></pre>
 </div>
@@ -1666,11 +1732,11 @@ for_each(left_index in left_shape) {
         in_t max_value = minimum_value&lt;in_t&gt;;
         out_t max_index = 0;
         for (i = 0; i &lt; shape[axis]; i++) {
-            index = flatten(left_index, [i], right_index);
+            dim_t index = flatten(left_index, [i], right_index);
             in_t value = tensor_read&lt;in_t&gt;(input, shape1, index);
             if (value &gt; max_value) { max_value = value; max_index = i; }
         }
-        index = flatten(left_index, right_index);
+        dim_t index = flatten(left_index, right_index);
         tensor_write&lt;out_t&gt;(output, shape, index, max_index);
     }
 }</code></pre>
@@ -1818,6 +1884,20 @@ When calculating the average, only the number of valid input tensor values, but 
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(kernel_y &lt;= MAX_KERNEL);
+    LEVEL_CHECK(kernel_x &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+    LEVEL_CHECK(pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_right &lt;= MAX_KERNEL);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(in_out_t != int8_t &amp;&amp; input_zp != 0); // Zero point only for int8_t
 ERROR_IF(in_out_t != int8_t &amp;&amp; output_zp != 0); // Zero point only for int8_t
 ERROR_IF(kernel_y &lt; 1 || kernel_x &lt; 1); // kernel size must be &gt;= 1
@@ -1834,11 +1914,11 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW, 0 &lt;= c &lt
     in_out_t output_val;
     acc_t acc = 0;
     int count = 0;
-    iy = oy * stride_y - pad_top;
-    ix = ox * stride_x - pad_left;
+    index_t iy = oy * stride_y - pad_top;
+    index_t ix = ox * stride_x - pad_left;
     for_each(0 &lt;= ky &lt; kernel_y, 0 &lt;= kx &lt; kernel_x) {
-        y = iy + ky;
-        x = ix + kx;
+        index_t y = iy + ky;
+        index_t x = ix + kx;
         // Only values from the input tensor are used to calculate the
         // average, padding does not count
         if (0 &lt;= y &lt; IH and 0 &lt;= x &lt; IW) {
@@ -2024,7 +2104,21 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW, 0 &lt;= c &lt
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(dilation_y * KH &lt;= MAX_KERNEL);
+    LEVEL_CHECK(dilation_x * KW &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_right &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2039,11 +2133,11 @@ ERROR_IF(OW != idiv_check(IW - 1 + pad_left + pad_right - (KW - 1) * dilation_x,
 pad = flatten([0,0], pad, [0,0]);
 for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= oc &lt; OC) {
     out_t acc = 0;
-    iy = oy * stride_y - pad_top;
-    ix = ox * stride_x - pad_left;
+    index_t iy = oy * stride_y - pad_top;
+    index_t ix = ox * stride_x - pad_left;
     for_each(0 &lt;= ky &lt; KH, 0 &lt;= kx &lt; KW, 0 &lt;= ic &lt; IC) {
-        y = iy + ky * dilation_y;
-        x = ix + kx * dilation_x;
+        index_t y = iy + ky * dilation_y;
+        index_t x = ix + kx * dilation_x;
         if (0 &lt;= y &lt; IH &amp;&amp; 0 &lt;= x &lt; IW) {
             out_t value  = tensor_read&lt;in_t&gt;(input, [N,IH,IW,IC], [n,y,x,ic]);
             out_t weight = tensor_read&lt;weight_t&gt;(weight, [OC,KH,KW,IC], [oc,ky,kx,ic]);
@@ -2222,7 +2316,25 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= oc &l
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(dilation_d * KD &lt;= MAX_KERNEL);
+    LEVEL_CHECK(dilation_y * KH &lt;= MAX_KERNEL);
+    LEVEL_CHECK(dilation_x * KW &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_d0 &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_d1 &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_right &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_d &lt;= MAX_STRIDE);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2238,13 +2350,13 @@ ERROR_IF(OW != idiv_check(IW - 1 + pad_left + pad_right - (KW - 1) * dilation_x,
 pad = flatten([0,0], pad, [0,0]);
 for_each(0 &lt;= n &lt; N, 0 &lt;= od &lt; OD, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= oc &lt; OC) {
     out_t acc = 0;
-    id = od * stride_d - pad_d0;
-    iy = oy * stride_y - pad_top;
-    ix = ox * stride_x - pad_left;
+    index_t id = od * stride_d - pad_d0;
+    index_t iy = oy * stride_y - pad_top;
+    index_t ix = ox * stride_x - pad_left;
     for_each(0 &lt;= kd &lt; KD, 0 &lt;= ky &lt; KH, 0 &lt;= kx &lt; KW, 0 &lt;= ic &lt; IC) {
-        d = id + kd * dilation_d;
-        y = iy + ky * dilation_y;
-        x = ix + kx * dilation_x;
+        index_t d = id + kd * dilation_d;
+        index_t y = iy + ky * dilation_y;
+        index_t x = ix + kx * dilation_x;
         if (0 &lt;= x &lt; IW &amp;&amp; 0 &lt;= y &lt; IH &amp;&amp; 0 &lt;= d &lt; ID) {
             out_t value  = tensor_read&lt;in_t&gt;(input, [N,ID,IH,IW,IC], [n,d,y,x,ic]);
             out_t weight = tensor_read&lt;weight_t&gt;(weight,[OC,KD,KH,KW,IC],[oc,kd,ky,kx,ic]);
@@ -2423,7 +2535,21 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= od &lt; OD, 0 &lt;= oy &lt; OH, 0 &lt;= ox &l
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(dilation_y * KH &lt;= MAX_KERNEL);
+    LEVEL_CHECK(dilation_x * KW &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_right &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2438,11 +2564,11 @@ ERROR_IF(OW != idiv_check(IW - 1 + pad_left + pad_right - (KW - 1) * dilation_x,
 pad = flatten([0,0], pad, [0,0]);
 for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt; C, 0 &lt;= m &lt; M) {
     out_t acc = 0;
-    iy = oy * stride_y - pad_top;
-    ix = ox * stride_x - pad_left;
+    index_t iy = oy * stride_y - pad_top;
+    index_t ix = ox * stride_x - pad_left;
     for_each(0 &lt;= ky &lt; KH, 0 &lt;= kx &lt; KW) {
-        y = iy + ky * dilation_y;
-        x = ix + kx * dilation_x;
+        index_t y = iy + ky * dilation_y;
+        index_t x = ix + kx * dilation_x;
         if (0 &lt;= y &lt; IH &amp;&amp; 0 &lt;= x &lt; IW) {
             out_t value  = tensor_read&lt;in_t&gt;(input, [N,IH,IW,C], [n,y,x,c]);
             out_t weight = tensor_read&lt;weight_t&gt;(weight, [KH,KW,C,M], [ky,kx,c,m]);
@@ -2560,7 +2686,15 @@ No normalization is applied on either the forward or inverse versions of the ope
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(H &lt;= MAX_KERNEL);
+    LEVEL_CHECK(W &lt;= MAX_KERNEL);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2732,7 +2866,7 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H, 0 &lt;= ox &lt; W) {
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2874,7 +3008,7 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oc &lt; OC) {
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3005,6 +3139,20 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= h &lt; H, 0 &lt;= w &lt; W) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(kernel_y &lt;= MAX_KERNEL);
+    LEVEL_CHECK(kernel_x &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+    LEVEL_CHECK(pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(pad_right &lt;= MAX_KERNEL);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(kernel_y &lt; 1 || kernel_x &lt; 1); // kernel size must be &gt;= 1
 ERROR_IF(stride_y &lt; 1 || stride_x &lt; 1);
 ERROR_IF(pad_top &lt; 0 || pad_bottom &lt; 0 || pad_left &lt; 0 || pad_right &lt; 0);
@@ -3017,11 +3165,11 @@ ERROR_IF(OW != idiv_check(IW + pad_left + pad_right - kernel_x, stride_x) + 1);
 
 for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H, 0 &lt;= ox &lt; W, 0 &lt;= c &lt; C ) {
     in_out_t acc = minimum_value&lt;in_out_t&gt;;
-    iy = oy * stride_y - pad_top;
-    ix = ox * stride_x - pad_left;
+    index_t iy = oy * stride_y - pad_top;
+    index_t ix = ox * stride_x - pad_left;
     for_each( 0 &lt;= ky &lt; kernel_y, 0 &lt;= kx &lt; kernel_x ) {
-        y = iy + ky;
-        x = ix + kx;
+        index_t y = iy + ky;
+        index_t x = ix + kx;
         if (y &gt;= 0 &amp;&amp; y &lt; IH &amp;&amp; x &gt;= 0 &amp;&amp; x &lt; IW) {
             in_out_t value = tensor_read&lt;in_out_t&gt;(input, [N,IH,IW,C], [n,y,x,c]);
             acc = apply_max(acc, value);
@@ -3114,7 +3262,15 @@ Imaginary values with locations h=0,H/2 or w=0,W/2 are zero.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(H &lt;= MAX_KERNEL);
+    LEVEL_CHECK(W &lt;= MAX_KERNEL);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3300,7 +3456,21 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H/2 + 1, 0 &lt;= ox &lt; W/2 + 1) {
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Operation Function</strong></p>
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(KH &lt;= MAX_KERNEL);
+    LEVEL_CHECK(KW &lt;= MAX_KERNEL);
+    LEVEL_CHECK(out_pad_top &lt;= MAX_KERNEL);
+    LEVEL_CHECK(out_pad_bottom &lt;= MAX_KERNEL);
+    LEVEL_CHECK(out_pad_left &lt;= MAX_KERNEL);
+    LEVEL_CHECK(out_pad_right &lt;= MAX_KERNEL);
+    LEVEL_CHECK(stride_y &lt;= MAX_STRIDE);
+    LEVEL_CHECK(stride_x &lt;= MAX_STRIDE);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3317,8 +3487,8 @@ for_each(index in out_shape) {
 }
 for_each(0 &lt;= n &lt; N, 0 &lt;= iy &lt; IH, 0 &lt;= ix &lt; IW, 0 &lt;= oc &lt; OC,
           0 &lt;= ic &lt; IC, 0 &lt;= ky &lt; KH,  0 &lt;= kx &lt; KW) {
-    oy = iy * stride_y + out_pad_top + ky;
-    ox = ix * stride_x + out_pad_left + kx;
+    index_t oy = iy * stride_y + out_pad_top + ky;
+    index_t ox = ix * stride_x + out_pad_left + kx;
     if (oy &gt;= 0 &amp;&amp; oy &lt; OH &amp;&amp; ox &gt;= 0 &amp;&amp; ox &lt; OW) {
         out_t acc = tensor_read&lt;out_t&gt;(output, [N,OH,OW,OC], [n,oy,ox,oc]);
         out_t value = tensor_read&lt;in_t&gt;(input, [N,IH,IW,IC], [n,iy,ix,ic]);
@@ -3442,6 +3612,13 @@ No zero point subtraction is done to the values, thus to clamp to the zero point
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(max_val &lt; min_val);
 for_each(index in shape) {
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape, index);
@@ -3545,6 +3722,16 @@ generate_lookup_table(&amp;sigmoid_table, &amp;sigmoid_reference);</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_tanh">2.4.3. TANH</h4>
@@ -3641,6 +3828,16 @@ generate_lookup_table(&amp;tanh_table, &amp;tanh_reference);</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -3739,9 +3936,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = apply_add&lt;in_out_t&gt;(value1, value2);
@@ -3846,9 +4050,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
 
@@ -3956,9 +4167,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 &amp; value2;
@@ -4056,9 +4274,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 | value2;
@@ -4156,9 +4381,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 ^ value2;
@@ -4249,9 +4481,16 @@ Quantized integer divide should use TABLE (for 1/x) and MUL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     REQUIRE(value2 != 0);
@@ -4343,9 +4582,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 &amp;&amp; value2;
@@ -4443,9 +4689,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     REQUIRE(0 &lt;= value2 &amp;&amp; value2 &lt;= 31);
@@ -4544,9 +4797,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     REQUIRE(0 &lt;= value2 &amp;&amp; value2 &lt;= 31);
@@ -4635,9 +4895,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 || value2;
@@ -4725,9 +4992,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = value1 != value2;
@@ -4830,9 +5104,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = apply_max(value1, value2);
@@ -4935,9 +5216,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = apply_min(value1, value2);
@@ -5065,10 +5353,17 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(in_t != int32_t &amp;&amp; shift &gt; 0);
 for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_t value1 = tensor_read&lt;in_t&gt;(input1, shape1, index1);
     in_t value2 = tensor_read&lt;in_t&gt;(input2, shape2, index2);
     out_t result;
@@ -5175,9 +5470,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = apply_pow&lt;in_out_t&gt;(value1, value2);
@@ -5280,9 +5582,16 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t result = apply_sub&lt;in_out_t&gt;(value1, value2);
@@ -5406,6 +5715,13 @@ Note that int16_t table has 513 values to handle table[index+1] when index=511.<
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">REQUIRE(length(table) == TABLE_SIZE);
 for_each(index in shape) {
     in_t value = tensor_read&lt;in_t&gt;(input, shape, index);
@@ -5506,6 +5822,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -5538,9 +5864,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -5636,6 +5959,13 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
     in_out_t value1 = tensor_read&lt;in_out_t&gt;(input1, shape, index);
     in_out_t result = ~value1;
@@ -5721,6 +6051,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -5753,9 +6093,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -5834,6 +6171,13 @@ for_each(index in shape) {
 </table>
 <div class="paragraph">
 <p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5922,6 +6266,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -5954,9 +6308,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -6044,6 +6395,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6076,9 +6437,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -6166,6 +6524,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6198,9 +6566,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -6279,6 +6644,13 @@ for_each(index in shape) {
 </table>
 <div class="paragraph">
 <p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6404,6 +6776,9 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6436,9 +6811,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(in_out_t != int8_t &amp;&amp; input1_zp != 0) // Zero point only for int8_t
@@ -6530,6 +6902,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6562,9 +6944,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -6652,6 +7031,16 @@ for_each(index in shape) {
 </tbody>
 </table>
 <div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Floating-point behavior:</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6684,9 +7073,6 @@ for_each(index in shape) {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function:</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
@@ -6830,10 +7216,17 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
-    index3 = apply_broadcast(shape, shape3, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
+    dim_t index3 = apply_broadcast(shape, shape3, index);
     cmp_t value1 = tensor_read&lt;cmp_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t value3 = tensor_read&lt;in_out_t&gt;(input3, shape3, index3);
@@ -6950,9 +7343,16 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_t value1 = tensor_read&lt;in_t&gt;(input1, shape1, index1);
     in_t value2 = tensor_read&lt;in_t&gt;(input2, shape2, index2);
     out_t result;
@@ -7064,9 +7464,16 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_t value1 = tensor_read&lt;in_t&gt;(input1, shape1, index1);
     in_t value2 = tensor_read&lt;in_t&gt;(input2, shape2, index2);
     out_t result;
@@ -7178,9 +7585,16 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    index1 = apply_broadcast(shape, shape1, index);
-    index2 = apply_broadcast(shape, shape2, index);
+    dim_t index1 = apply_broadcast(shape, shape1, index);
+    dim_t index2 = apply_broadcast(shape, shape2, index);
     in_t value1 = tensor_read&lt;in_t&gt;(input1, shape1, index1);
     in_t value2 = tensor_read&lt;in_t&gt;(input2, shape2, index2);
     out_t result;
@@ -7282,7 +7696,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, true);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7378,7 +7792,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, false);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7497,7 +7911,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, minimum&lt;in_out_t&gt;);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7616,7 +8030,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, maximum&lt;in_out_t&gt;);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7720,7 +8134,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, 1.0);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7829,7 +8243,7 @@ for_each(index in shape) {
     tensor_write&lt;in_out_t&gt;(output, shape, index, 0);
 }
 for_each(index in shape1) {
-    out_index = index;
+    dim_t out_index = index;
     out_index[axis] = 0;
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, index);
     in_out_t state = tensor_read&lt;in_out_t&gt;(output, shape, out_index);
@@ -7951,6 +8365,13 @@ No data conversion happens during a concat operation.</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c" data-lang="c">ERROR_IF(axis &lt; 0 || axis &gt;= rank(shapes1[0]));
 ERROR_IF(shape[axis] != sum(shape1[k][axis] for all k))
 // The following checks ensure all inputs are compatible for concatenation
@@ -7961,7 +8382,7 @@ for_each(input_shape in shapes1) {
     }
 }
 for_each(index1 in shape) {
-    index2 = index1;
+    dim_t index2 = index1;
     for (tensor t = 0; t &lt; length(input1); t++) {
         // Continue to concatenate along axis from each tensor
         // For each output location, we are looking for the
@@ -8093,6 +8514,13 @@ The pad_const value includes the zero point if the tensor uses a zero point.</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">// Check output shape matches the padded input shape
 ERROR_IF(rank(shape) != rank(shape1));
 for (i = 0; i &lt; rank(shape); i++) {
@@ -8100,7 +8528,7 @@ for (i = 0; i &lt; rank(shape); i++) {
     ERROR_IF(shape[i] != padding[i, 0] + shape1[i] + padding[i, 1]);
 }
 for_each(index in shape) {
-    index1 = index;
+    dim_t index1 = index;
     bool_t is_pad = false;
     for(i = 0; i &lt; rank(shape); i++) {
         index1[i] = index1[i] - padding[i,0];
@@ -8219,6 +8647,14 @@ for_each(index in shape) {
 </table>
 <div class="paragraph">
 <p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape1) &lt;= MAX_RANK);
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8345,9 +8781,16 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(axis &lt; 0 || axis &gt;= rank(shape));
 for_each(index in shape) {
-    tmp_index = index;
+    dim_t tmp_index = index;
     tmp_index[axis] = shape[axis] - 1 - index[axis];
     in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape, tmp_index);
     tensor_write&lt;in_out_t&gt;(output, shape, index, value);
@@ -8358,7 +8801,7 @@ for_each(index in shape) {
 <div class="sect3">
 <h4 id="_slice">2.10.5. SLICE</h4>
 <div class="paragraph">
-<p>Extracts a slice of the input1 on the given axis, beginning at the start coordinates, and extending for size elements in each direction.
+<p>Extracts a slice of input1, beginning at the start coordinates, and extending for size elements in each direction.
 No data conversion happens during a slice operation.</p>
 </div>
 <div class="paragraph">
@@ -8484,7 +8927,7 @@ for_each(index in rank(input1)) {
 }
 
 for_each(index in shape) {
-    tmp_index = index;
+    dim_t tmp_index = index;
     for(i = 0; i &lt; rank(shape); i++) {
        tmp_index[i] = index[i] + start[i];
     }
@@ -8603,7 +9046,7 @@ for_each(index in shape) {
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
-    tmp_index = index;
+    dim_t tmp_index = index;
     for(i = 0; i &lt; rank(shape); i++) {
         ERROR_IF(shape1[i] * multiples[i] != shape[i]);
         tmp_index[i] = index[i] % shape1[i];
@@ -8723,6 +9166,13 @@ Each value in the perms list must be a valid dimension of the input tensor and m
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in perms) {
     // Ensure each perms value is a valid value
     ERROR_IF(index &gt;= rank(shape1));
@@ -8739,7 +9189,7 @@ for(i = 0; i &lt; rank(shape); i++) {
 }
 
 for_each(index in shape) {
-    tmp_index = index;
+    dim_t tmp_index = index;
     for(i = 0; i &lt; rank(shape); i++) {
         tmp_index[perms[i]] = index[i]
     }
@@ -9144,7 +9594,7 @@ input position (IH - 1,IW - 1).</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int16_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">border</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[2]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[border_y, border_x]</p></td>
@@ -9218,13 +9668,13 @@ input position (IH - 1,IW - 1).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 </tr>
@@ -9237,6 +9687,17 @@ input position (IH - 1,IW - 1).</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(scale_y_n/scale_y_d &lt;= MAX_SCALE);
+    LEVEL_CHECK(scale_x_n/scale_x_d &lt;= MAX_SCALE);
+}</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p><strong>Resize Modes:</strong></p>
 </div>
@@ -9262,9 +9723,6 @@ input position (IH - 1,IW - 1).</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong>Operation Function</strong></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">// Ensure the image size is supported by GPU APIs and that for integer
@@ -9293,13 +9751,15 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
     int32_t x = ox * scale_x_d + offset_x;
     int16_t iy = floor(y / scale_y_n);
     int16_t ix = floor(x / scale_x_n);
+    int16_t ry = y - iy * scale_y_n;  // (y % scale_y_n)
+    int16_t rx = x - ix * scale_x_n;  // (x % scale_x_n)
 
     if (is_floating_point(resize_t)) {
-        dy = ((resize_t)y / (resize_t)scale_y_n) - iy;
-        dx = ((resize_t)x / (resize_t)scale_x_n) - ix;
+        dy = (resize_t)ry / (resize_t)scale_y_n;
+        dx = (resize_t)rx / (resize_t)scale_x_n;
     } else {
-        dy = y - iy * scale_y_n;
-        dx = y - ix * scale_x_n;
+        dy = ry;
+        dx = rx;
     }
     // Note that -1 &lt;= iy &lt; IH and -1 &lt;= ix &lt; IW
     int16_t iy0 = apply_max(iy, 0);
@@ -9542,6 +10002,12 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bf16 to fp32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16 to signed 8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int8_t</p></td>
@@ -9557,6 +10023,12 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16 to signed 32</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp16 to fp32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
@@ -9576,10 +10048,29 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32 to bf16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32 to fp16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p><strong>Operation Function:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9829,6 +10320,13 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
     // uint16 values can have zero_point 0 or 32768
     // int8/uint8 can have zero point within their valid range
@@ -9849,8 +10347,9 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
     int32_t result = (scale32) ?
         apply_scale_32(value, multiplier[c], shift[c], double_round) :
         apply_scale_16(value, multiplier[c], shift[c]);
-    result = (out_t)apply_clip&lt;int32_t&gt;(result + output_zp, minimum&lt;out_t&gt;, maximum&lt;out_t&gt;);
-    tensor_write&lt;out_t&gt;(output, shape, index, result);
+    result = apply_add&lt;int32_t&gt;(result, output_zp);
+    out_t out = (out_t)apply_clip&lt;int32_t&gt;(result, minimum&lt;out_t&gt;, maximum&lt;out_t&gt;);
+    tensor_write&lt;out_t&gt;(output, shape, index, out);
 }</code></pre>
 </div>
 </div>
@@ -9954,6 +10453,9 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_identity">2.14.2. IDENTITY</h4>
@@ -10051,6 +10553,9 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Operation Function:</strong></p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -10121,10 +10626,10 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">condition</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Input condition as rank-0 tensor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shape</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input condition as a size 1 tensor</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
@@ -10158,8 +10663,9 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 ERROR_IF(tensor_list_shape(input_list) != tosa_input_shape(else_graph));
 ERROR_IF(tensor_list_shape(output_list) != tosa_output_shape(then_graph));
 ERROR_IF(tensor_list_shape(output_list) != tosa_output_shape(else_graph));
+ERROR_IF(tensor_size(shape) != 1);
 
-if (condition) {
+if (condition[0]) {
     tosa_execute_graph(then_graph, input_list, output_list);
 } else {
     tosa_execute_graph(else_graph, input_list, output_list);
@@ -10232,17 +10738,21 @@ if (condition) {
 ERROR_IF(tensor_list_shape(input_list) != tosa_input_shape(cond_graph));
 ERROR_IF(tensor_list_shape(input_list) != tosa_input_shape(body_graph));
 ERROR_IF(tensor_list_shape(input_list) != tosa_output_shape(body_graph));
-ERROR_IF(tosa_output_shape(cond_graph) != tosa_list_shape([bool_t]));
+// Condition graph output must be a single element tensor with a single bool value
+ERROR_IF(tensor_size(tosa_output_shape(cond_graph)) != 1);
+ERROR_IF(tosa_output_type(cond_graph) != bool_t);
 
 // The iteration number 'i' is included to give unique names to variables
 // in each iteration of the loop and is not required by implementations
 int32_t i=0;             // iteration number
+tensor_list_t list[];    // array of tensor lists indexed by iteration
+bool_t *condition[];     // array of condition tensors indexed by iteration
 list[i] = input_list;    // copy input data as list[0]
-tosa_execute_graph(cond_graph, list[i], [condition[i]]);   // initial condition
-while (condition[i]) {
+tosa_execute_graph(cond_graph, list[i], [ condition[i] ]);   // initial condition
+while (condition[i][0]) {
     tosa_execute_graph(body_graph, list[i], list[i+1]);
     i = i+1;
-    tosa_execute_graph(cond_graph, list[i], [condition[i]]);
+    tosa_execute_graph(cond_graph, list[i], [ condition[i] ]);
 }
 output_list = list[i];</code></pre>
 </div>
@@ -10308,6 +10818,12 @@ void ERROR_IF(condition) {
     if (tosa_graph_result != tosa_unpredictable &amp;&amp; condition) {
         tosa_graph_result = tosa_error;
     }
+}
+
+void LEVEL_CHECK(condition) {
+    // If a level is specified and the level condition fails then
+    // the result is unpredictable.
+    REQUIRE(condition);
 }</code></pre>
 </div>
 </div>
@@ -10318,11 +10834,9 @@ void ERROR_IF(condition) {
 <h4 id="_tensor_utilities">3.2.1. Tensor Utilities</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">size_t tensor_index_to_offset(dim_t shape, dim_t index) {
-    // Ensure this is a proper tensor with each dimension having size &gt;= 1
-    for_each(dimension_size in shape) {
-        REQUIRE(dimension_size &gt;= 1);
-    }
+<pre class="highlight"><code class="language-c++" data-lang="c++">// Convert tensor index co-ordinates to an element offset
+size_t tensor_index_to_offset(dim_t shape, dim_t index) {
+    size_t size = tensor_size(shape);  // check tensor shape is valid
     size_t offset = 0;
     for (int32_t i = 0; i &lt; rank(shape); i++) {
         REQUIRE(index[i] &gt;= 0 &amp;&amp; index[i] &lt; shape[i]);
@@ -10331,21 +10845,24 @@ void ERROR_IF(condition) {
     return offset;
 }
 
+// Convert an element offset to tensor index co-ordinates
 dim_t tensor_offset_to_index(dim_t shape, size_t offset) {
-    // Index is a dim_t with rank equal to the rank of shape
-    dim_t index(rank(shape));
-    for(int32_t r = rank(shape1) - 1; r &gt;= 0; r--) {
-        index[r] = offset % shape1[r];
-        calculated_index /= shape[r];
+    size_t size = tensor_size(shape);  // check tensor shape is valid
+    REQUIRE(offset &lt; size);
+    dim_t index(rank(shape));    // index has rank(shape) indicies
+    for(int32_t i = rank(shape) - 1; i &gt;= 0; i--) {
+        index[i] = offset % shape[i];
+        offset /= shape[i];
     }
     return index;
 }
 
-// Input is the shape of the given tensor
+// Check the tensor shape is valid and return the tensor size in elements
 size_t tensor_size(dim_t shape) {
     size_t size = 1;
-    for (int32_t i=0; i &lt; rank(shape); i++) {
-        size *= input[i];
+    for (int32_t i = 0; i &lt; rank(shape); i++) {
+        REQUIRE(1 &lt;= shape[i] &amp;&amp; shape[i] &lt;= maximum&lt;size_t&gt; / size);
+        size *= shape[i];
     }
     return size;
 }</code></pre>
@@ -10602,7 +11119,7 @@ bool power_of_two(int32_t value)
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.40.0<br>
+Version 0.50.0<br>
 Last updated 2022-08-05 14:44:55 -0700
 </div>
 </div>
