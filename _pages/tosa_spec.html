@@ -8,8 +8,8 @@ permalink: /tosa/tosa_spec.html
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
-<title>TOSA 0.50.0 specification</title>
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>TOSA 0.60.0 specification</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
@@ -423,10 +423,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>TOSA 0.50.0 specification</h1>
-<div class="details">
-<span id="revnumber">version 0.50.0</span>
-</div>
+<h1>TOSA 0.60.0 specification</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -441,8 +438,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_status">1.7. Status</a></li>
 <li><a href="#_compliance">1.8. Compliance</a>
 <ul class="sectlevel3">
-<li><a href="#_baseline_inference_profile_compliance">1.8.1. Baseline Inference Profile Compliance</a></li>
-<li><a href="#_main_inference_and_main_training_profile">1.8.2. Main Inference and Main Training Profile</a></li>
+<li><a href="#_base_inference_profile_compliance">1.8.1. Base Inference Profile Compliance</a></li>
+<li><a href="#_main_inference_profile">1.8.2. Main Inference Profile</a></li>
 </ul>
 </li>
 <li><a href="#_tensor_definitions">1.9. Tensor Definitions</a>
@@ -463,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_general_unary_functions">1.10.5. General Unary Functions</a></li>
 </ul>
 </li>
-<li><a href="#_floating_point">1.11. Floating-point</a></li>
+<li><a href="#_other_publications">1.11. Other publications</a></li>
 </ul>
 </li>
 <li><a href="#_operators">2. Operators</a>
@@ -616,6 +613,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><a href="#_appendix_a">4. Appendix A</a>
+<ul class="sectlevel2">
+<li><a href="#_random_data_generation">4.1. Random data generation</a></li>
+<li><a href="#_dot_product_floating_point_test_data_sets">4.2. Dot product floating-point test data sets</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -685,7 +688,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The validity, construction and performance of this Licence shall be governed by English Law.</p>
 </div>
 <div class="paragraph">
-<p>Copyright © 2020-2022 Arm Limited (or its affiliates). All rights reserved.</p>
+<p>Copyright © 2020-2023 Arm Limited (or its affiliates). All rights reserved.</p>
 </div>
 <div class="paragraph">
 <p>Arm Limited. Company 02557590 registered in England.
@@ -955,7 +958,7 @@ These ranges are checked using the LEVEL_CHECK() function with the operator desc
 The term conformant will mean the same as compliant.</p>
 </div>
 <div class="sect3">
-<h4 id="_baseline_inference_profile_compliance">1.8.1. Baseline Inference Profile Compliance</h4>
+<h4 id="_base_inference_profile_compliance">1.8.1. Base Inference Profile Compliance</h4>
 <div class="paragraph">
 <p>The <a href="#_operator_graphs">Operator Graphs</a> section of this specification defines a TOSA graph and the behavior defined for a TOSA graph.
 This behavior is captured in the pseudo-code function tosa_execute_graph().
@@ -1017,9 +1020,56 @@ For a given input graph (with attributes) and input tensors there are three poss
 </div>
 </div>
 <div class="sect3">
-<h4 id="_main_inference_and_main_training_profile">1.8.2. Main Inference and Main Training Profile</h4>
+<h4 id="_main_inference_profile">1.8.2. Main Inference Profile</h4>
 <div class="paragraph">
-<p>An implementation is compliant to the Main Inference or Main Training profiles if the following both hold for that respective profile:</p>
+<p>A Main Inference compliant implementation must satisfy the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The implementation must meet <a href="#_base_inference_profile_compliance">Base Inference Profile Compliance</a> for all Base inference complaint graphs</p>
+</li>
+<li>
+<p>The implementation must support all Main Inference operations using the datatype fp32_t</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The operations must meet the precision requirements of <a href="#_main_inference_precision_requirements">Main Inference precision requirements</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The implementation must support all Main Inference operations using the datatype fp16_t</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The operations must meet the precision requirements of <a href="#_main_inference_precision_requirements">Main Inference precision requirements</a></p>
+</li>
+<li>
+<p>Note: These requirements allow fp16_t operations to be implemented using the fp32_t datatype</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The implementation must support all Main Inference operations using the datatype bf16_t</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The operations must meet the precision requirements of <a href="#_main_inference_precision_requirements">Main Inference precision requirements</a></p>
+</li>
+<li>
+<p>Note: These requirements allow bf16_t operations to be implemented using the fp32_t datatype</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As with <a href="#_base_inference_profile_compliance">Base Inference Profile Compliance</a> the pseudo-code function tosa_execute_graph() can return one of three possible results.
+A compliant implementation must satisfy the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1032,13 +1082,231 @@ For a given input graph (with attributes) and input tensors there are three poss
 <li>
 <p>For a graph returning tosa_valid and consisting only of integer operators the results must match exactly</p>
 </li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_main_inference_precision_requirements">Main Inference precision requirements</h5>
+<div class="paragraph">
+<p>In a compliant implementation, individual-floating point operations within the graph must meet the following accuracy bounds
+listed in the table below. In the table <em>ulp</em> means unit of the last place.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The error criteria in this section are at an early draft stage and are likely to change during conformance test development.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following criteria apply to all operations:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>The implementation must report the maximum relative error on a set of standard graphs that contain floating point operators. These graphs will be provided as a future appendix to this specification.</p>
+<p>If any input is a NaN and the result is floating-point then the result must be a NaN</p>
+</li>
+<li>
+<p>If any input is a NaN and the operation is a comparison (greater, greater-equal, equal) then the result must be false</p>
+</li>
+<li>
+<p>if any input is a NaN and the operation is conversion to an integer or boolean then the result is unpredictable</p>
 </li>
 </ul>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operation</th>
+<th class="tableblock halign-left valign-top">Accuracy bound</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_argmax">ARGMAX</a>, <a href="#_max_pool2d">MAX_POOL2D</a>, <a href="#_clamp">CLAMP</a>, <a href="#_maximum">MAXIMUM</a>, <a href="#_minimum">MINIMUM</a>, <a href="#_abs">ABS</a>, <a href="#_negate">NEGATE</a>, , <a href="#_const">CONST</a>, <a href="#_identity">IDENTITY</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The result must be exact.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_equal">EQUAL</a>, <a href="#_greater">GREATER</a>, <a href="#_greater_equal">GREATER_EQUAL</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The result must be exact with:<br>
+(1) The sign of the zero is ignored<br>
+(2) Infinities of the same sign compare as equal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_conv2d">CONV2D</a>, <a href="#_conv3d">CONV3D</a>, <a href="#_depthwise_conv2d">DEPTHWISE_CONV2D</a>, <a href="#_fully_connected">FULLY_CONNECTED</a>, <a href="#_matmul">MATMUL</a>, <a href="#_transpose_conv2d">TRANSPOSE_CONV2D</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each output can be expressed as a dot product of two input vectors.<br>
+The dot product must meet the <a href="#_dot_product_accuracy_requirements">Dot product accuracy requirements</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_fft2d">FFT2D</a>, <a href="#_rfft2d">RFFT2D</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each output can be expressed as a dot product of an input vector with a costant vector.<br>
+The dot product must meet the <a href="#_dot_product_accuracy_requirements">Dot product accuracy requirements</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_add">ADD</a>, <a href="#_mul">MUL</a>, <a href="#_sub">SUB</a>, <a href="#_ceil">CEIL</a>, <a href="#_floor">FLOOR</a>, <a href="#_cast">CAST</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Floating-point result overflows must be set to infinity of the correct sign.<br>
+Floating-point result underflows must be set to zero of the correct sign.<br>
+Integer result overflows must be saturated.<br>
+Addition of infinites of different signs must produce a NaN.<br>
+Subtraction of infinities of the same sign must produce a NaN.<br>
+Multiplication of an infinity by a zero must produce a NaN.<br>
+Otherwise for fp32_t the result must be rounded to the nearest representable value using the round to nearest, ties to even rounding mode.<br>
+Otherwise for fp16_t and bf16_t the result must be within 0.5 ulp of the mathematical result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_reciprocal">RECIPROCAL</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the input is a zero or the result overlows the output must be an infinity of the same sign.<br>
+If the input is an infinty or the result underflows the output must be a zero of the same sign.<br>
+Otherwise:the result must be within 1 ulp of the mathematical result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_rsqrt">RSQRT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the input is less than zero the result must be a NaN.<br>
+Otherwise if the input is a zero the output must be an infinity of the same sign.<br>
+Otherwise the result must be within 1 ulp of the mathematical result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_sigmoid">SIGMOID</a>, <a href="#_tanh">TANH</a>, <a href="#_pow">POW</a>, <a href="#_exp">EXP</a>, <a href="#_log">LOG</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the input to LOG is less than zero then the result must be a NaN.<br>
+If the inputs to POW are both zero then the result must be a NaN.<br>
+If the first input to POW is less than zero and the second input is not an integer then the result must be a NaN.<br>
+If the result overflows the output must be an infinity of the correct sign.<br>
+If the result underflows the output must be a zero of the correct sign.<br>
+Otherwise the result must be within 5 ulp of the mathematical result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_reduce_sum">REDUCE_SUM</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each output can be expressed as a dot product of an input vector with a vector of ones.<br>
+This dot product must meet the <a href="#_dot_product_accuracy_requirements">Dot product accuracy requirements</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_avg_pool2d">AVG_POOL2D</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each output can be expressed as a dot product of an input vector with a vector with elements 1/d where d is the kernel size.<br>
+This dot product must meet the <a href="#_dot_product_accuracy_requirements">Dot product accuracy requirements</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_reduce_product">REDUCE_PRODUCT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result overflows must be set to an infinity of the correct sign.<br>
+Result underflows must be set to a zero of the correct sign.<br>
+Othewise if the final product and all sub-products are within the normal range then the result <code>R</code> must have an absolute error of at most <code>E*abs(R)</code>
+where <code>E = pow(1 + pow(2, -M-1), N) - 1</code>. In this expression M is the number of mantissa bit of the floating point format and N is the number of elements in the product.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_dot_product_accuracy_requirements">Dot product accuracy requirements</h5>
 <div class="paragraph">
-<p>Note that for graphs containing floating point there is no strict precision requirement that must be met, but that the precision achieved must be reported.</p>
+<p>This section gives accuracy constraints for operations where the result is a sum of products of N floating-point inputs:</p>
+</div>
+<div class="paragraph">
+<p><code>y = x[0] * w[0] + x[1] * w[1] + &#8230;&#8203; + x[N-1] * w[N-1]</code></p>
+</div>
+<div class="paragraph">
+<p>Let M be the number of mantissa bits in the accumulator.
+So M=23 for an <code>fp32_t</code> accumulator and M=10 for an <code>fp16_t</code> accumulator.</p>
+</div>
+<div class="paragraph">
+<p>In this section "fp64 arithmetic" refers to double-precision floating-point arithmetic defined by <a href="#_other_publications">Other publications</a>[1].</p>
+</div>
+<div class="paragraph">
+<p>Appendix A, defines a number of <a href="#_dot_product_floating_point_test_data_sets">Dot product floating-point test data sets</a>.
+For each data test set (S, N) consisting of T tests the following must hold:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For each test t in the range 0 to T-1, calculate:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_imp[t] = x[0] * w[0] + &#8230;&#8203; + x[N-1] * w[N-1]</code> calculated by the implementation</p>
+</li>
+<li>
+<p><code>y_ref[t] = x[0] * w[0] + &#8230;&#8203; + x[N-1] * w[N-1]</code> calculated using fp64 arithmetic</p>
+</li>
+<li>
+<p><code>y_bnd[t] = abs(x[0] * w[0]) + &#8230;&#8203; + abs(x[N-1] * w[N-1])</code> calculated using fp64 arithmetic</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>if <code>y_bnd[t] == 0</code> then</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_imp[t]</code> must be zero and set <code>y_err[t] = 0</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>if <code>y_bnd[t] &gt; 0</code> then set:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_err[t] = (y_imp[t] - y_ref[t]) * (1&lt;&lt;(M+1)) / y_bnd[t]</code> calculated using fp64 arithmetic</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>For each test t the following must be satisfied:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_ref[t], y_bnd[t], y_imp[t]</code> must be finite</p>
+</li>
+<li>
+<p><code>abs(y_err[t]) &lt;= N</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Calculate the sum of y_err using fp64 arithmetic:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_err_sum   = y_err[0] + &#8230;&#8203;. + y_err[T-1]</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Calculate the sum of y_err squared using fp64 arithmetic:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>y_err_sumsq = y_err[0] * y_err[0] + &#8230;&#8203; + y_err[T-1] * y_err[T-1]</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The error sum and sum squares must satisfy the following. The first equation bounds the bias and the second the error variance.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>abs(y_err_sum) &lt;= 2*sqrt(N*T)</code></p>
+</li>
+<li>
+<p><code>y_err_sumsq &lt;= 0.4*N*T</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1222,19 +1490,34 @@ The number formats supported by a given operator are listed in its table of supp
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-infinity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+infinity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit floating-point value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit half-precision floating-point defined by <a href="#_other_publications">Other publications</a>[1].<br>
+Normal values must be supported.<br>
+Denormal values must either be supported or flushed to zero.<br>
+Positive and negative infinity must be supported.<br>
+At least one NaN encoding must be supported.<br>
+Signed zero must be supported.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-infinity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+infinity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit brain float value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit brain floating-point defined as bits [31:16] of the fp32_t format.<br>
+Normal values must be supported.<br>
+Denormal values must either be supported or flushed to zero.<br>
+Positive and negative infinity must be supported.<br>
+At least one NaN encoding must be supported.<br>
+Signed zero must be supported.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-infinity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+infinity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit floating-point value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit single-precision floating-point defined by <a href="#_other_publications">Other publications</a>[1].<br>
+Normal values must be supported.<br>
+Denormal values must either be supported or flushed to zero.<br>
+Positive and negative infinity must be supported.<br>
+At least one NaN encoding must be supported.<br>
+Signed zero must be supported.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1424,104 +1707,17 @@ The following code constructs a 513-entry table based on a reference function.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_floating_point">1.11. Floating-point</h3>
+<h3 id="_other_publications">1.11. Other publications</h3>
 <div class="paragraph">
-<p>Floating-point support is included in the main inference profile.
-TOSA does not define bit-exact behavior of the floating-point type, since floating-point operation results can vary according to operation order (floating-point addition is not associative in general) and rounding behavior.
-If a bit-exact answer is required then integer operations should be used.
-TOSA does define that the floating-point type must support the following list of features.
-These features ensure that detection of overflow and other exceptional conditions can be handled consistently.</p>
+<p>The following publications are referred to in this specification, or provide more information:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>The floating-point type must have at least 16 total bits including the sign bit</p>
+<p>IEEE Std 754-2008, <em>IEEE Standard for Floating-point Arithmetic</em>, August 2008.</p>
 </li>
-<li>
-<p>The floating-point type must support positive and negative infinity values</p>
-</li>
-<li>
-<p>The floating-point type must support at least one Not-a-Number encoding (NaN)</p>
-</li>
-<li>
-<p>The floating-point type must support signed zero</p>
-</li>
-<li>
-<p>The floating-point type must support handling of infinities, NaNs, zeros as in the following table</p>
-</li>
-</ul>
+</ol>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. floating-point behavior</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Case</th>
-<th class="tableblock halign-left valign-top">Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operators other than explicitly mentioned by other rules: Any input operand is a NaN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comparisons (EQUAL, GREATER, GREATER_EQUAL), where either or both operands is NaN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comparisons ignore the sign of 0</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RSQRT (reciprocal square root) of negative numbers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(&#177; 0) &#215; (&#177; infinity), (&#177; infinity) &#215; (&#177; 0)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LOG of negative numbers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nonzero numbers / (&#177; 0)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(&#177; infinity)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(&#177; 0) / (&#177; 0), (&#177; infinity) / (&#177; infinity)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(&#177; infinity) * 0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(+infinity) - (+infinity),  (+infinity) + (-infinity)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a NaN</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any positive overflow</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">+ infinity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any negative overflow</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">- infinity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any positive underflow</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">+ 0</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any negative underflow</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">- 0</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -1798,6 +1994,13 @@ When calculating the average, only the number of valid input tensor values, but 
 <td class="tableblock halign-left valign-top"><p class="tableblock">pad</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[4]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[pad_top, pad_bottom, pad_left, pad_right]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">acc_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">acc_size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enumerated type, must be one of INT32, FP16, FP32, as defined in the Supported Data Types table for this operation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
@@ -3185,12 +3388,12 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H, 0 &lt;= ox &lt; W, 0 &lt;= c &lt; 
 <div class="paragraph">
 <p>Performs a batched 2D real-valued Fast Fourier Transform over the input where the input tensor consists of real values producing complex valued output.
 The complex output values will be split into the output_real and output_imag tensor arguments.
-RFFT2D takes advantage of Hermitian symmetry to only calculate the first half of the output.
-Imaginary values with locations h=0,H/2 or w=0,W/2 are zero.</p>
+RFFT2D takes advantage of Hermitian symmetry to only calculate the first half of the final output axis.
+Imaginary values with locations (0,0), (0,W/2), (H/2,0) and (H/2,W/2) are zero.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="/assets/images/forward_fft2d.svg" alt="forward FFT definition">
+<img src="/assets/images/forward_fft2d.svg" alt="forward RFFT definition">
 </div>
 </div>
 <div class="paragraph">
@@ -3225,14 +3428,14 @@ Imaginary values with locations h=0,H/2 or w=0,W/2 are zero.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Output</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output_real</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[N,H/2 + 1,W/2 + 1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[N,H,W/2 + 1]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Real part of the complex output</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Output</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output_imag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[N,H/2 + 1,W/2 + 1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[N,H,W/2 + 1]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Imaginary part of the complex output.</p></td>
 </tr>
 </tbody>
@@ -3277,7 +3480,7 @@ Imaginary values with locations h=0,H/2 or w=0,W/2 are zero.</p>
 <pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(!power_of_two(H));
 ERROR_IF(!power_of_two(W));
 
-for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H/2 + 1, 0 &lt;= ox &lt; W/2 + 1) {
+for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; H, 0 &lt;= ox &lt; W/2 + 1) {
     in_out_t sum_real = 0.0;
     in_out_t sum_imag = 0.0;
     for_each(0 &lt;= iy &lt; H, 0 &lt;= ix &lt; W) {
@@ -4603,7 +4806,7 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <div class="sect3">
 <h4 id="_logical_left_shift">2.5.8. LOGICAL_LEFT_SHIFT</h4>
 <div class="paragraph">
-<p>Elementwise left shift of input1 and input2.
+<p>Elementwise logical left shift of input1 by the amount specified in input2.
 Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match.</p>
 </div>
 <div class="paragraph">
@@ -7120,7 +7323,7 @@ for_each(index in shape) {
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cmp_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">input1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input selector tensor</p></td>
@@ -7153,16 +7356,14 @@ for_each(index in shape) {
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">cmp_t</th>
 <th class="tableblock halign-left valign-top">in_out_t</th>
 </tr>
 </thead>
@@ -7171,42 +7372,35 @@ for_each(index in shape) {
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int8_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 </tr>
 </tbody>
@@ -7227,7 +7421,7 @@ for_each(index in shape) {
     dim_t index1 = apply_broadcast(shape, shape1, index);
     dim_t index2 = apply_broadcast(shape, shape2, index);
     dim_t index3 = apply_broadcast(shape, shape3, index);
-    cmp_t value1 = tensor_read&lt;cmp_t&gt;(input1, shape1, index1);
+    bool_t value1 = tensor_read&lt;bool_t&gt;(input1, shape1, index1);
     in_out_t value2 = tensor_read&lt;in_out_t&gt;(input2, shape2, index2);
     in_out_t value3 = tensor_read&lt;in_out_t&gt;(input3, shape3, index3);
     in_out_t result;
@@ -8430,7 +8624,7 @@ The pad_const value includes the zero point if the tensor uses a zero point.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">input1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with minimum rank of one.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
@@ -8579,7 +8773,7 @@ for_each(index in shape) {
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">new_shape</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(output)]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(shape)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of values, with each element giving the size of the result tensor for the given dimension. At most one dimension may be given as -1 to automatically calculate the dimension size.</p></td>
 </tr>
 <tr>
@@ -8667,7 +8861,7 @@ for_each(index in shape) {
     dim_t tmp_index = tensor_offset_to_index(shape1, offset);
 
     // Now read/write the value
-    in_out_t val = tensor_read&lt;in_out_t&gt;(input, shape1, tmp_index);
+    in_out_t val = tensor_read&lt;in_out_t&gt;(input1, shape1, tmp_index);
     tensor_write&lt;in_out_t&gt;(output, shape, index, val);
 }</code></pre>
 </div>
@@ -8704,7 +8898,7 @@ for_each(index in shape) {
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">input</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with rank from 1 to 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with minimum rank of one.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
@@ -8830,20 +9024,20 @@ No data conversion happens during a slice operation.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">input1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with rank from 1 to 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with minimum rank of one.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">start</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(input1)]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(shape1)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of integer coordinates, of length equal to the rank of input1. Start coordinate for slicing.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(input1)]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(shape1)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of integer size values, of length equal to the rank of input1. Size of the input to be
 used.</p></td>
 </tr>
@@ -8915,11 +9109,18 @@ used.</p></td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(rank(input1) != length(start) || rank(input1) != length(size));
-ERROR_IF(rank(input1) != rank(output))
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(rank(shape1) != length(start) || rank(shape1) != length(size));
+ERROR_IF(rank(shape1) != rank(shape));
 // Sanity check the given coordinates, ensure start and end are
 // within tensor bounds
-for_each(index in rank(input1)) {
+for_each(index in rank(shape1)) {
     ERROR_IF(start[index] &lt; 0);
     ERROR_IF(size[index] &lt;= 0); //Output must be positive size
     ERROR_IF(start[index] + size[index] &gt; shape1[index]);
@@ -8931,7 +9132,7 @@ for_each(index in shape) {
     for(i = 0; i &lt; rank(shape); i++) {
        tmp_index[i] = index[i] + start[i];
     }
-    in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, tmp_index);
+    in_out_t value = tensor_read&lt;in_out_t&gt;(input1, shape1, tmp_index);
     tensor_write&lt;in_out_t&gt;(output, shape, index, value);
 }</code></pre>
 </div>
@@ -8968,7 +9169,7 @@ for_each(index in shape) {
 <td class="tableblock halign-left valign-top"><p class="tableblock">in_out_t*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">input1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with rank from 1 to 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input tensor with minimum rank of one.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
@@ -9045,13 +9246,22 @@ for_each(index in shape) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in shape) {
+<pre class="highlight"><code class="language-c++" data-lang="c++">if (level != tosa_level_none) {
+    LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(rank(shape1) != rank(shape));
+
+for_each(index in shape) {
     dim_t tmp_index = index;
     for(i = 0; i &lt; rank(shape); i++) {
         ERROR_IF(shape1[i] * multiples[i] != shape[i]);
         tmp_index[i] = index[i] % shape1[i];
     }
-    in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, tmp_index);
+    in_out_t value = tensor_read&lt;in_out_t&gt;(input1, shape1, tmp_index);
     tensor_write&lt;in_out_t&gt;(output, shape, index, value);
 }</code></pre>
 </div>
@@ -9095,7 +9305,7 @@ Each value in the perms list must be a valid dimension of the input tensor and m
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">perms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(input1)]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[rank(shape1)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of integers of length equal to the rank of input1. Values must be valid dimensions within shape1, and may not be repeated.</p></td>
 </tr>
 <tr>
@@ -9173,7 +9383,10 @@ Each value in the perms list must be a valid dimension of the input tensor and m
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c++" data-lang="c++">for_each(index in perms) {
+<pre class="highlight"><code class="language-c++" data-lang="c++">ERROR_IF(rank(shape1) != rank(shape));
+ERROR_IF(tensor_size(shape1) != tensor_size(shape));
+
+for_each(index in perms) {
     // Ensure each perms value is a valid value
     ERROR_IF(index &gt;= rank(shape1));
     ERROR_IF(index &lt; 0);
@@ -9193,7 +9406,7 @@ for_each(index in shape) {
     for(i = 0; i &lt; rank(shape); i++) {
         tmp_index[perms[i]] = index[i]
     }
-    in_out_t value = tensor_read&lt;in_out_t&gt;(input, shape1, tmp_index);
+    in_out_t value = tensor_read&lt;in_out_t&gt;(input1, shape1, tmp_index);
     tensor_write&lt;in_out_t&gt;(output, shape, index, value);
 }</code></pre>
 </div>
@@ -9257,16 +9470,14 @@ N is the number of batches, W the number of indices in each batch, K the range o
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">index_t</th>
 <th class="tableblock halign-left valign-top">value_t</th>
 </tr>
 </thead>
@@ -9274,37 +9485,31 @@ N is the number of batches, W the number of indices in each batch, K the range o
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int8_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 32</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 </tr>
 </tbody>
@@ -9387,16 +9592,14 @@ In use cases that require multiple updates to the same output position, these mu
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">index_t</th>
 <th class="tableblock halign-left valign-top">value_t</th>
 </tr>
 </thead>
@@ -9404,37 +9607,31 @@ In use cases that require multiple updates to the same output position, these mu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int8_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 32</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 </tr>
 </tbody>
@@ -10437,6 +10634,11 @@ for_each(0 &lt;= n &lt; N, 0 &lt;= oy &lt; OH, 0 &lt;= ox &lt; OW; 0 &lt;= c &lt
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32_t</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signed 48</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int48_t</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MI, MT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
@@ -11036,10 +11238,11 @@ See <a href="#Number formats">[Number formats]</a> for details on the floating-p
 <div class="content">
 <pre class="highlight"><code class="language-c++" data-lang="c++">int round_to_nearest_int(float_t f)
   Converts the floating-point value to f, with rounding to the nearest integer value.
+  For the required precision see the section: Main inference precision requirements.
 
 float_t round_to_nearest_float(in_t f)
   Converts the input value into floating-point, rounding to the nearest representable value.
-  The behavior for ties is implementation dependent.
+  For the required precision see the section: Main inference precision requirements.
 
 out_t sign_extend(in_t input)
   Only valid for two's complement integer values where out_t has more bits than in_t.
@@ -11116,11 +11319,110 @@ bool power_of_two(int32_t value)
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_appendix_a">4. Appendix A</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This appendix is at an early stage of development at this point in time
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_random_data_generation">4.1. Random data generation</h3>
+<div class="paragraph">
+<p>The following function generates a pseudo-random floating-point value in the range -1.0 to +1.0 for use as test data.
+It uses a modulo (1&lt;&lt;32) recurrent sequence with multiplier derived from "TOSASETS" and the set number.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c++" data-lang="c++">float set_data(uint32_t set, uint32_t index)
+{
+    uint32_t m = (8*set + 1) * 0x705A5E75;   // mod (1&lt;&lt;32) calculation
+    uint32_t r = m + 1;                      // mod (1&lt;&lt;32) calculation
+    for (uint32_t i = 0; i &lt; index; i++) {
+        r = r * m + 1;                       // mod (1&lt;&lt;32) calculation
+    }
+    float  sign = (r&gt;&gt;31)==0 ? +1 : -1;
+    return sign * (float)(r &amp; 0x7FFFFFFF) / (float)(0x7FFFFFFF);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dot_product_floating_point_test_data_sets">4.2. Dot product floating-point test data sets</h3>
+<div class="paragraph">
+<p>Each test set is indexed by a pair (S, N) where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S is the test set number</p>
+</li>
+<li>
+<p>N is the number of elements in a single test vector</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each test set (S, N) contains multiple tests that statistics are calculated over.
+The parameter T is the number of tests in a given set.
+In the table below, t is the test number within a set in the range 0 to T-1.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 7.6923%;">
+<col style="width: 7.6923%;">
+<col style="width: 7.6923%;">
+<col style="width: 38.4615%;">
+<col style="width: 38.4616%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Set S</th>
+<th class="tableblock halign-left valign-top">N range</th>
+<th class="tableblock halign-left valign-top">T</th>
+<th class="tableblock halign-left valign-top">x[k] formula for k &lt; N</th>
+<th class="tableblock halign-left valign-top">w[k] formula for k &lt; N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2-25,50,100,1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x[k]=set_data(S, 2*t*N+2*k) &lt; 0 ? 0.0 : set_data(S, 2*t*N+2*k+1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">w[k]=set_data(S, 2*t*N+2*k) &lt; 0 ? set_data(S, 2*t*N+2*k+1) : 0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2-25,50,100,1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x[k]=2.0*set_data(S,  2*t*N + k)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">w[k]=2.0*set_data(S, (2*t+1)*N + k)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2-25,50,100,1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x[0]=1.0, x[k]=set_data(S, 2*t*N + k)/sqrt(N) for k&gt;0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">w[0]=1.0, w[k]=set_data(S, (2*t+1)*N + k)/sqrt(N) for k&gt;0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.50.0<br>
-Last updated 2022-08-05 14:44:55 -0700
+Last updated 2023-03-07 17:47:48 -0800
 </div>
 </div>
 </body>
