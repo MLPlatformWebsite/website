@@ -3,9 +3,10 @@ const {
   style,
   title_content: { text, size },
 } = Astro.props;
-import * as marked from "marked";
-const markdown = marked.parse(text);
+
 const Element = size;
 ---
 
-<div class:list={[style, "py-4"]}><Element set:html={markdown} /></div>
+<div class:list={[style, " prose-lg md:prose-xl py-4 px-4 text-inherit mt-8"]}>
+  <Element set:html={text} class="m-0 prose-p:m-0" />
+</div>

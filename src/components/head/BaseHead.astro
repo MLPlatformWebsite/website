@@ -4,11 +4,11 @@ import GoogleAnalytics from "./GoogleAnalytics.astro";
 import { SEO } from "astro-seo";
 import "@fontsource/lato";
 import "../../styles/global.scss";
-const { GA_ID } = import.meta.env;
+const GA_ID = import.meta.env.GA_ID;
 
 const {
-  title = "The OpenAMP Project",
-  description = "OpenAMP (Open Asymmetric Multi-Processing) seeks to standardize the interactions between operating environments in a heterogeneous embedded system through open source solutions for Asymmetric MultiProcessing (AMP).",
+  title = "Arm NN and Compute Library - ML PLatform ",
+  description = "The machine learning platform is part of the Linaro Artificial Intelligence Initiative and is the home for Arm NN and Compute Library - open-source software libraries that optimise the execution of machine learning (ML) workloads on Arm-based processors.",
   type = "website",
 } = Astro.props;
 ---

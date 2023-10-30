@@ -1,0 +1,29 @@
+---
+const { item_width, container_style, blocks } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-wrap justify-center gap-5 items-center",
+    container_style,
+  ]}
+>
+  {
+    blocks.map(({ title, description, buttons }: any) => (
+      <div class="border border-neutral-200 rounded-sm px-10 py-4">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div class="mb-4">
+          {buttons.map((button: any) => (
+            <a
+              href={button.url}
+              class="no-underline bg-blue-800 px-5 py-2 rounded-sm hover:bg-blue-950 text-white"
+            >
+              {button.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>

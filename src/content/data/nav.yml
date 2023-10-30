@@ -1,0 +1,37 @@
+- label: TOSA
+  children:
+    - label: Overview
+      url: /tosa/
+    - label: Specification
+      url: /tosa/tosa_spec.html
+    - label: Roadmap
+      url: /tosa/roadmap/
+    - label: Contributing
+      url: /tosa/contributing/
+    - label: Software
+      url: /tosa/software/
+    - label: Forums
+      url: /forums/
+- label: ArmNN/Compute Library
+  children:
+    - label: Releases
+      url: /releases/
+    - label: Guides
+      url: /guides/
+    - label: Resources
+      url: /resources/
+    - label: Contributing
+      url: /contributing/
+    - label: Development Tracker
+      url: https://developer.mlplatform.org
+      external: true
+- label: Forum
+  url: https://discuss.mlplatform.org
+  external: true
+- label: Wiki
+  url: https://developer.mlplatform.org/w/
+  external: true
+- label: About
+  url: /about/
+- label: Contact
+  url: /contact/

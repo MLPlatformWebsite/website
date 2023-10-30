@@ -1,0 +1,37 @@
+# Copyright text to be displayed at the very bottom of the footer
+copyright-text: ML PLatform
+# Set this to false if you do not want the Linaro logo in the footer.
+linaro-branding: false
+# Social Media Icons Row
+social-media-icons: false
+# Display the contact details section
+display-contact-details: true
+# These links are displayed at the very bottom of the footer.
+company_links:
+  - label: Legal
+    url: https://www.linaro.org/legal/
+  - label: Contact
+    url: /contact/
+second-column:
+  title: Users
+  latest-posts: false
+  # Optionally display another list of items
+  items:
+    - label: Releases
+      url: https://mlplatform.org/releases/
+    - label: Guides
+      url: https://mlplatform.org/guides/
+    - label: Mailing Lists & IRC
+      url: https://mlplatform.org/mailing-lists-and-irc/
+# Custom Col on the right
+third-column:
+  title: Other Resources
+  items:
+    - label: Developer Resources
+      url: /resources/
+    - label: Development Tracker
+      url: https://developer.mlplatform.org/
+    - label: Discussion Forum
+      url: https://discuss.mlplatform.org/
+    - label: Wiki
+      url: https://developer.mlplatform.org/w/

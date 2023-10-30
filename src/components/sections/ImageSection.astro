@@ -1,0 +1,6 @@
+---
+import { Image } from "astro:assets";
+const { style, alt, size, path } = Astro.props;
+---
+
+<Image src={path} alt={alt} width={size} class:list={[style, "mx-auto"]} />

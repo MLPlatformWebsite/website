@@ -16,7 +16,7 @@ const {
 } = Astro.props!;
 const page = await getEntryBySlug("pages", slug)
 
-const { title, description, flow, hero, image } = page.data
+const { title, description, flow, hero } = page.data
 
 const allComponents = await import.meta.glob("../components/**/*.astro")
 const rowComponents = {} as Record<string, {default: AstroComponentFactory} >;

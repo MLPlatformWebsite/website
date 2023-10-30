@@ -6,18 +6,19 @@ const pages = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      image: image(),
+      // image: image(),
       hero: z
         .object({
           title: z.string(),
-          background_image: image(),
-          style: z.string(),
-          inner_image: z
-            .object({
-              src: image(),
-              alt: z.string(),
-            })
-            .optional(),
+          description: z.string().optional(),
+          // background_image: image(),
+          // style: z.string(),
+          // inner_image: z
+          //   .object({
+          //     src: image(),
+          //     alt: z.string(),
+          //   })
+          // .optional(),
         })
         .optional(),
       flow: z
@@ -28,6 +29,7 @@ const pages = defineCollection({
               z
                 .object({
                   component: reference("sections"),
+                  path: image().optional(),
                 })
                 .catchall(z.any())
             ),
