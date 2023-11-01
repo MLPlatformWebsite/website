@@ -2,7 +2,7 @@
 title: Contributing to TOSA software
 description: Information on contributing to TOSA software.
 layout: ../../layouts/Flow.astro
-slug: tosa/contributing_sw.html
+slug: tosa/contributing_sw/
 keywords:
   - TOSA
   - Machine Learning

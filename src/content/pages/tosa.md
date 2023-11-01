@@ -29,7 +29,7 @@ flow:
             description: Click below to learn about the TOSA roadmap
             buttons:
               - title: Roadmap
-                url: /tosa/roadmap.html
+                url: /tosa/roadmap
   - row: container_row
     sections:
       - component: text
@@ -55,7 +55,7 @@ flow:
         buttons_content:
           - title: TOSA Specification
             url: /tosa/tosa_spec.html
-            style: bg-blue-800 text-white hover:bg-blue-950
+            style: btn-primary
       - component: text
         text_content:
           text: |-

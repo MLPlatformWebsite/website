@@ -26,7 +26,7 @@ flow:
         buttons_content:
           - title: TOSA Specification CLA
             url: /tosa/tosa_cla.html
-            style: bg-blue-800 text-white rounded-sm hover:bg-blue-950
+            style: btn-primary
       - component: text
         text_content:
           text: |-

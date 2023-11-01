@@ -91,8 +91,8 @@ flow:
         buttons_content:
           - title: Arm NN
             url: https://developer.arm.com/technologies/compute-library
-            style: bg-blue-800 text-white
+            style: btn-primary
           - title: Compute Library
             url: https://developer.arm.com/technologies/compute-library
-            style: bg-blue-800 text-white
+            style: btn-primary
 ---

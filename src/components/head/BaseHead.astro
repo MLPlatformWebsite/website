@@ -11,10 +11,13 @@ const {
   description = "The machine learning platform is part of the Linaro Artificial Intelligence Initiative and is the home for Arm NN and Compute Library - open-source software libraries that optimise the execution of machine learning (ML) workloads on Arm-based processors.",
   type = "website",
 } = Astro.props;
+
+const social_image = "https://www.mlplatform.org/images/social-media-image.png";
 ---
 
 <head>
   <title>{title}</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta property="description" content={description} />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
@@ -27,15 +30,19 @@ const {
       basic: {
         title: title,
         type: type,
-        image: "https://www.openampproject.org/images/social-media-image.png",
+        image: social_image,
       },
     }}
+    ,
     twitter={{
+      title: title,
+      description: description.slice(0, 196) + "...",
+      card: "summary_large_image",
+      image: social_image,
       creator: "@LinaroOrg",
     }}
     extend={{
       link: [
-        { rel: "icon", href: "/favicon.png" },
         {
           rel: "me",
           href: "https://mastodon.org.uk/@LinaroLtd@mastodon.social",
@@ -43,12 +50,17 @@ const {
       ],
       meta: [
         {
-          name: "twitter:image",
-          content:
-            "https://www.openampproject.org/images/openAMP_share_image.png",
+          property: "twitter:image",
+          content: social_image,
         },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
+        {
+          property: "og:image",
+          content: social_image,
+        },
+        {
+          property: "og:description",
+          content: description,
+        },
       ],
     }}
   />

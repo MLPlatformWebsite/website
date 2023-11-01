@@ -1,0 +1,12 @@
+---
+import { getEntry } from "astro:content";
+// import "../styles/global.scss";
+
+const page = await getEntry("pages", "404");
+
+console.log(page);
+
+const { Content } = await page!.render();
+---
+
+<Content />

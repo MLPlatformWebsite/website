@@ -4,7 +4,7 @@ description: The machine learning platform is part of the Linaro Artificial
   Intelligence Initiative and is the home for open-source software libraries
   (Arm NN and Compute Library) that optimise the execution of machine
   learning workloads on Arm-based processors.
-slug: /about/
+slug: about/
 keywords:
   - Arm NN
   - Compute Library

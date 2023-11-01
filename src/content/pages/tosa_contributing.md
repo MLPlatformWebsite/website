@@ -28,7 +28,7 @@ flow:
               How to contribute to the TOSA specification
             buttons:
               - title: Specification
-                url: /tosa/contributing_spec.html
+                url: /tosa/contributing_spec
           - title: Software
             style: text-left
             url: /tosa/contributing_sw/
@@ -36,5 +36,5 @@ flow:
               How to contribute to TOSA software
             buttons:
               - title: Software
-                url: /tosa/contributing_sw.html
+                url: /tosa/contributing_sw
 ---

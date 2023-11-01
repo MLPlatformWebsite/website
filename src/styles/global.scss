@@ -11,10 +11,13 @@
 
 
 @layer utilities {
+	.btn-primary {
+		@apply bg-blue-800 text-white hover:bg-blue-950 rounded-sm
+	}
 	.nav-hover {
 
 		:before {
-			@apply w-0 lg:bg-white content-[""] bottom-0 h-1 block absolute left-[50%] duration-150 
+			@apply w-0 lg:bg-white content-[""] bottom-0 h-[2px] block absolute left-[50%] duration-150 
 		}
 		:before:hover {
 				@apply w-full left-0

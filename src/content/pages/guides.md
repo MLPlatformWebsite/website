@@ -18,9 +18,9 @@ flow:
         style: text-center
         buttons_content:
           - title: Arm NN
-            style: bg-blue-800 hover:bg-blue-950 text-white rounded-sm
+            style: btn-primary
             url: https://developer.arm.com/products/processors/machine-learning/arm-nn
           - title: Compute Library
-            style: bg-blue-800 hover:bg-blue-950 text-white rounded-sm
+            style: btn-primary
             url: https://developer.arm.com/technologies/compute-library
 ---

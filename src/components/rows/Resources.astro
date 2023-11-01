@@ -1,0 +1,53 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+const resources = await getEntry("data", "resources");
+import dayjs from "dayjs";
+console.log(resources);
+---
+
+<section class="mx-auto">
+  <p class="text-center text-xl">{resources.data.length} resources found</p>
+  <ul class="list-none flex flex-wrap items-center p-2">
+    {
+      resources.data.map((resource: any) => (
+        <li
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${resource.placeholder.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          class:list={[
+            "py-5 px-4 basis-full sm:basis-1/2 md:basis-1/3 max-w-full flex flex-col p-4 text-white justify-center items-center rounded-sm",
+            "hover:shadow-2xl hover:scale-[1.02]",
+          ]}
+        >
+          <a
+            href={resource.youtube_video_url}
+            class="text-white no-underline text-center hover:underline"
+          >
+            <h3 class="text-white text-center">{resource.title}</h3>
+            <p class="m-0 mb-2 text-sm">
+              {dayjs(resource.date).format("YYYY-mm-DD")}
+            </p>
+            <p class="m-0 text-sm font-bold text-center">{resource.event}</p>
+          </a>
+          <div class="flex flex-wrap justify-center gap-2 w-full mt-4">
+            <a
+              href={resource.presentation_url}
+              class="no-underline text-white bg-blue-900 hover:bg-blue-950 p-2 rounded-md"
+            >
+              Presentation
+            </a>
+            <a
+              href={resource.youtube_video_url}
+              class="no-underline text-white bg-blue-900 hover:bg-blue-950 p-2 rounded-md"
+            >
+              Video
+            </a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

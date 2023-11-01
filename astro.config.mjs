@@ -6,7 +6,13 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }), sitemap()]
+  site: "https://www.mlplatform.org/",
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    sitemap({
+      customPages: ["https://www.mlplatform.org/tosa/tosa_spec.html"],
+    }),
+  ],
 });

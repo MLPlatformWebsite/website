@@ -1,3 +1,4 @@
+import { string } from "astro/zod";
 import { z, defineCollection, reference } from "astro:content";
 
 const pages = defineCollection({
@@ -55,7 +56,21 @@ const sections = defineCollection({
 
 const data = defineCollection({
   type: "data",
-  schema: z.any(),
+  schema: ({ image }) =>
+    z
+      .array(
+        z.object({
+          title: z.string(),
+          event: z.string(),
+          youtube_video_url: z.string(),
+          presentation_url: z.string(),
+          speaker: z.string(),
+          date: z.string(),
+          speaker_company: z.string(),
+          placeholder: image(),
+        })
+      )
+      .or(z.any()),
 });
 
 // Expose your defined collection to Astro
