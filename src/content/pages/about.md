@@ -29,9 +29,9 @@ flow:
 
             |-------|-----------|
 
-            |Arm NN|Arm NN is an inference engine for CPUs, GPUs and NPUs. It bridges the gap between existing NN frameworks and the underlying IP. It enables efficient translation of existing neural network frameworks, such as TensorFlow and Caffe, allowing them to run efficiently – without modification – across Arm Cortex CPUs and Arm Mali GPUs. For more details see: [https://developer.arm.com/products/processors/machine-learning/arm-nn](https://developer.arm.com/products/processors/machine-learning/arm-nn)|
+            |Arm NN|Arm NN is an inference engine for CPUs, GPUs and NPUs. It bridges the gap between existing NN frameworks and the underlying IP. It enables efficient translation of existing neural network frameworks, such as TensorFlow and Caffe, allowing them to run efficiently – without modification – across Arm Cortex CPUs and Arm Mali GPUs. For more details see: [https://developer.arm.com/Tools%20and%20Software/ArmNN](https://developer.arm.com/Tools%20and%20Software/ArmNN)|
 
-            |Compute Library|The Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: [https://developer.arm.com/technologies/compute-library](https://developer.arm.com/technologies/compute-library)|
+            |Compute Library|The Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: [https://developer.arm.com/Tools%20and%20Software/Compute%20Library](https://developer.arm.com/Tools%20and%20Software/Compute%20Library)|
 
 
             ## Our Focus
