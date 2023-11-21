@@ -1,6 +1,6 @@
 ---
-title: Arm NN and Compute Library
-description: Arm NN and Compute Library.
+title: Arm NN, Compute Library and Arm MLIA
+description: Arm NN, Compute Library and Arm MLIA.
 permalink: /
 keywords:
   - Arm NN
@@ -13,7 +13,7 @@ layout: flow
 jumbotron:
   style: text-center
   title: Machine Learning Platform
-  description: Arm NN and Compute Library
+  description: Arm NN, Compute Library and Arm MLIA.
   image: /assets/images/content/ml-banner.jpg
   include: jumbotron-home.html
 flow:
@@ -32,7 +32,8 @@ flow:
             Initiative](https://www.linaro.org/news/linaro-announces-launch-of-machine-intelligence-initiative/)
             and is the home for Arm NN and Compute Library – open-source
             software libraries that optimise the execution of machine learning
-            (ML) workloads on Arm-based processors.
+            (ML) workloads on Arm-based processors. It also hosts the Arm ML Inference Advisor (Arm MLIA), a tool
+            to make optimisation efforts across Arm available to developers with varying backgrounds.
 
 
             It enables a new era of advanced, ultra-efficient inference at the edge. Specifically designed for machine learning and
@@ -69,6 +70,8 @@ flow:
 
 
             They enable efficient translation of these NN frameworks, allowing them to run efficiently – without modification – across Arm Cortex-A CPUs, Arm Mali GPUs and the Arm ML processor.
+
+            Additionally, the Arm MLIA provides insights on how ML models will perform on Arm early in the model development cycle.
       - format: image
         style: null
         alt: ML Platform flow chart image
@@ -97,5 +100,8 @@ flow:
             style: btn-primary
           - title: Compute Library
             url: https://developer.arm.com/technologies/compute-library
+            style: btn-primary
+          - title: Arm ML Inference Advisor
+            url: https://pypi.org/project/mlia/
             style: btn-primary
 ---

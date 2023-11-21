@@ -35,6 +35,16 @@ pages:
       - text: Development Tracker
         url: https://developer.mlplatform.org
         external: true
+  - title: Arm MLIA
+    options:
+      - text: Overview
+        url: /mlia/
+      - text: Installation
+        url: /mlia/installation/
+      - text: Contributing
+        url: /mlia/contributing/
+      - text: Support
+        url: /mlia/support/
   - title: Forum
     url: https://discuss.mlplatform.org
     external: true
