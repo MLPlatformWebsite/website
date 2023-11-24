@@ -2,12 +2,13 @@
 title: About Machine Learning Platform
 description: The machine learning platform is part of the Linaro Artificial
   Intelligence Initiative and is the home for open-source software libraries
-  (Arm NN and Compute Library) that optimise the execution of machine
+  (Arm NN, Compute Library and Arm MLIA) that optimise the execution of machine
   learning workloads on Arm-based processors.
 permalink: /about/
 keywords:
   - Arm NN
   - Compute Library
+  - Arm MLIA
 layout: flow
 jumbotron:
   title: About
@@ -37,6 +38,7 @@ flow:
 
             |Compute Library|The Compute Library contains a comprehensive collection of software functions implemented for the Arm Cortex-A family of CPU processors and the Arm Mali family of GPUs. It is a convenient repository of low-level optimized functions that developers can source individually or use as part of complex pipelines in order to accelerate their algorithms and applications. For more details see: [https://developer.arm.com/technologies/compute-library](https://developer.arm.com/technologies/compute-library)|
 
+            |Arm ML Inference Advisor|The Arm ML Inference Advisor (Arm MLIA) helps AI developers design and optimize neural network models for efficient inference on Arm targets. Arm MLIA enables insights into how the ML model will perform on Arm early in the model development cycle. With the tool, we aim to make the Arm ML IP accessible to developers at all levels of abstraction, with differing knowledge on hardware optimization and machine learning. For more details see: [https://pypi.org/project/mlia/](https://pypi.org/project/mlia/)|
 
             ## Our Focus
 
