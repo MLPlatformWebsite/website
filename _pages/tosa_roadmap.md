@@ -29,10 +29,10 @@ flow:
             | 0.40    | 2022-08-31 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-40-0/146) | Move to machine readable xml specification for parameters <br> The arguments and data type sections are auto-generated |
             | 0.50    | 2022 Dec | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-50-0/161) | Addition of level specification (parameter ranges) |
             | 0.60    | 2023 Mar | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-60-0/178) | Main inference draft conformance specification |
-            | 0.70    | 2023 Jun | Released | Improved use of XML specification version, refine floating-point precision requirements |
-            | 0.80    | 2023 Sep | Planning | ERF/ARGSORT operators, Stateful operators |
-            | 1.00    | 2023 Nov | Planning | Goals for v1.00: <br> - Base and Main inference profiles forward compatible for this release <br> - Base and Main inference reference model and conformance tests complete <br> - (Main training profile is expected still to be work in progress) |
-            | 1.1 | 2024 July | Concept | TBD |
+            | 0.70    | 2023 Jun | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-70-0/201) | Improved use of XML specification version, refine floating-point precision requirements |
+            | 0.80    | 2023 Sep | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-80-0/229) | ERF/ARGSORT operators, Stateful operators |
+            | 1.00-rc0  | 2024 Feb | Planning | Goals for v1.00: <br> - Base and Main inference profiles forward compatible for this release <br> - Base and Main inference reference model and conformance tests complete <br> - (Main training profile is expected still to be work in progress) |
+            | 1.1 | late 2024 | Concept | TBD |
 
       - format: text
         text_content:
