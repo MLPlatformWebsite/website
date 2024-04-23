@@ -31,13 +31,13 @@ flow:
             | 0.60    | 2023 Mar | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-60-0/178) | Main inference draft conformance specification |
             | 0.70    | 2023 Jun | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-70-0/201) | Improved use of XML specification version, refine floating-point precision requirements |
             | 0.80    | 2023 Sep | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-80-0/229) | ERF/ARGSORT operators, Stateful operators |
-            | 1.00-rc0  | 2024 Feb | Planning | Goals for v1.00: <br> - Base and Main inference profiles forward compatible for this release <br> - Base and Main inference reference model and conformance tests complete <br> - (Main training profile is expected still to be work in progress) |
-            | 1.1 | late 2024 | Concept | TBD |
+            | 0.90    | 2024 Jan | Released | Shape operators |
+            | 1.0.0-rc0  | 2024 Apr | Released | Profiles and extensions, establish compatibility point <br> Define compatibility rules <br> - Major version changes may break backwards compatibility <br> - Minor version changes may add functionality in a backwards compatible way <br> - Patch versions are for bug fixes, clarifications, or trivial changes |
+            | 1.0.0 | 2024 Aug | Planning | Finalize all issues in TOSA release candidates |
+            | 1.x     | 2025 | Concept | Address features and operators not present in 1.0 |
 
       - format: text
         text_content:
           text: |
-            Approximate quarterly release frequency from v0.30
-
             Future release dates subject to change
 ---
