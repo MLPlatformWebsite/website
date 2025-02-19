@@ -27,17 +27,16 @@ flow:
             | 0.23    | 2021-11-03 | [Released](https://discuss.mlplatform.org/t/tosa-specification-v0-23-0-released/98) | Base inference reference model released |
             | 0.30    | 2022-06-19 | [Released](https://discuss.mlplatform.org/t/tosa-v0-30-0-released/134) | Base inference profile conformance tests released <br> Main inference floating point precisions added |
             | 0.40    | 2022-08-31 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-40-0/146) | Move to machine readable xml specification for parameters <br> The arguments and data type sections are auto-generated |
-            | 0.50    | 2022 Dec | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-50-0/161) | Addition of level specification (parameter ranges) |
-            | 0.60    | 2023 Mar | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-60-0/178) | Main inference draft conformance specification |
-            | 0.70    | 2023 Jun | Released | Improved use of XML specification version, refine floating-point precision requirements |
-            | 0.80    | 2023 Sep | Planning | ERF/ARGSORT operators, Stateful operators |
-            | 1.00    | 2023 Nov | Planning | Goals for v1.00: <br> - Base and Main inference profiles forward compatible for this release <br> - Base and Main inference reference model and conformance tests complete <br> - (Main training profile is expected still to be work in progress) |
-            | 1.1 | 2024 July | Concept | TBD |
+            | 0.50    | 2022-12-07 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-50-0/161) | Addition of level specification (parameter ranges) |
+            | 0.60    | 2023-03-15 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-60-0/178) | Main inference draft conformance specification |
+            | 0.70    | 2023-06-01 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-70-0/201) | Improved use of XML specification version, refine floating-point precision requirements |
+            | 0.80    | 2023-09-18 | [Released](https://discuss.mlplatform.org/t/announcing-tosa-v0-80-0/229) | ERF/ARGSORT operators, Stateful operators |
+            | 0.90    | 2024-03-26 | Released | Pseudocode cleanup <br> Conformance improvements  |
+            | 1.0     | 2025 May | In Progress | Profile name changes (Integer and Floating-Point). <br> Add extension mechanism and extensions for data types and functionaltiy. <br> Complete review and alignment of operators, pseudocode, and test suite. |
+            | 1.1     | 2026 May | Concept | TBD. Will be backward compatible with version 1.0 |
 
       - format: text
         text_content:
           text: |
-            Approximate quarterly release frequency from v0.30
-
             Future release dates subject to change
 ---
