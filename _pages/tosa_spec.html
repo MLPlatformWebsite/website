@@ -9,7 +9,7 @@ permalink: /tosa/tosa_spec.html
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.18">
-<title>TOSA 1.0.0 draft specification</title>
+<title>TOSA 1.0.0 specification</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
@@ -512,7 +512,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>TOSA 1.0.0 draft specification</h1>
+<h1>TOSA 1.0.0 specification</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -554,7 +554,8 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_general_unary_functions">1.12.5. General Unary Functions</a></li>
 </ul>
 </li>
-<li><a href="#_other_publications">1.13. Other Publications</a></li>
+<li><a href="#_reporting_errors">1.13. Reporting Errors</a></li>
+<li><a href="#_other_publications">1.14. Other Publications</a></li>
 </ul>
 </li>
 <li><a href="#_operators">2. Operators</a>
@@ -707,8 +708,8 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_resize_mode_t">3.1. resize_mode_t</a></li>
 <li><a href="#_acc_type_t">3.2. acc_type_t</a></li>
 <li><a href="#_var_t">3.3. var_t</a></li>
-<li><a href="#_nan_propagation_t">3.4. nan_propagation_t</a></li>
-<li><a href="#_rounding_t">3.5. rounding_t</a></li>
+<li><a href="#_nan_propagation_mode_t">3.4. nan_propagation_mode_t</a></li>
+<li><a href="#_rounding_mode_t">3.5. rounding_mode_t</a></li>
 </ul>
 </li>
 <li><a href="#_tosa_pseudocode">4. TOSA Pseudocode</a>
@@ -794,7 +795,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <ul class="sectlevel2">
 <li><a href="#_fp8">7.1. FP8</a></li>
 <li><a href="#_transcendental_functions">7.2. Transcendental Functions</a></li>
-<li><a href="#_removed_operators">7.3. Removed operators</a></li>
+<li><a href="#_removed_operators">7.3. Removed Operators</a></li>
 </ul>
 </li>
 </ul>
@@ -814,7 +815,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <p>“Subsidiary” means any company the majority of whose voting shares is now or hereafter owner or controlled, directly or indirectly, by you. A company shall be a Subsidiary only for the period during which such control exists.</p>
 </div>
 <div class="paragraph">
-<p>This Specification is NON-CONFIDENTIAL and any use by you and your Subsidiaries (“Licensee”) is subject to the terms of this Licence between you and Arm.</p>
+<p>This Specification is NON-CONFIDENTIAL and any use by you and your Subsidiaries (“Licensee”) is subject to the terms of this Licence between you and Arm and nothing in this License shall restrict you from further disseminating this Specification. You shall provide a copy of this License upon disseminating the Arm Specification to a third party.</p>
 </div>
 <div class="paragraph">
 <p>Subject to the terms and conditions of this Licence, Arm hereby grants to Licensee under the intellectual property in the Specification owned or controlled by Arm, a perpetual, a non-exclusive, non-transferable, non-sub-licensable, royalty-free, worldwide licence to:</p>
@@ -866,7 +867,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <p>The validity, construction and performance of this Licence shall be governed by English Law.</p>
 </div>
 <div class="paragraph">
-<p>Copyright © 2020-2024 Arm Limited (or its affiliates). All rights reserved.</p>
+<p>Copyright © 2020-2025 Arm Limited (or its affiliates). All rights reserved.</p>
 </div>
 <div class="paragraph">
 <p>Arm Limited. Company 02557590 registered in England.
@@ -1019,8 +1020,10 @@ If stored in a 32-bit value, the remaining bits are reserved for future use.</p>
 <div class="sect3">
 <h4 id="_backwards_compatibility">1.5.1. Backwards Compatibility</h4>
 <div class="paragraph">
-<p>TOSA graphs created with previous minor versions within a major version must continue to work.
-The following portions of the specification and implementation will not change within a major version:</p>
+<p>TOSA graphs created with previous minor versions within a major version must continue to work.</p>
+</div>
+<div class="paragraph">
+<p>The following portions of the specification and implementation will not change within a major version:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1040,10 +1043,7 @@ The following portions of the specification and implementation will not change w
 <p>Level definitions and checks</p>
 </li>
 <li>
-<p>Supported Data Type tables</p>
-</li>
-<li>
-<p>Conformance test definitions</p>
+<p>Removal of rows in the Supported Data Type tables</p>
 </li>
 <li>
 <p>Enumerated types and values</p>
@@ -1073,10 +1073,17 @@ The following portions of the specification and implementation will not change w
 <li>
 <p>Non-functional changes to pseudocode (for example: cleanup, variable name changes)</p>
 </li>
+<li>
+<p>Additions of new rows to the Supported Data Type tables</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Minor versions are allowed to add new operators or other functionality as long as the above guarantees hold.</p>
+</div>
+<div class="paragraph">
+<p>In this version of TOSA, the precision requirements are subject to change while additional implementations are tested.
+When multiple implementations are shown to meet the precision requirements, those requirements will be guaranteed not to change within a major version.</p>
 </div>
 <div class="paragraph">
 <p>In addition, new extensions may be added to the specification between TOSA releases.
@@ -1490,7 +1497,7 @@ Signed zero must be supported.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-infinity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+infinity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit half-precision floating-point defined by <a href="#IEEE-754">IEEE-754</a> .<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit half-precision floating-point defined by <a href="#IEEE-754">IEEE-754</a>.<br>
 Normal values must be supported.<br>
 Subnormal values must either be supported or flushed to sign-preserved zero.<br>
 Positive and negative infinity must be supported.<br>
@@ -1512,7 +1519,7 @@ Signed zero must be supported.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-infinity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+infinity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit single-precision floating-point defined by <a href="#IEEE-754">IEEE-754</a> .<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit single-precision floating-point defined by <a href="#IEEE-754">IEEE-754</a>.<br>
 Normal values must be supported.<br>
 Subnormal values must either be supported or flushed to sign-preserved zero.<br>
 Positive and negative infinity must be supported.<br>
@@ -1580,7 +1587,7 @@ For a given input graph (with attributes) and input tensors there are three poss
 <p>For tosa_unpredictable, the implementation can return whatever result it chooses (including error)</p>
 </li>
 <li>
-<p>For tosa_error, the implementation must return an error result (and there is no requirement on how much of the graph is executed, if any)</p>
+<p>For tosa_error, the implementation must return an error result (and there is no requirement on how much of the graph is executed, if any).</p>
 </li>
 <li>
 <p>For tosa_valid, the implementation must execute the entire graph without error and return the result defined by this specification.</p>
@@ -1628,17 +1635,17 @@ bool_t tosa_test_compliance(tosa_graph_t graph, tensor_list_t input_list, tosa_l
 <div class="ulist">
 <ul>
 <li>
-<p>The implementation must support all operator and data type combinations listed in <a href="#_integer">Integer</a></p>
+<p>The implementation must support all operator and data type combinations listed in <a href="#_integer">Integer</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The operations must meet the <a href="#_integer_precision_requirements">Integer Precision Requirements</a></p>
+<p>The operations must meet the <a href="#_integer_precision_requirements">Integer Precision Requirements</a>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>The implementation must follow the <a href="#_tosa_graph_compliance">TOSA Graph Compliance</a> behavior</p>
+<p>The implementation must follow the <a href="#_tosa_graph_compliance">TOSA Graph Compliance</a> behavior.</p>
 </li>
 </ul>
 </div>
@@ -1657,31 +1664,48 @@ bool_t tosa_test_compliance(tosa_graph_t graph, tensor_list_t input_list, tosa_l
 <div class="ulist">
 <ul>
 <li>
-<p>The implementation must support all operator and data type combinations listed in <a href="#_floating_point">Floating-Point</a></p>
+<p>The implementation must support all operator and data type combinations listed in <a href="#_floating_point">Floating-Point</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The operations must meet the <a href="#_floating_point_precision_requirements">Floating-Point Precision Requirements</a></p>
+<p>The operations must meet the <a href="#_floating_point_precision_requirements">Floating-Point Precision Requirements</a>.</p>
 </li>
 <li>
-<p>Note: These requirements allow fp16_t operations to be implemented using the fp32_t datatype</p>
+<p>Note: These requirements allow fp16_t operations to be implemented using the fp32_t datatype.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>The implementation must follow the <a href="#_tosa_graph_compliance">TOSA Graph Compliance</a> behavior</p>
+<p>The implementation must follow the <a href="#_tosa_graph_compliance">TOSA Graph Compliance</a> behavior.</p>
 </li>
 </ul>
 </div>
 <div class="sect4">
 <h5 id="_floating_point_precision_requirements">Floating-Point Precision Requirements</h5>
 <div class="paragraph">
+<p>When evaluating floating-point precision, <em>ulp</em> means unit of the last place.</p>
+</div>
+<div class="paragraph">
 <p>In a compliant implementation, individual integer operations must match exactly.
 To check exact matching, the tosa_reference_check_fp function can be used with num_ulp set to 0.
-In a compliant implementation, individual floating-point operations within the graph must meet the accuracy bounds defined in each operator definition.
-In the table, <em>ulp</em> means unit of the last place.
-The function tosa_reference_check_fp() defines the error range permitted by a given number of units of last place in this specification.
+In a compliant implementation, individual floating-point operations within the graph must meet the accuracy bounds defined in each operator definition.</p>
+</div>
+<div class="paragraph">
+<p>When the operator precision definitions refer to a result "calculated by fp64_t arithmetic", the following rules must be followed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The operation order must follow that specified in the operator pseudocode.</p>
+</li>
+<li>
+<p>Each fp64_t operation result must be round-to-nearest-even of the infinite precision result as defined by <a href="#IEEE-754">IEEE-754</a> round to nearest even rounding.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The function tosa_reference_check_fp() defines the error range permitted by a given number of units of last place in this specification.
 For data types that allow subnormal values to be flushed to zero, either all values must be flushed to sign-preserved zero, or none of them.</p>
 </div>
 </div>
@@ -1698,10 +1722,10 @@ M[0] to M[n-1] such that:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Each M[k] implements A[k] with same or higher precision datatypes</p>
+<p>Each M[k] implements A[k] with same or higher precision datatypes.</p>
 </li>
 <li>
-<p>Each M[k] meets the accuracy defined in this specification for A[k] where the M[k] output is converted to A[k] output precision using round to nearest</p>
+<p>Each M[k] meets the accuracy defined in this specification for A[k] where the M[k] output is converted to A[k] output precision using round to nearest.</p>
 </li>
 </ul>
 </div>
@@ -1732,23 +1756,23 @@ In this section:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>"fp64 arithmetic" refers to double-precision floating-point arithmetic defined by <a href="#IEEE-754">IEEE-754</a></p>
+<p>"fp64 arithmetic" refers to double-precision floating-point arithmetic defined by <a href="#IEEE-754">IEEE-754</a>.</p>
 </li>
 <li>
-<p><code>operation_fp64()</code> is an fp64 reference implementation of the operation</p>
+<p><code>reference_fp64()</code> is the result of the operation calculated using fp64_t arithmetic.</p>
 </li>
 <li>
-<p><code>operation_imp()</code> is the implementation under test</p>
+<p><code>implementation()</code> is the implementation under test.</p>
 </li>
 <li>
 <p><code>local_bound</code> is defined as follows:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For operations with a local_bound attribute it is the value of the optional attribute, with default value of false</p>
+<p>For operations with a local_bound attribute it is the value of the optional attribute, with default value of false.</p>
 </li>
 <li>
-<p>For operations that do not have a local_bound attribute the value is true</p>
+<p>For operations that do not have a local_bound attribute the value is true.</p>
 </li>
 </ul>
 </div>
@@ -1765,6 +1789,59 @@ In this section:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The following tables describe some of the constraints applied during the dot product conformance check.</p>
+</div>
+<div class="paragraph">
+<p>ABS_BOUND is the maximum allowed absolute error when NaN or overflow is not present.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Condition</th>
+<th class="tableblock halign-left valign-top">ABS_BOUND</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all cases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2 * ksb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow one rounding error for each accumulation. The 2 factor allows for different rounding modes.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>VARIANCE_ERROR_BOUND is the maximum allowed variance across the entire output tensor.
+The squared error for each result is summed, and the result must be less than the VARIANCE_ERROR_BOUND.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Condition</th>
+<th class="tableblock halign-left valign-top">VARIANCE_ERROR_BOUND</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all cases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4 * 0.4 * ksb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The 0.4 factor is derived from the uniform [-1,1] distribution variance of 1/3 by rounding up.<br>
+The 4 factor is the square of the 2 factor in the absolute bound  to allow for different rounding modes.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="c++">bool_t tosa_reference_check_dotproduct&lt;OP, in_t, weight_t, out_t, acc_t&gt;(
@@ -1773,20 +1850,20 @@ In this section:</p>
     T&lt;weight_t&gt; weight,  <span class="comment">// weight tensor</span>
     T&lt;out_t&gt; bias        <span class="comment">// bias tensor</span>
 ) {
-    T&lt;in_t&gt;     input_abs  = abs(input);   <span class="comment">// Element-wise absolute</span>
-    T&lt;weight_t&gt; weight_abs = abs(weight);  <span class="comment">// Element-wise absolute</span>
-    T&lt;out_t&gt;    bias_abs   = abs(bias);    <span class="comment">// Element-wise absolute</span>
+    T&lt;in_t&gt;     input_abs  = max(abs(input),  normal_min&lt;in_t&gt;()); <span class="comment">// Element-wise</span>
+    T&lt;weight_t&gt; weight_abs = max(abs(weight), normal_min&lt;in_t&gt;()); <span class="comment">// Element-wise</span>
+    T&lt;out_t&gt;    bias_abs   = max(abs(bias),   normal_min&lt;in_t&gt;()); <span class="comment">// Element-wise</span>
     <span class="keyword">if</span> (!local_bound) {
         in_t input_abs_max = max_value(input_abs);  <span class="comment">// maximum over all elements</span>
         for_each_data_position(index in shape(input_abs)) {
             input_abs[index] = input_abs_max;  <span class="comment">// set all entries to global maximum</span>
         }
     }
-    <span class="comment">// reference_fp64(OP) runs operation OP using 64-bit precision in the reference model</span>
+    <span class="comment">// reference_fp64(OP) calculates the results of operation OP using fp64_t arithmetic</span>
     <span class="comment">// implementation(OP) runs operation OP using the implementation under test</span>
     T&lt;out_t&gt;  output_imp = implementation(OP, input, weight, bias, tosa_extra_multiplies = IMPLEMENTATION_DEFINED);
     T&lt;fp64_t&gt; output_ref = reference_fp64(OP, input, weight, bias, tosa_extra_multiplies = <span class="predefined-constant">false</span>);
-    T&lt;fp64_t&gt; output_bnd = reference_fp64(OP,.input_abs, weight_abs, bias_abs, tosa_extra_multiplies = <span class="predefined-constant">true</span>);
+    T&lt;fp64_t&gt; output_bnd = reference_fp64(OP, input_abs, weight_abs, bias_abs, tosa_extra_multiplies = <span class="predefined-constant">true</span>);
 
     tensor_size_t T = tensor_size(output_shape);  <span class="comment">// number dot product results</span>
     tensor_size_t ksb = ceil(KS / pow(<span class="integer">2</span>, (normal_frac&lt;acc_t&gt;() - normal_frac&lt;out_t&gt;())/<span class="integer">2</span>)) + ((max_value(bias_abs) &gt; <span class="integer">0</span>) ? <span class="integer">1</span> : <span class="integer">0</span>);
@@ -1807,7 +1884,7 @@ In this section:</p>
         } <span class="keyword">else</span> <span class="keyword">if</span> (isNaN(out_bnd_el)) {
             <span class="comment">// No further accuracy requirements for a NaN bound</span>
             out_err = <span class="float">0</span><span class="float">.0</span>;
-        } <span class="keyword">else</span> <span class="keyword">if</span>.(<span class="keyword">static_cast</span>&lt;out_t&gt;(out_bnd_el * (<span class="integer">1</span> + ksb * exp2(-<span class="integer">1</span>-normal_frac&lt;out_t&gt;()))) == infinity) {
+        } <span class="keyword">else</span> <span class="keyword">if</span>.(<span class="keyword">static_cast</span>&lt;out_t&gt;(out_bnd_el * (<span class="integer">1</span> + ABS_BOUND * exp2(-<span class="integer">1</span>-normal_frac&lt;out_t&gt;()))) == infinity) {
             <span class="comment">// dot product can overflow within error bound and there is no accuracy limit</span>
             out_err = <span class="float">0</span><span class="float">.0</span>;
         } <span class="keyword">else</span> <span class="keyword">if</span> (out_bnd_el == <span class="float">0</span><span class="float">.0</span>) {
@@ -1819,7 +1896,8 @@ In this section:</p>
         } <span class="keyword">else</span> {  <span class="comment">// 0.0 &lt; out_bnd &lt; infinity</span>
             fp64_t out_err_bnd = max(out_bnd_el * exp2(-<span class="integer">1</span>-normal_frac&lt;out_t&gt;()), normal_min&lt;out_t&gt;());
             out_err = (<span class="keyword">static_cast</span>&lt;fp64_t&gt;(out_imp_el) - out_ref_el) / out_err_bnd;
-            <span class="keyword">if</span> (abs(out_err) &gt; ksb) {
+            <span class="comment">// Check the absolute error. See the table for the definition of ABS_BOUND.</span>
+            <span class="keyword">if</span> (abs(out_err) &gt; ABS_BOUND) {
                 <span class="keyword">return</span> <span class="predefined-constant">false</span>;
             }
         }
@@ -1829,12 +1907,15 @@ In this section:</p>
     <span class="comment">// Only check this for input and weights for test data sets 3-5</span>
     <span class="keyword">if</span> ( S &gt;= <span class="integer">3</span> &amp;&amp; S &lt;= <span class="integer">5</span>) {
         <span class="comment">// check output error bias magnitude for data sets S which are not positive biased</span>
-        <span class="keyword">if</span> (abs(out_err_sum) &gt; <span class="integer">2</span>*sqrt(ksb*T)) {
+        <span class="comment">// The factor 10 allows for up to a 4 sigma difference of the error sum around the</span>
+        <span class="comment">// expected error sum assuming errors are normally distributed.</span>
+        <span class="keyword">if</span> (abs(out_err_sum) &gt; sqrt(<span class="integer">10</span> * VARIANCE_ERROR_BOUND * T)) {
             <span class="keyword">return</span> <span class="predefined-constant">false</span>;
         }
     }
     <span class="comment">// check output error variance magnitude</span>
-    <span class="keyword">if</span> (out_err_sumsq &gt; <span class="float">0</span><span class="float">.4</span>*ksb*T) {
+    <span class="comment">// See the table for the definition of VARIANCE_ERROR_BOUND</span>
+    <span class="keyword">if</span> (out_err_sumsq &gt; VARIANCE_ERROR_BOUND * T) {
         <span class="keyword">return</span> <span class="predefined-constant">false</span>;
     }
     <span class="keyword">return</span> <span class="predefined-constant">true</span>;
@@ -1871,18 +1952,21 @@ The tensor shape in each dimension must be greater than or equal to 1.
 For tensor access information, see <a href="#_tensor_access_helpers">Tensor Access Helpers</a>.</p>
 </div>
 <div class="paragraph">
-<p>The shape of a tensor is a special type shape_t.
-shape_t is a one-dimensional list with the size equal to the rank of the original tensor.
-The components of a shape_t are of type tensor_size_t.
-tensor_size_t is a signed integer as it may be used for negative offsets.
-This type must be able to hold integers in the range [-(1 &lt;&lt; MAX_LOG2_SIZE) .. (1 &lt;&lt; MAX_LOG2_SIZE) - 1] where MAX_LOG2_SIZE is defined in <a href="#_levels">Levels</a>.
-The shape_t for a zero-dimensional tensor is the empty list.</p>
+<p>The shape of a tensor is a special type <code>shape_t</code>.
+<code>shape_t</code> is a one-dimensional list with the size equal to the rank of the original tensor.
+The components of a <code>shape_t</code> are of type <code>tensor_size_t</code>.
+<code>tensor_size_t</code> is a signed integer as it may be used for negative offsets.
+This type must be able to hold integers in the range [<code>-(1 &lt;&lt; MAX_LOG2_SIZE)</code> .. <code>(1 &lt;&lt; MAX_LOG2_SIZE) - 1</code>] where <code>MAX_LOG2_SIZE</code> is defined in <a href="#_levels">Levels</a>.
+The <code>shape_t</code> for a zero-dimensional tensor is the empty list.</p>
 </div>
 <div class="paragraph">
-<p>For each tensor, the number of tensor elements multiplied by the element size in bytes (which is taken to be 1 for elements smaller than a 8-bit) must be representable as a tensor_size_t.</p>
+<p>For each tensor, the number of tensor elements multiplied by the element size in
+bytes (which is taken to be 1 for elements smaller than a 8-bit) must be
+representable as a <code>tensor_size_t</code>.</p>
 </div>
 <div class="paragraph">
-<p>In this version of the specification, shape_t values must be resolvable to constants at backend compile time.</p>
+<p>In this version of the specification, <code>shape_t</code> values must be resolvable to
+constants at backend compile time.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2050,7 +2134,31 @@ The following code constructs a 513-entry table based on a reference function.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_publications">1.13. Other Publications</h3>
+<h3 id="_reporting_errors">1.13. Reporting Errors</h3>
+<div class="paragraph">
+<p>If you find any errors in this document, please feel free to report them by sending an errata entry.
+To propose new features or text in the specification, please refer to the TOSA contribution process, including the contribution agreement: <a href="https://www.mlplatform.org/tosa/contributing_spec.html">Specification Contributions</a>
+To submit an erratum, kindly include the following information:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Section or Location: The section, chapter, or specific location where the error appears.</p>
+</li>
+<li>
+<p>Description of the Error: A brief explanation of the issue you found (e.g., typo, formatting problem, inaccuracy, unclear wording).</p>
+</li>
+<li>
+<p>Corrected Text: The corrected or suggested clarified text (if applicable).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Please send this information via email to: <a href="mailto:tosa.errata@arm.com">tosa.errata@arm.com</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_publications">1.14. Other Publications</h3>
 <div class="paragraph">
 <p>The following publications are referred to in this specification, or provide more information:</p>
 </div>
@@ -2145,19 +2253,25 @@ For any arguments in the table, the profiles under which it must be constant are
 <div class="ulist">
 <ul>
 <li>
-<p>The output of an operator in the graph may be connected to one or more inputs of other operators in the graph</p>
+<p>The output of an operator in the graph may be connected to one or more inputs of other operators in the graph.</p>
 </li>
 <li>
-<p>When an output is connected to an input the tensor list shapes must match</p>
+<p>When an output is connected to an input the tensor list shapes must match.</p>
 </li>
 <li>
-<p>The attributes of the operators are defined and considered part of the graph</p>
+<p>The attributes of the operators are defined and considered part of the graph.</p>
 </li>
 <li>
-<p>The attributes must be in the valid range permitted for the operator</p>
+<p>The attributes must be in the valid range permitted for the operator.</p>
 </li>
 <li>
-<p>The tensor dimensions must be in the valid range permitted for the operator</p>
+<p>The tensor dimensions must be in the valid range permitted for the operator.</p>
+</li>
+<li>
+<p>The inputs to a graph are a list of tensors, and may not include any elements of type shape_t.</p>
+</li>
+<li>
+<p>The outputs of a graph are a list of tensors, and may not include any elements of type shape_t.</p>
 </li>
 </ul>
 </div>
@@ -2294,7 +2408,7 @@ It indicates either propagating or ignoring NaN.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2670,11 +2784,11 @@ for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0<
     in_out_t output_val;
     acc_t acc = <span class="integer">0</span>;
     <span class="predefined-type">int</span> count = <span class="integer">0</span>;
-    index_t iy = oy * stride_y - pad_top;
-    index_t ix = ox * stride_x - pad_left;
+    tensor_size_t iy = oy * stride_y - pad_top;
+    tensor_size_t ix = ox * stride_x - pad_left;
     for_each(<span class="integer">0</span> &lt;= ky &lt; kernel_y, <span class="integer">0</span> &lt;= kx &lt; kernel_x) {
-        index_t y = iy + ky;
-        index_t x = ix + kx;
+        tensor_size_t y = iy + ky;
+        tensor_size_t x = ix + kx;
         <span class="comment">// Only values from the input tensor are used to calculate the</span>
         <span class="comment">// average, padding does not count</span>
         <span class="keyword">if</span> (<span class="integer">0</span> &lt;= y &lt; IH &amp;&amp; <span class="integer">0</span> &lt;= x &lt; IW) {
@@ -2996,11 +3110,11 @@ ERROR_IF(BC != OC &amp;&amp; BC != <span class="integer">1</span>);
 
 for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0</span> &lt;= oy &lt; OH, <span class="integer">0</span> &lt;= ox &lt; OW, <span class="integer">0</span> &lt;= oc &lt; OC) {
     acc_t acc = <span class="integer">0</span>;
-    index_t iy = oy * stride_y - pad_top;
-    index_t ix = ox * stride_x - pad_left;
+    tensor_size_t iy = oy * stride_y - pad_top;
+    tensor_size_t ix = ox * stride_x - pad_left;
     for_each(<span class="integer">0</span> &lt;= ky &lt; KH, <span class="integer">0</span> &lt;= kx &lt; KW, <span class="integer">0</span> &lt;= ic &lt; IC) {
-        index_t y = iy + ky * dilation_y;
-        index_t x = ix + kx * dilation_x;
+        tensor_size_t y = iy + ky * dilation_y;
+        tensor_size_t x = ix + kx * dilation_x;
         acc_t value = <span class="integer">0</span>;
         <span class="keyword">if</span> (<span class="integer">0</span> &lt;= y &lt; IH &amp;&amp; <span class="integer">0</span> &lt;= x &lt; IW) {
             value  = <span class="keyword">static_cast</span>&lt;acc_t&gt;(tensor_read&lt;in_t&gt;(input,
@@ -3326,13 +3440,13 @@ ERROR_IF(BC != OC &amp;&amp; BC != <span class="integer">1</span>);
 
 for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0</span> &lt;= od &lt; OD, <span class="integer">0</span> &lt;= oy &lt; OH, <span class="integer">0</span> &lt;= ox &lt; OW, <span class="integer">0</span> &lt;= oc &lt; OC) {
     acc_t acc = <span class="integer">0</span>;
-    index_t id = od * stride_d - pad_d0;
-    index_t iy = oy * stride_y - pad_top;
-    index_t ix = ox * stride_x - pad_left;
+    tensor_size_t id = od * stride_d - pad_d0;
+    tensor_size_t iy = oy * stride_y - pad_top;
+    tensor_size_t ix = ox * stride_x - pad_left;
     for_each(<span class="integer">0</span> &lt;= kd &lt; KD, <span class="integer">0</span> &lt;= ky &lt; KH, <span class="integer">0</span> &lt;= kx &lt; KW, <span class="integer">0</span> &lt;= ic &lt; IC) {
-        index_t d = id + kd * dilation_d;
-        index_t y = iy + ky * dilation_y;
-        index_t x = ix + kx * dilation_x;
+        tensor_size_t d = id + kd * dilation_d;
+        tensor_size_t y = iy + ky * dilation_y;
+        tensor_size_t x = ix + kx * dilation_x;
         acc_t value = <span class="integer">0</span>;
         <span class="keyword">if</span> (<span class="integer">0</span> &lt;= x &lt; IW &amp;&amp; <span class="integer">0</span> &lt;= y &lt; IH &amp;&amp; <span class="integer">0</span> &lt;= d &lt; ID) {
             value  = <span class="keyword">static_cast</span>&lt;acc_t&gt;(tensor_read&lt;in_t&gt;(input,
@@ -3653,11 +3767,11 @@ ERROR_IF(BC != C*M &amp;&amp; BC != <span class="integer">1</span>);
 
 for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0</span> &lt;= oy &lt; OH, <span class="integer">0</span> &lt;= ox &lt; OW, <span class="integer">0</span> &lt;= c &lt; C, <span class="integer">0</span> &lt;= m &lt; M) {
     acc_t acc = <span class="integer">0</span>;
-    index_t iy = oy * stride_y - pad_top;
-    index_t ix = ox * stride_x - pad_left;
+    tensor_size_t iy = oy * stride_y - pad_top;
+    tensor_size_t ix = ox * stride_x - pad_left;
     for_each(<span class="integer">0</span> &lt;= ky &lt; KH, <span class="integer">0</span> &lt;= kx &lt; KW) {
-        index_t y = iy + ky * dilation_y;
-        index_t x = ix + kx * dilation_x;
+        tensor_size_t y = iy + ky * dilation_y;
+        tensor_size_t x = ix + kx * dilation_x;
         acc_t value = <span class="integer">0</span>;
         <span class="keyword">if</span> (<span class="integer">0</span> &lt;= y &lt; IH &amp;&amp; <span class="integer">0</span> &lt;= x &lt; IW) {
             value  = <span class="keyword">static_cast</span>&lt;acc_t&gt;(tensor_read&lt;in_t&gt;(input,
@@ -4213,7 +4327,7 @@ Otherwise the result is the maximum non-NaN value in the window.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4315,11 +4429,11 @@ for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0<
     in_out_t acc = (is_floating_point&lt;in_out_t&gt;() &amp;&amp; nan_mode == IGNORE)
                        ? nan&lt;in_out_t&gt;()
                        : minimum_s&lt;in_out_t&gt;();
-    index_t iy = oy * stride_y - pad_top;
-    index_t ix = ox * stride_x - pad_left;
+    tensor_size_t iy = oy * stride_y - pad_top;
+    tensor_size_t ix = ox * stride_x - pad_left;
     for_each( <span class="integer">0</span> &lt;= ky &lt; kernel_y, <span class="integer">0</span> &lt;= kx &lt; kernel_x ) {
-        index_t y = iy + ky;
-        index_t x = ix + kx;
+        tensor_size_t y = iy + ky;
+        tensor_size_t x = ix + kx;
         <span class="keyword">if</span> (y &gt;= <span class="integer">0</span> &amp;&amp; y &lt; IH &amp;&amp; x &gt;= <span class="integer">0</span> &amp;&amp; x &lt; IW) {
             in_out_t value = tensor_read&lt;in_out_t&gt;(input, [N,IH,IW,C], [n,y,x,c]);
             acc = apply_max_s&lt;in_out_t&gt;(acc, value, nan_mode);
@@ -4800,11 +4914,11 @@ ERROR_IF(BC != OC &amp;&amp; BC != <span class="integer">1</span>);
 
 for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0</span> &lt;= oy &lt; OH, <span class="integer">0</span> &lt;= ox &lt; OW, <span class="integer">0</span> &lt;= oc &lt; OC) {
     acc_t acc = <span class="integer">0</span>;
-    index_t iy = oy - out_pad_top;
-    index_t ix = ox - out_pad_left;
+    tensor_size_t iy = oy - out_pad_top;
+    tensor_size_t ix = ox - out_pad_left;
     for_each(<span class="integer">0</span> &lt;= ky &lt; KH, <span class="integer">0</span> &lt;= kx &lt; KW, <span class="integer">0</span> &lt;= ic &lt; IC) {
-        index_t y = iy - ky;
-        index_t x = ix - kx;
+        tensor_size_t y = iy - ky;
+        tensor_size_t x = ix - kx;
         acc_t value = <span class="integer">0</span>;
         <span class="keyword">if</span> (<span class="integer">0</span> &lt;= y &lt; IH * stride_y &amp;&amp; <span class="integer">0</span> &lt;= x &lt; IW * stride_x &amp;&amp; (y % stride_y)==<span class="integer">0</span> &amp;&amp; (x % stride_x)==<span class="integer">0</span>) {
             value  = <span class="keyword">static_cast</span>&lt;acc_t&gt;(tensor_read&lt;in_t&gt;(input,
@@ -4931,7 +5045,7 @@ It indicates either propagating or ignoring NaN.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5054,10 +5168,10 @@ generate_lookup_table(&amp;erf_table, &amp;erf_reference);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 5)</code> must be true.</p>
@@ -5206,10 +5320,13 @@ generate_lookup_table(&amp;sigmoid_table, &amp;sigmoid_reference);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>x</code> be an input element.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
+</li>
+<li>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, 2 * (1+abs(x)), 0, 1)</code>.</p>
@@ -5395,13 +5512,29 @@ generate_lookup_table(&amp;tanh_table, &amp;tanh_reference);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>x</code> be an input element.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, 4 * (1+abs(x)), 0.5, 1)</code>.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Note (informational): The error bound is derived from the error bound for the exp operator based on implementation of TANH as <code>(exp(x) - exp(-x)) / (exp(x) + exp(-x))</code>.</p>
+</li>
+<li>
+<p>The absolute lower bound of 0.5 ulp relative to 1.0 is due to <code>exp(x) - exp(-x)</code> having an error of this magnitude when x is close to 0.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Let <code>exp_err_base = is_same&lt;in_out_t, fp32_t&gt;() ? 3 : 1</code>.</p>
+</li>
+<li>
+<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, 4 * (exp_err_base + 2 * abs(x)), 0.5, 1)</code>.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp_bnd&lt;in_out_t&gt;(out_imp, out_ref, err_bnd)</code> must be true.</p>
@@ -5574,10 +5707,10 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -6960,7 +7093,7 @@ It indicates either propagating or ignoring NaN.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -7136,7 +7269,7 @@ It indicates either propagating or ignoring NaN.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -7251,10 +7384,10 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -7309,7 +7442,7 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <td class="tableblock halign-left valign-top"><p class="tableblock">shift</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[1]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Result right shift (used with i32_t data type only)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result right shift (used only when in_t is i32_t)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Output</p></td>
@@ -7457,7 +7590,7 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <p>Let <code>x</code>, <code>y</code> be input elements from <code>input1</code> and <code>input2</code> respectively.</p>
 </li>
 <li>
-<p>Let <code>out_imp</code> be the implementation output of <code>pow(x,y)</code>.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
 <p>If x or y is an infinity, the result is undefined.</p>
@@ -7482,10 +7615,16 @@ Axis of size 1 will be broadcast, as necessary. Rank of input tensors must match
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation of <code>pow(x,y)</code>.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
-<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, 2 * (1+abs(log(abs)*y)), 0, 1)</code>.</p>
+<p>Note (informational): The error bound is derived from the error bound for the exp and log operators to allow implementation of pow as <code>exp(y * log(x))</code> for positive values of <code>x</code> and <code>y</code>.</p>
+</li>
+<li>
+<p>Let <code>exp_err_base = is_same&lt;in_out_t, fp32_t&gt;&lt;&gt; ? 3 : 1</code>.</p>
+</li>
+<li>
+<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, exp_err_base + 7.5 * abs(log(abs(x))*y), 0, 1)</code>.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp_bnd&lt;in_out_t&gt;(out_imp, out_ref, err_bnd)</code> must be true.</p>
@@ -7639,10 +7778,10 @@ Axis of size 1 will be broadcast as necessary. Rank of input tensors must match.
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -8220,10 +8359,10 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -8474,10 +8613,13 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output of <code>cos(x)</code>.</p>
+<p>Let <code>x</code> be an input element.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation of <code>cos(x)</code>.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
+</li>
+<li>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(1+abs(x), 1, 0, 2)</code>.</p>
@@ -8637,13 +8779,19 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output of <code>exp(x)</code>.</p>
+<p>Let <code>x</code> be an input element.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation of <code>exp(x)</code>.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, (1+abs(x)), 0, 1)</code>.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
+</li>
+<li>
+<p>Let <code>err_base</code> be <code>is_same&lt;in_out_t, fp32_t&gt; ? 3 : 1</code>.</p>
+</li>
+<li>
+<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, (err_base+2*abs(x)), 0, 1)</code>.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp_bnd&lt;in_out_t&gt;(out_imp, out_ref, err_bnd)</code> must be true.</p>
@@ -8800,10 +8948,10 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -8963,13 +9111,16 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
-<p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 5)</code> must be true.</p>
+<p>Let <code>err_bnd = calcAbsErrorBound&lt;in_out_t&gt;(out_ref, 5, 0.5, 1)</code>.</p>
+</li>
+<li>
+<p>Then <code>tosa_reference_check_fp_bnd&lt;in_out_t&gt;(out_imp, out_ref, err_bnd)</code> must be true.</p>
 </li>
 </ul>
 </div>
@@ -9446,10 +9597,10 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 1)</code> must be true.</p>
@@ -9606,10 +9757,10 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;in_t&gt;(out_imp, out_ref, 2)</code> must be true.</p>
@@ -9772,13 +9923,16 @@ for_each_data_position(index in shape) {
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output of <code>sin(x)</code>.</p>
+<p>Let <code>x</code> be an input element.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation of <code>sin(x)</code>.</p>
+<p>Let <code>out_imp</code> the implementation output.</p>
 </li>
 <li>
-<p>Let <code>err_bnd = max(calcAbsErrorBound&lt;in_out_t&gt;(x, 1, 0, 2), pi*normal_min&lt;in_out_t&gt;())</code>.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
+</li>
+<li>
+<p>Let <code>err_bnd = max(calcAbsErrorBound&lt;in_out_t&gt;(x, 2, 0, 2), pi*normal_min&lt;in_out_t&gt;())</code>.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp_bnd&lt;in_out_t&gt;(out_imp, out_ref, err_bnd)</code> must be true.</p>
@@ -9938,6 +10092,9 @@ for_each_data_position(index in shape) {
 </li>
 <li>
 <p>If an output is a NaN, any NaN is permitted.</p>
+</li>
+<li>
+<p>Otherwise floating-point results must be exact.</p>
 </li>
 </ul>
 </div>
@@ -10869,7 +11026,7 @@ Otherwise the result is the maximum non-NaN value.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -11056,7 +11213,7 @@ Otherwise the result is the minimum non-NaN value.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nan_propagation_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nan_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -11169,7 +11326,13 @@ for_each_data_position(left_index in left_shape) {
 <p>Otherwise the following may be used to validate the result:</p>
 </li>
 <li>
-<p>Let n be number of elements in the product, out_imp the implementation result, and out_ref the result of the fp64_t reference implementation.</p>
+<p>Let <code>n</code> be number of elements in the product.</p>
+</li>
+<li>
+<p>Let <code>out_imp</code> be the implementation result.</p>
+</li>
+<li>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Let <code>err_bnd = max(abs(out_ref), normal_min&lt;in_out_t&gt;()) * (pow(1 + pow(2, -normal_frac&lt;in_out_t&gt;() - 1), n) - 1)</code>.</p>
@@ -12881,28 +13044,28 @@ In use cases that require multiple updates to the same output position, these mu
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">in_out_t</th>
 <th class="tableblock halign-left valign-top">index_t</th>
+<th class="tableblock halign-left valign-top">in_out_t</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-FP</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-FP</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp32_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-INT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">i16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-INT</p></td>
@@ -12913,26 +13076,26 @@ In use cases that require multiple updates to the same output position, these mu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-INT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signed 8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">i8_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i8_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-BF16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bf16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bf16_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-FP8E4M3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp8e4m3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp8e4m3_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp8e4m3_t</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-FP8E5M2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fp8e5m2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fp8e5m2_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fp8e5m2_t</p></td>
 </tr>
 </tbody>
 </table>
@@ -13049,7 +13212,7 @@ input position (IH - 1,IW - 1).</p>
 </div>
 <div class="paragraph">
 <p>The limit MAX_SCALE is applied to each scale ratio after reduction of the ratio.
-Individual scale numerator and denominaor values are allowed to be larger than MAX_SCALE.</p>
+Individual scale numerator and denominator values are allowed to be larger than MAX_SCALE.</p>
 </div>
 <div class="paragraph">
 <p><strong>Precision Requirements</strong></p>
@@ -13066,7 +13229,7 @@ Individual scale numerator and denominaor values are allowed to be larger than M
 <p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Let <code>ulp_bnd = calcAbsErrorBound&lt;in_out_t&gt;(max(abs(input)), 20.0, 0, 1)</code>.</p>
@@ -13291,7 +13454,7 @@ LEVEL_CHECK(scale_x_n/scale_x_d &lt;= MAX_SCALE);</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BILINEAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bilinear interpoloation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bilinear interpolation</p></td>
 </tr>
 </tbody>
 </table>
@@ -13758,6 +13921,31 @@ for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0<
 </ul>
 </div>
 </li>
+<li>
+<p>If the input value is inside the output representable range then the following accuracy must be met:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Let <code>x</code> be an input element.</p>
+</li>
+<li>
+<p>Let <code>out_imp</code> be the implementation output.</p>
+</li>
+<li>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
+</li>
+<li>
+<p>Let <code>ulp = tosa_reference_ulp&lt;out_t&gt;(out_ref)</code> define one ulp of error.</p>
+</li>
+<li>
+<p>Then <code>abs(out_ref) - ulp &lt;= abs(x) &lt;= abs(out_ref) + 0.5*ulp</code> must be true and <code>x</code> must have the correct sign.</p>
+</li>
+<li>
+<p>This allows for both round to zero and round to nearest rounding modes.</p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -13789,10 +13977,10 @@ for_each(<span class="integer">0</span> &lt;= n &lt; N, <span class="integer">0<
 <div class="ulist">
 <ul>
 <li>
-<p>Let <code>x</code> be an input element and <code>out_imp</code> the implementation output.</p>
+<p>Let <code>out_imp</code> be the implementation output.</p>
 </li>
 <li>
-<p>Let <code>out_ref</code> be the result of the fp64_t reference implementation.</p>
+<p>Let <code>out_ref</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
 <p>Then <code>tosa_reference_check_fp&lt;out_t&gt;(out_imp, out_ref, 0.5)</code> must be true.</p>
@@ -13898,20 +14086,33 @@ A scaling range of 2<sup>+12</sup> down to 2<sup>-32</sup> is supported for both
 <p>Let <code>m</code> be the scaling multiplier.</p>
 </li>
 <li>
-<p>Let <code>out_ref = (x - input_zp) * m * exp2(-shift)</code> calculated using fp64_t arithmetic.</p>
+<p>Let <code>out_ref = (x - input_zp) * m * exp2(-shift)</code> be the result calculated using fp64_t arithmetic.</p>
 </li>
 <li>
-<p>Note (informational): The error bound is 0.5 for the final output rounding error plus three relative errors from casting the activation input, multiplier input, and floating-point multiply.<br>
-A SINGLE_ROUND exact implementation will automatically meet this error bound since the rounding error of SINGLE_BOUND is at most 0.5.</p>
+<p>Note (informational): The error bound accounts for 3 rounding errors from casting the activation input, multiplier input, and floating-point multiply, plus 1 rounding error from adding <code>output_zp</code>
+and 0.5 absolute error from the final output rounding.<br>
+A SINGLE_ROUND exact implementation will automatically meet this error bound since its rounding error is at most 0.5.</p>
 </li>
 <li>
-<p>Let <code>err_bnd = 0.5 + 3 * abs(out_ref) * exp2(-normal_frac&lt;fp32&gt;() - 1)</code>.</p>
+<p>Let <code>err_bnd = 0.5 + (3 * abs(out_ref) + abs(out_ref + output_zp)) * exp2(-normal_frac&lt;fp32&gt;() - 1)</code>.</p>
 </li>
 <li>
-<p>Let <code>out_imp</code> be the implementation output cast to fp64_t.</p>
+<p>Let <code>out_ref_min = apply_clip_s&lt;fp64_t&gt;(apply_ceil&lt;fp64_t&gt;(out_ref - err_bnd + output_zp), minimum_s&lt;out_t&gt;, maximum_s&lt;out_t&gt;)</code>.</p>
 </li>
 <li>
-<p>Then <code>abs((out_imp - output_zp) - out_ref) &lt;= err_bnd</code> must be true.</p>
+<p>Let <code>out_ref_max = apply_clip_s&lt;fp64_t&gt;(apply_floor&lt;fp64_t&gt;(out_ref + err_bnd + output_zp), minimum_s&lt;out_t&gt;, maximum_s&lt;out_t&gt;)</code>.</p>
+</li>
+<li>
+<p>Let <code>out_ref_min_int = static_cast&lt;out_t&gt;(out_ref_min)</code>.</p>
+</li>
+<li>
+<p>Let <code>out_ref_max_int = static_cast&lt;out_t&gt;(out_ref_max)</code>.</p>
+</li>
+<li>
+<p>Let <code>out_imp</code> be the implementation output.</p>
+</li>
+<li>
+<p>Then <code>out_ref_min_int &lt;= out_imp &lt;= out_ref_max_int</code> must be true.</p>
 </li>
 </ul>
 </div>
@@ -13988,7 +14189,7 @@ A SINGLE_ROUND exact implementation will automatically meet this error bound sin
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rounding_mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -14186,6 +14387,9 @@ A SINGLE_ROUND exact implementation will automatically meet this error bound sin
     ERROR_IF(is_same&lt;out_t,i32_t&gt;() &amp;&amp; input_unsigned);
     ERROR_IF(is_same&lt;in_t,i32_t&gt;() &amp;&amp; output_unsigned);
     ERROR_IF(is_same&lt;in_t,i48_t&gt;() &amp;&amp; output_unsigned);
+    ERROR_IF(is_same&lt;in_t, i48_t&gt; &amp;&amp; input_unsigned); <span class="comment">// No support for u48 inputs</span>
+    ERROR_IF(is_same&lt;in_t, i32_t&gt; &amp;&amp; input_unsigned); <span class="comment">// No support for u32 inputs</span>
+    ERROR_IF(is_same&lt;out_t, i32_t&gt; &amp;&amp; output_unsigned); <span class="comment">// No support for u32 outputs</span>
     ERROR_IF(per_channel &amp;&amp; rank(input) &lt; <span class="integer">1</span>);
 
     in_t in_value = tensor_read&lt;in_t&gt;(input, shape, index);
@@ -14603,7 +14807,7 @@ No conformance testing is done for CUSTOM operators as they are implementation d
 <td class="tableblock halign-left valign-top"><p class="tableblock">domain_name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String idenifier which can help avoid name collisions on the operator field.
+<td class="tableblock halign-left valign-top"><p class="tableblock">String identifier which can help avoid name collisions on the operator field.
             Different implementations of a given operator would be in different domains.
             Implementations can choose which domains they want to support.</p></td>
 </tr>
@@ -14630,22 +14834,19 @@ No conformance testing is done for CUSTOM operators as they are implementation d
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">tensor_list_t</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-INT or PRO-FP</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
 </table>
@@ -14745,22 +14946,19 @@ LEVEL_CHECK(tensor_list_shape(output_list) &lt;= MAX_TENSOR_LIST_SIZE);</code></
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">cond_t</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-CONTROLFLOW</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
 </tr>
 </tbody>
 </table>
@@ -14769,7 +14967,8 @@ LEVEL_CHECK(tensor_list_shape(output_list) &lt;= MAX_TENSOR_LIST_SIZE);</code></
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">LEVEL_CHECK(tensor_list_shape(input_list) &lt;= MAX_TENSOR_LIST_SIZE);
+<pre class="CodeRay highlight"><code data-lang="c++">LEVEL_CHECK(rank(shape) &lt;= MAX_RANK);
+LEVEL_CHECK(tensor_list_shape(input_list) &lt;= MAX_TENSOR_LIST_SIZE);
 LEVEL_CHECK(tensor_list_shape(output_list) &lt;= MAX_TENSOR_LIST_SIZE);</code></pre>
 </div>
 </div>
@@ -14859,22 +15058,19 @@ tosa_nesting_depth--;</code></pre>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">cond_t</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-CONTROLFLOW</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bool_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
 </tr>
 </tbody>
 </table>
@@ -14960,8 +15156,8 @@ Modifications are expressed using read/write semantics.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Globally unique identifier for the declared variable tensor.</p></td>
@@ -15005,7 +15201,7 @@ Modifications are expressed using read/write semantics.</p>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">var_t</th>
+<th class="tableblock halign-left valign-top">in_t</th>
 </tr>
 </thead>
 <tbody>
@@ -15036,12 +15232,12 @@ Modifications are expressed using read/write semantics.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">tensor_t var_tensor = variable_tensor_lookup(uid);
+<pre class="CodeRay highlight"><code data-lang="c++">tensor_t var_tensor = variable_tensor_lookup(name);
 
 <span class="comment">// Invocation for the first time</span>
 <span class="keyword">if</span> (var_tensor == <span class="predefined-constant">NULL</span>) {
   <span class="comment">// Allocate the persistent mutable memory for the variable tensor</span>
-  var_tensor = variable_tensor_allocate&lt;var_t&gt;(var_shape, uid);
+  var_tensor = variable_tensor_allocate&lt;var_t&gt;(var_shape, name);
 
   <span class="keyword">if</span> (initial_value != <span class="predefined-constant">NULL</span>) {
     REQUIRE(var_t == in_t);
@@ -15054,7 +15250,7 @@ Modifications are expressed using read/write semantics.</p>
     var_tensor.is_written = <span class="predefined-constant">true</span>;
   }
 } <span class="keyword">else</span> { <span class="comment">// Variable tensor has already been declared</span>
-  <span class="comment">// It's invalid to declare the second variable with the same uid in a single graph execution,</span>
+  <span class="comment">// It's invalid to declare the second variable with the same name in a single graph execution,</span>
   REQUIRE(!var_tensor.seen);
 }
 
@@ -15106,8 +15302,8 @@ var_tensor.seen = <span class="predefined-constant">true</span>;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Globally unique identifier of the variable tensor that is writing to</p></td>
@@ -15127,7 +15323,7 @@ var_tensor.seen = <span class="predefined-constant">true</span>;</code></pre>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">var_t</th>
+<th class="tableblock halign-left valign-top">in_t</th>
 </tr>
 </thead>
 <tbody>
@@ -15182,13 +15378,13 @@ variable_tensor.is_written = <span class="predefined-constant">true</span>;</cod
 <div class="sect3">
 <h4 id="_variable_read">2.17.3. VARIABLE_READ</h4>
 <div class="paragraph">
+<p>Reads the value from a pseudo-buffer resource holding a persistent mutable tensor.</p>
+</div>
+<div class="paragraph">
 <p><strong>Precision Requirements</strong></p>
 </div>
 <div class="paragraph">
 <p>Results must be exact.</p>
-</div>
-<div class="paragraph">
-<p>Reads the value from a pseudo-buffer resource holding a persistent mutable tensor.</p>
 </div>
 <div class="paragraph">
 <p><strong>Arguments:</strong></p>
@@ -15215,8 +15411,8 @@ variable_tensor.is_written = <span class="predefined-constant">true</span>;</cod
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">i32_t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Globally unique identifier of the variable tensor that is reading from</p></td>
@@ -15244,7 +15440,7 @@ variable_tensor.is_written = <span class="predefined-constant">true</span>;</cod
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">var_t</th>
+<th class="tableblock halign-left valign-top">out_t</th>
 </tr>
 </thead>
 <tbody>
@@ -15275,7 +15471,7 @@ variable_tensor.is_written = <span class="predefined-constant">true</span>;</cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">tensor_t variable_tensor = variable_tensor_lookup(uid);
+<pre class="CodeRay highlight"><code data-lang="c++">tensor_t variable_tensor = variable_tensor_lookup(name);
 <span class="comment">// Check this variable tensor has been decalred</span>
 REQUIRE(variable_tensor != <span class="predefined-constant">NULL</span>);
 <span class="comment">// Check this variable tensor has been written</span>
@@ -15377,22 +15573,19 @@ for_each_data_position (index in shape) {
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Profile/Extension</th>
 <th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">shape_t</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRO-INT or PRO-FP</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">shape</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tensor_size_t</p></td>
 </tr>
 </tbody>
 </table>
@@ -15440,13 +15633,13 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NEAREST_NEIGHBOR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nearest neighbor resize</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BILINEAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bilinear resize</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -15476,25 +15669,25 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INT32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32-bit integer</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FP16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16-bit floating-point</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FP32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32-bit floating-point</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INT48</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">48-bit integer</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -15524,43 +15717,43 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BOOLEAN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INT8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8-bit integer</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INT16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16-bit integer</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INT32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32-bit integer</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FP16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16-bit floating-point</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BF16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16-bit brain floating-point</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FP32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32-bit floating-point</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -15568,7 +15761,7 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 </table>
 </div>
 <div class="sect2">
-<h3 id="_nan_propagation_t">3.4. nan_propagation_t</h3>
+<h3 id="_nan_propagation_mode_t">3.4. nan_propagation_mode_t</h3>
 <div class="paragraph">
 <p>NaN propagation policy</p>
 </div>
@@ -15590,13 +15783,13 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PROPAGATE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NaN is returned when the operation has a NaN</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IGNORE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NaN is ignored when the operation has a NaN. NaN is produced if and only if all operands are NaN</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -15604,7 +15797,7 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 </table>
 </div>
 <div class="sect2">
-<h3 id="_rounding_t">3.5. rounding_t</h3>
+<h3 id="_rounding_mode_t">3.5. rounding_mode_t</h3>
 <div class="paragraph">
 <p>Rounding mode</p>
 </div>
@@ -15626,19 +15819,19 @@ If no entry is listed in 'Required Extension' then the enumeration is always ava
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SINGLE_ROUND</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Perform single rounding.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INEXACT_ROUND</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allow rounding results to be inexact.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-INEXACTROUND</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_ROUND</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Perform double rounding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXT-DOUBLEROUND</p></td>
 </tr>
@@ -15728,7 +15921,7 @@ This condition is captured in the ERROR_IF function.</p>
 <p>An implementation is required to detect errors in a graph that does not have unpredictable behavior (see tosa_test_compliance).</p>
 </li>
 <li>
-<p>An acceptable implementation is to stop and report an error on the first ERROR_IF condition that occurs. This satifies tosa_test_compliance() even if the tosa_execute_graph() was tosa_unpredictable.</p>
+<p>An acceptable implementation is to stop and report an error on the first ERROR_IF condition that occurs. This satisfies tosa_test_compliance() even if the tosa_execute_graph() was tosa_unpredictable.</p>
 </li>
 <li>
 <p>If the tosa_execute_graphs() result is tosa_unpredictable or tosa_error, then there is no requirement on the implementation to execute any portion of the TOSA graph.</p>
@@ -15846,15 +16039,15 @@ value is the value to be written to the given coordinate.</p>
 <div class="paragraph">
 <p>variable_tensor_allocate allocates the mutable persistent memory block for storing variable tensors.
 The shape argument contains the shape of the allocated memory block for the variable_tensor.
-The uid argument is a globally unique identifier for variable tensors.</p>
+The 'name' argument is a globally unique identifier for variable tensors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">tensor_t* variable_tensor_allocate&lt;in_t&gt;(shape_t shape, int32_t uid) {
+<pre class="CodeRay highlight"><code data-lang="c++">tensor_t* variable_tensor_allocate&lt;in_t&gt;(shape_t shape, String name) {
     tensor_size_t size = tensor_size(shape);
     tensor_t *allocated_tensor = <span class="keyword">new</span> tensor_t;
     allocated_tensor-&gt;data = <span class="keyword">new</span> in_t[size];
-    allocated_tensor-&gt;uid = uid;
+    allocated_tensor-&gt;name = name;
     allocated_tensor-&gt;is_written = <span class="predefined-constant">false</span>;
     allocated_tensor-&gt;shape = shape;
     allocated_tensor-&gt;type = in_t;
@@ -15867,15 +16060,15 @@ The uid argument is a globally unique identifier for variable tensors.</p>
 <h4 id="_variable_tensor_lookup">4.4.5. Variable Tensor Lookup</h4>
 <div class="paragraph">
 <p>variable_tensor_lookup checks whether a variable tensor has been allocated or not.
-The uid argument is a globally unique identifier for variable tensors.</p>
+The 'name' argument is a globally unique identifier for variable tensors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">tensor_t variable_tensor_lookup(int32_t uid) {
+<pre class="CodeRay highlight"><code data-lang="c++">tensor_t variable_tensor_lookup(String name) {
     <span class="comment">// The global all_allocated_variable_tensors was instantiated at the first</span>
     <span class="comment">// time of executing the tosa graph</span>
     for_each(tensor_t allocated_tensor in all_allocated_variable_tensors) {
-        <span class="keyword">if</span> (allocated_tensor.uid == uid) {
+        <span class="keyword">if</span> (allocated_tensor.name == name) {
             <span class="keyword">return</span> allocated_tensor;
         }
     }
@@ -16251,18 +16444,7 @@ For the second function, the permitted error range is specified as an absolute e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++">bool_t tosa_reference_check_fp&lt;in_t&gt;(in_t test_value, fp64_t ref_value, fp64_t num_ulp) {
-  fp64_t err_bnd = <span class="float">0</span><span class="float">.0</span>;
-  <span class="keyword">if</span> (is_normal_fp64(ref_value) &amp;&amp; abs(ref_value) != <span class="integer">0</span>) {
-    <span class="predefined-type">int</span> ref_exp = ilog2(abs(ref_value));
-    fp64_t ref_pow2 = max(exp2(ref_exp), normal_min&lt;in_t&gt;());
-    fp64_t val_ulp  = ref_pow2 * exp2(-normal_frac&lt;in_t&gt;());
-    err_bnd = val_ulp * num_ulp;
-  }
-  <span class="keyword">return</span> tosa_reference_check_fp_bnd&lt;in_t&gt;(test_value, ref_value, err_bnd);
-}
-
-bool_t tosa_reference_check_fp_bnd&lt;in_t&gt;(in_t test_value, fp64_t ref_value, fp64_t err_bnd) {
+<pre class="CodeRay highlight"><code data-lang="c++">bool_t tosa_reference_check_fp_bnd&lt;in_t&gt;(in_t test_value, fp64_t ref_value, fp64_t err_bnd) {
   <span class="keyword">if</span> (isNaN(ref_value)) {
     <span class="comment">// If the reference value is a NaN, the test value must also be any NaN.</span>
     <span class="keyword">return</span> isNaN(test_value);
@@ -16299,6 +16481,20 @@ bool_t tosa_reference_check_fp_bnd&lt;in_t&gt;(in_t test_value, fp64_t ref_value
   <span class="comment">// at this point.</span>
   <span class="keyword">return</span> (<span class="keyword">static_cast</span>&lt;fp64_t&gt;(test_value) &gt;= ref_min &amp;&amp;
           <span class="keyword">static_cast</span>&lt;fp64_t&gt;(test_value) &lt;= ref_max);
+}
+
+fp64_t tosa_reference_ulp&lt;in_t&gt;(fp64_t ref_value) {
+  <span class="keyword">if</span> (is_normal_fp64(ref_value) &amp;&amp; abs(ref_value) != <span class="integer">0</span>) {
+    <span class="predefined-type">int</span> ref_exp = ilog2(abs(ref_value));
+    fp64_t ref_pow2 = max(exp2(ref_exp), normal_min&lt;in_t&gt;());
+    <span class="keyword">return</span> ref_pow2 * exp2(-normal_frac&lt;in_t&gt;());
+  }
+  <span class="keyword">return</span> <span class="float">0</span><span class="float">.0</span>;
+}
+
+bool_t tosa_reference_check_fp&lt;in_t&gt;(in_t test_value, fp64_t ref_value, fp64_t num_ulp) {
+  fp64_t err_bnd = tosa_reference_ulp&lt;in_t&gt;(ref_value) * num_ulp;
+  <span class="keyword">return</span> tosa_reference_check_fp_bnd&lt;in_t&gt;(test_value, ref_value, err_bnd);
 }</code></pre>
 </div>
 </div>
@@ -16312,14 +16508,12 @@ See <a href="#Number formats">[Number formats]</a> for details on the floating-p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="c++"><span class="comment">// Converts the floating-point value f, with rounding to the nearest integer value.</span>
-<span class="comment">// For the required precision see the section: Main inference precision requirements.</span>
+<pre class="CodeRay highlight"><code data-lang="c++"><span class="comment">// Converts the floating-point value to an integer value using round to nearest rounding.</span>
 <span class="predefined-type">int</span> round_to_nearest_int(float_t f);
 
-<span class="comment">// Converts the input value into floating-point, rounding to the nearest representable value.</span>
+<span class="comment">// Converts the input value into floating-point, using round to nearest rounding.</span>
 <span class="comment">// Values that are not NaN outside of the representable range of the destination type must be set to infinity of the correct sign.</span>
 <span class="comment">// If the destination floating point type does not have an infinity representation, values outside of the representable range must be set to NaN.</span>
-<span class="comment">// For the required precision see the section: Main inference precision requirements.</span>
 float_t round_to_nearest_float(in_t f);
 
 <span class="comment">// Floating point values are unchanged.</span>
@@ -19603,13 +19797,13 @@ KS = KX*KY;
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COND_IF</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WHILE_LOOP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -19879,7 +20073,7 @@ KS = KX*KY;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_ROUND</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">New Value</p></td>
 </tr>
@@ -19942,7 +20136,7 @@ KS = KX*KY;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rounding_mode_t</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INEXACT_ROUND</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">New Value</p></td>
 </tr>
@@ -19979,10 +20173,10 @@ SIN and COS were added to provide a base level of trigonometric functionality as
 </div>
 </div>
 <div class="sect2">
-<h3 id="_removed_operators">7.3. Removed operators</h3>
+<h3 id="_removed_operators">7.3. Removed Operators</h3>
 <div class="paragraph">
 <p>In version 0.90, a set of shape operators were introduced to attempt to allow dynamically shaped network to be expressed completely with TOSA.
-There are gaps in this implementation, and as such have the shape operators have been removed.
+There are gaps in this implementation, and as such the shape operators have been removed.
 This removes the requirement on future implementations retain compatibility with these operators.
 The shape_t type remains, and the CONST_SHAPE operator allows creating instances of shape_t type.</p>
 </div>
