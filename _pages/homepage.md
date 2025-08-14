@@ -96,10 +96,10 @@ flow:
       - format: buttons
         buttons_content:
           - title: Arm NN
-            url: https://developer.arm.com/technologies/compute-library
+            url: https://developer.arm.com/Tools%20and%20Software/ArmNN
             style: btn-primary
           - title: Compute Library
-            url: https://developer.arm.com/technologies/compute-library
+            url: https://www.arm.com/products/development-tools/embedded-and-software/compute-library
             style: btn-primary
           - title: Arm ML Inference Advisor
             url: https://pypi.org/project/mlia/
