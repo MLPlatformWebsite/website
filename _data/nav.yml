@@ -48,9 +48,6 @@ pages:
   - title: Forum
     url: https://discuss.mlplatform.org
     external: true
-  - title: Wiki
-    url: https://developer.mlplatform.org/w/
-    external: true
   - title: About
     url: /about/
   - title: Contact
