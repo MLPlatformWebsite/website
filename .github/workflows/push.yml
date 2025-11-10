@@ -17,7 +17,8 @@ concurrency:
 jobs:
   process-push:
     runs-on: ubuntu-latest
-    image: fsfe/pipenv:python-3.12
+    container:
+      image: fsfe/pipenv:python-3.12
     defaults:
       run:
         working-directory: ${{ github.workspace }}/website
