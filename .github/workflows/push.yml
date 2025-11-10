@@ -26,29 +26,30 @@ jobs:
         run: |
           cat ".github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
           pipenv --rm || true # Force-remove any old/broken venv
+          rm Pipfile.lock || true
           pipenv sync --verbose
 
       - run: env
 
       - name: Build site
-        run: $GITHUB_WORKSPACE/website/tools/build-jekyll-site.sh
+        run: ./tools/build-jekyll-site.sh
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check links
-        run: pipenv run $GITHUB_WORKSPACE/website/tools/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
+        run: pipenv run ./tools/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
 
       - name: Check routing rules
-        run: pipenv run $GITHUB_WORKSPACE/website/tools/test-routing-rules.sh
+        run: pipenv run ./tools/test-routing-rules.sh
 
       - name: Upload to S3
-        run: $GITHUB_WORKSPACE/website/tools/upload-to-s3-root.sh
+        run: ./tools/upload-to-s3-root.sh
 
       - name: Set up Lambda redirect
-        run: $GITHUB_WORKSPACE/website/tools/set-up-lambda-redirect.sh ${{ github.workspace }}/website
+        run: ./tools/set-up-lambda-redirect.sh ${{ github.workspace }}/website
 
       - name: Set up security headers
-        run: pipenv run python $GITHUB_WORKSPACE/website/tools/lambda-security-headers.py
+        run: pipenv run python ./tools/lambda-security-headers.py
 
       - name: Invalidate CloudFront cache
-        run: $GITHUB_WORKSPACE/website/tools/invalidate-cloudfront.sh
+        run: ./tools/invalidate-cloudfront.sh
