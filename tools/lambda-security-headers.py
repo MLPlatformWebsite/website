@@ -7,9 +7,6 @@ import os
 import boto3
 
 
-_PROFILE = (
-    "AWS_STATIC_SITE_PROFILE"
-)
 _CFDIST = (
     "CF_DIST_ID_STATIC_LO"
 )
@@ -31,8 +28,7 @@ def get_env_var(env):
 
 def build_lambda_arn(function_name) -> str:
     """ Get the latest version for the function """
-    profile = get_env_var(_PROFILE)
-    session = boto3.Session(profile_name=profile)
+    session = boto3.Session()
     client = session.client('lambda', 'us-east-1')
     versions = client.list_versions_by_function(FunctionName=function_name)["Versions"]
     # Find the highest version number
@@ -61,8 +57,7 @@ def get_lambda_arn() -> str:
 def is_function_attached():
     """ Is the function attached to the distribution? """
     func = get_lambda_arn()
-    profile = get_env_var(_PROFILE)
-    session = boto3.Session(profile_name=profile)
+    session = boto3.Session()
     cf_client = session.client('cloudfront', 'us-east-1')
     config = cf_client.get_distribution_config(
         Id=get_env_var(_CFDIST)
@@ -88,8 +83,7 @@ def attach_function():
         "EventType": "origin-response",
         "LambdaFunctionARN": func
     }
-    profile = get_env_var(_PROFILE)
-    session = boto3.Session(profile_name=profile)
+    session = boto3.Session()
     cf_client = session.client('cloudfront', 'us-east-1')
     config = cf_client.get_distribution_config(
         Id=get_env_var(_CFDIST)
