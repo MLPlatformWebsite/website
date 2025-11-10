@@ -21,8 +21,7 @@ import boto3
 from bs4 import BeautifulSoup
 
 
-PROFILE_NAME = os.getenv("AWS_STATIC_SITE_PROFILE")
-SESSION = boto3.session.Session(profile_name=PROFILE_NAME)
+SESSION = boto3.session.Session()
 S3_CLIENT = SESSION.client('s3')
 BUCKET = os.getenv("AWS_STATIC_SITE_URL")
 
