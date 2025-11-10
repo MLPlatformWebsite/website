@@ -20,9 +20,9 @@ jobs:
           path: website
 
       - name: Initialise environment
-        run:
-          - cat "$GITHUB_WORKSPACE/website/.github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
-          - pipenv install
+        run: |
+          cat "$GITHUB_WORKSPACE/website/.github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
+          pipenv install
 
       - run: env
 
