@@ -26,6 +26,7 @@ jobs:
         run: |
           cat ".github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
           pipenv --rm || true # Force-remove any old/broken venv
+          pipenv lock
           pipenv sync --verbose
 
       - run: env
