@@ -13,6 +13,9 @@ concurrency:
 jobs:
   process-push:
     runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/website
     steps:
       - name: Fetch git repository
         uses: actions/checkout@v4
@@ -21,7 +24,7 @@ jobs:
 
       - name: Initialise environment
         run: |
-          cat "$GITHUB_WORKSPACE/website/.github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
+          cat ".github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
           pipenv install
 
       - run: env
