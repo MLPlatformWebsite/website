@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+debugpy = "*"
+
+[packages]
+bs4 = "*"
+aiohttp = "*"
+boto3 = "*"
+gitpython = "==3.1.37"
+google-api-python-client = "1.12.8"
+google-auth = "1.23.0"
+ldap3 = "*"
+metadata-parser = "*"
+hvac = "*"
+squad-client = "*"
+requests = ">=2.31.0"
+importlib-metadata = "*"
+
+[requires]
+python_version = "3.12"

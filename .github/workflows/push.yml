@@ -15,47 +15,36 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Fetch git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: website
 
       - name: Initialise environment
-        run: cat "$GITHUB_WORKSPACE/website/.github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run:
+          - cat "$GITHUB_WORKSPACE/website/.github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
+          - pipenv install
 
       - run: env
 
-      - name: Directory push/pop
-        uses: linaro-its/directory-push-and-pop@v3.0
-        with:
-          cacheDirectory: /srv/site-builds
-          namedDirectory: ${{ env.SITE_URL }}
-          destinationDirectory: ${{ github.workspace }}/website
-
       - name: Build site
-        run: /srv/github-action-scripts/build-jekyll-site.sh
+        run: $GITHUB_WORKSPACE/website/tools/build-jekyll-site.sh
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check links
-        run: /srv/github-action-scripts/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
+        run: pipenv run $GITHUB_WORKSPACE/website/tools/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
 
       - name: Check routing rules
-        run: /srv/github-action-scripts/test-routing-rules.sh
-
-      - name: Make staging directory
-        run: mkdir -p /srv/s3-staging/${{ env.SITE_URL }}
-
-      - name: Sync build to staging directory
-        run: rsync -crui ${{ github.workspace }}/website/${{ env.SITE_URL }}/ /srv/s3-staging/${{ env.SITE_URL }} --delete
+        run: pipenv run $GITHUB_WORKSPACE/website/tools/test-routing-rules.sh
 
       - name: Upload to S3
-        run: /srv/github-action-scripts/upload-to-s3-root.sh
+        run: $GITHUB_WORKSPACE/website/tools/upload-to-s3-root.sh
 
       - name: Set up Lambda redirect
-        run: /srv/github-action-scripts/set-up-lambda-redirect.sh ${{ github.workspace }}/website
+        run: $GITHUB_WORKSPACE/website/tools/set-up-lambda-redirect.sh ${{ github.workspace }}/website
 
       - name: Set up security headers
-        run: cd /srv/github-action-scripts && pipenv run python lambda-security-headers.py
+        run: pipenv run python $GITHUB_WORKSPACE/website/tools/lambda-security-headers.py
 
       - name: Invalidate CloudFront cache
-        run: /srv/github-action-scripts/invalidate-cloudfront.sh
+        run: $GITHUB_WORKSPACE/website/tools/invalidate-cloudfront.sh
