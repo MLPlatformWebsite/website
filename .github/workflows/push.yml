@@ -5,6 +5,10 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  id-token: write  # Required to request the OIDC token
+  contents: read   # Required to check out the code
+
 # Cancel in-progress jobs or runs for the current workflow
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,7 +16,7 @@ concurrency:
 
 jobs:
   process-push:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ${{ github.workspace }}/website
@@ -22,12 +26,18 @@ jobs:
         with:
           path: website
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::841045539419:role/github-actions-oidc-role
+          aws-region: us-east-1
+
       - name: Initialise environment
         run: |
           cat ".github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
           pipenv --rm || true # Force-remove any old/broken venv
           pipenv lock
-          pipenv sync --verbose
+          pipenv sync
 
       - run: env
 
