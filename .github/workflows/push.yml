@@ -35,7 +35,7 @@ jobs:
       - name: Initialise environment
         run: |
           cat ".github-env-${GITHUB_REF##*/}" >> $GITHUB_ENV
-          apt update && apt install pipenv
+          sudo apt update && sudo apt install pipenv
           pipenv --rm || true # Force-remove any old/broken venv
           pipenv lock
           pipenv sync
