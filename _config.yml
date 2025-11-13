@@ -1,5 +1,5 @@
 title: ML PLatform
-url: https://www.mlplatform.org
+url: https://www.mlplatform-prev.org
 baseurl: ""
 description: |-
   ArmNN and Compute Library
@@ -26,8 +26,7 @@ exclude:
   - .asset-cache
   - _static-site
   - .sass-cache
-  - staging.mlplatform.org
-  - production.mlplatform.org
+  - www.mlplatform-prev.org
 sass:
   style: compressed
   load_paths:

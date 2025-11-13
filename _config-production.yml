@@ -3,9 +3,9 @@
 #
 #
 # URL of static site
-url: "https://www.mlplatform.org"
+url: "https://www.mlplatform-prev.org"
 # Destination folder
-destination: production.mlplatform.org
+destination: www.mlplatform-prev.org
 # Production boolean used in layouts / includes
 production: true
 # Google Analytics

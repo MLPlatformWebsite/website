@@ -2,8 +2,6 @@
 # shellcheck disable=SC2154
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-echo "Changing to $GITHUB_WORKSPACE/website/$SITE_URL"
-ls -l "$GITHUB_WORKSPACE/website/$SITE_URL"
 cd "$GITHUB_WORKSPACE/website/$SITE_URL" || exit 1
 # Sync HTML files with different cache settings. Using "no-cache" does *NOT* mean that the file is not
 # cached - it just forces the browser to do a quick check upstream to make sure that the page is valid.
