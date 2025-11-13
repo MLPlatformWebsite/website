@@ -1,0 +1,64 @@
+name: TestDeployment
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write  # Required to request the OIDC token
+  contents: read   # Required to check out the code
+
+# Cancel in-progress jobs or runs for the current workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  process-push:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/website
+    steps:
+      - name: Fetch git repository
+        uses: actions/checkout@v4
+        with:
+          path: website
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::544678973306:role/Proj-github-actions-oidc-role
+          aws-region: eu-west-1
+
+      - name: Initialise environment
+        run: |
+          cat ".github-env-test" >> $GITHUB_ENV
+          sudo apt update && sudo apt install pipenv
+          pipenv --rm || true # Force-remove any old/broken venv
+          pipenv lock
+          pipenv sync
+
+      - run: env
+
+      - name: Build site
+        run: ./tools/build-jekyll-site.sh
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Check links
+      #   run: pipenv run ./tools/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
+
+      # - name: Check routing rules
+      #   run: pipenv run ./tools/test-routing-rules.sh
+
+      - name: Upload to S3
+        run: ./tools/upload-to-s3-root.sh
+
+      # - name: Set up Lambda redirect
+      #   run: ./tools/set-up-lambda-redirect.sh ${{ github.workspace }}/website
+
+      # - name: Set up security headers
+      #   run: pipenv run python ./tools/lambda-security-headers.py
+
+      - name: Invalidate CloudFront cache
+        run: ./tools/invalidate-cloudfront.sh
