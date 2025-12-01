@@ -19,21 +19,18 @@ flow:
     sections:
       - format: text
         text_content:
-          text: >-
-            ### Forums
+          text: |
+            ### TOSA Specification
+            TOSA Specification forum is hosted by Arm Community support forums.
 
-            {:.table}
+            [https://community.arm.com/support-forums/f/tosa-forum](https://community.arm.com/support-forums/f/tosa-forum)
 
-            |Project|Forum|
+            ### TOSA Tools
+            To raise questions and issues in TOSA Tools project, please use GitLab issues.
 
-            |-------|-------------|
-
-            |TOSA Specification|[https://community.arm.com/support-forums/f/tosa-forum](https://community.arm.com/support-forums/f/tosa-forum)|
-
-            |TOSA Tools|[https://gitlab.arm.com/tosa/tosa-tools/-/issues](https://gitlab.arm.com/tosa/tosa-tools/-/issues)|
+            [https://gitlab.arm.com/tosa/tosa-tools/-/issues](https://gitlab.arm.com/tosa/tosa-tools/-/issues)
 
 
-            #### Deprecated Forum Platforms
-
+            ## Deprecated Forum Platforms
             In November 2025, **discuss.mlplatform.org** was decomissioned.
 ---
