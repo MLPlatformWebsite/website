@@ -22,14 +22,18 @@ flow:
           text: >-
             ### Forums
 
-
             {:.table}
 
             |Project|Forum|
 
             |-------|-------------|
 
-            |Tosa|<https://discuss.mlplatform.org/c/Discussion-of-the-TOSA-specification/>|
+            |TOSA Specification|[https://community.arm.com/support-forums/f/tosa-forum](https://community.arm.com/support-forums/f/tosa-forum)|
 
-            |General|<https://discuss.mlplatform.org/>|
+            |TOSA Tools|[https://gitlab.arm.com/tosa/tosa-tools/-/issues](https://gitlab.arm.com/tosa/tosa-tools/-/issues)|
+
+
+            #### Deprecated Forum Platforms
+
+            In November 2025, **discuss.mlplatform.org** was decomissioned.
 ---
