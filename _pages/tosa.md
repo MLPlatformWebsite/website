@@ -62,7 +62,7 @@ flow:
       - format: text
         text_content:
           text: |-
-            The TOSA Specification is written as AsciiDoc mark-up and developed in its raw mark-up form, managed through a git repository here: [https://git.mlplatform.org/tosa/specification.git/](https://git.mlplatform.org/tosa/specification.git/). The specification is developed and versioned much like software is. While the mark-up is legible and can be read fairly easily in its raw form, it is recommended to build or “render” the mark-up into a PDF document, or similar. To do this, please follow the instructions in the README.md in the root of the specification repository.
+            The TOSA Specification is written as AsciiDoc mark-up and developed in its raw mark-up form, managed through a git repository here: [https://github.com/arm/tosa-specification](https://github.com/arm/tosa-specification). The specification is developed and versioned much like software is. While the mark-up is legible and can be read fairly easily in its raw form, it is recommended to build or “render” the mark-up into a PDF document, or similar. To do this, please follow the instructions in the README.md in the root of the specification repository.
 
             # Principles for New Operators
             TOSA defines a set of primitive operators to which higher level operators can be lowered in a consistent way.
