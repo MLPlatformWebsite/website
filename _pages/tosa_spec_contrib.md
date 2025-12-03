@@ -30,17 +30,9 @@ flow:
           text: |-
             ### How to Contribute
             Practically, contributions to the TOSA Specification are made by modifying the AsciiDoc markup of the specification.
-            Those patches are then reviewed using Gerrit on [https://review.mlplatform.org/q/project:tosa%252Fspecification](https://review.mlplatform.org/q/project:tosa%252Fspecification).
-            However, before uploading patches to a gerrit review, users must read and agree to the TOSA Specification Contributors License Agreement. This can be achieved by doing the following:
+            Those patches are then reviewed using GitHub on [https://github.com/arm/tosa-specification](https://github.com/arm/tosa-specification).
+            However, before uploading Pull Requests for review, users must read and agree to the TOSA Specification Contributors License Agreement. This can be achieved by doing the following:
 
-            - Login to Gerrit (http://review.mlplatform.org)
-            - Navigate to User Settings
-            - Open the "Agreements" section
-            - Click the "New Contributor Agreement" link
-            - Select the "TOSA" radio button
-            - Open the link to the TOSA Specification and read
-            - *If* you agree to these terms, type "I agree" in the text box and click "SUBMIT"
-            - Note: You may get an error saying "Agreement already submitted.". This is harmless, please ignore it.
-            - Start uploading patches to the specification!
-            - Note: More significant contributions should be discussed on the MLPlatform.org's Discourse, under the "TOSA" Category. Decisions on accepting more significant changes will be made largely based on the principals laid out above. I.e. Adding new operators to TOSA which can be trivially decomposed into a sequence of existing TOSA operators are unlikely to be accepted! :-)
+            - Read the TOSA CLA at [https://www.mlplatform.org/tosa/tosa_cla.html](https://www.mlplatform.org/tosa/tosa_cla.html)
+            - *If* you agree to these terms, send an e-mail stating your acceptance of the terms of the CLA to [tosa-cla@arm.com](mailto:tosa-cla@arm.com)
 ---
