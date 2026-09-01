@@ -29,8 +29,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::841045539419:role/github-actions-oidc-role
-          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::544678973306:role/Proj-github-actions-oidc-role
+          aws-region: eu-west-1
 
       - name: Initialise environment
         run: |
@@ -58,9 +58,6 @@ jobs:
 
       - name: Set up Lambda redirect
         run: ./tools/set-up-lambda-redirect.sh ${{ github.workspace }}/website
-
-      - name: Set up security headers
-        run: pipenv run python ./tools/lambda-security-headers.py
 
       - name: Invalidate CloudFront cache
         run: ./tools/invalidate-cloudfront.sh
