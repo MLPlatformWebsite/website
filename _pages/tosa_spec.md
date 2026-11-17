@@ -17,7 +17,11 @@ flow:
         text_content:
           text: |
             # TOSA Specification
-            In this section, you can find the TOSA specification available in both HTML and PDF formats.
+            In this section, you can find published versions of the TOSA specification.
+
+            ## v1.1.0
+            * [HTML](https://arm.github.io/tosa-specification/releases/v1.1.0/)
+            * [Git - <small><code>tag: v1.1.0</code></small>](https://github.com/arm/tosa-specification/tree/v1.1.0)
 
             ## v1.0.2
             * [HTML](tosa_spec_1_0_2.html)
